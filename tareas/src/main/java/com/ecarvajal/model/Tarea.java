@@ -9,7 +9,7 @@ public class Tarea {
 		private String prioridad;
 		private String cliente;
 		private Date fAlta;
-		private Date fAtert;
+		private Date fAlert;
 		private String Descripcion;
 		private String status;
 		
@@ -44,10 +44,10 @@ public class Tarea {
 			this.fAlta = fAlta;
 		}
 		public Date getfAtert() {
-			return fAtert;
+			return fAlert;
 		}
-		public void setfAtert(Date fAtert) {
-			this.fAtert = fAtert;
+		public void setfAlert(Date fAtert) {
+			this.fAlert = fAlert;
 		}
 		public String getDescripcion() {
 			return Descripcion;
@@ -64,7 +64,7 @@ public class Tarea {
 		@Override
 		public String toString() {
 			return "Tarea [id=" + id + ", tarea=" + tarea + ", prioridad=" + prioridad + ", cliente=" + cliente
-					+ ", fAlta=" + fAlta + ", fAtert=" + fAtert + ", Descripcion=" + Descripcion + ", status=" + status
+					+ ", fAlta=" + fAlta + ", fAlert=" + fAlert + ", Descripcion=" + Descripcion + ", status=" + status
 					+ "]";
 		}
 		
