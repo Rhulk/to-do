@@ -125,14 +125,14 @@
 				</tr>
 			</thead>
 			<tbody class="to-dos add text-center my-4">
-				<tr>
-					<td>1</td>
-					<td>Soporte</td>
-					<td>Alta</td>
-					<td>Oficina </td>
-					<td>27/07/20 11:20 </th>
-					<th>27/07/20 15:00 </th>
-					<th>Bidon de agua</th>
+				<tr  th:each="tarea : ${tareasEnEpera}">
+					<td th:text="${tarea.id}">1</td>
+					<td th:text="${tarea.tarea}">Soporte</td>
+					<td th:text="${tarea.prioridad}">Alta</td>
+					<td th:text="${tarea.cliente}">Oficina </td>
+					<td th:text="${tarea.fAlta}">27/07/20 11:20 </th>
+					<th >27/07/20 15:00 </th>
+					<th th:text="${tarea.descripcion}">Bidon de agua nn</th>
 					<td> <i class="fa fa-hourglass-start" aria-hidden="true"></i> </td>
 					<td> <i class="fa fa-cog fa-fw" aria-hidden="true"></i> </td>
 					<td> <i class="far fa-trash-alt delete"></i></td>
@@ -169,14 +169,14 @@
 				</tr>
 			</thead>
 			<tbody class="to-dos add text-center my-4">
-				<tr>
-					<td>1</td>
-					<td>Soporte</td>
-					<td>Alta</td>
-					<td>Oficina </td>
-					<td>27/07/20 11:20 </th>
-					<th>27/07/20 15:00 </th>
-					<th>Bidon de agua</th>
+				<tr  th:each="activa : ${tareasActivas}">
+					<td th:text="${activa.id}">1</td>
+					<td th:text="${activa.tarea}">Soporte</td>
+					<td th:text="${activa.prioridad}">Alta</td>
+					<td th:text="${activa.cliente}">Oficina </td>
+					<td th:text="${activa.fAlta}">27/07/20 11:20 </th>
+					<th >27/07/20 15:00 </th>
+					<th th:text="${activa.descripcion}">Bidon de agua nn</th>
 					<td> <i class="fa fa-hourglass-start" aria-hidden="true"></i> </td>
 					<td> <i class="fa fa-cog fa-fw" aria-hidden="true"></i> </td>
 					<td> <i class="far fa-trash-alt delete"></i></td>

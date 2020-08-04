@@ -46,7 +46,7 @@ public class Tarea {
 		public Date getfAtert() {
 			return fAlert;
 		}
-		public void setfAlert(Date fAtert) {
+		public void setfAlert(Date fAlert) {
 			this.fAlert = fAlert;
 		}
 		public String getDescripcion() {
