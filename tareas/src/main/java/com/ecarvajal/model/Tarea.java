@@ -2,13 +2,17 @@ package com.ecarvajal.model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Tarea {
 
 		private int id;
 		private String tarea;
 		private String prioridad;
 		private String cliente;
+		@DateTimeFormat(pattern = "dd/MM/yyyy")
 		private Date fAlta;
+		@DateTimeFormat(pattern = "dd/MM/yyyy")
 		private Date fAlert;
 		private String Descripcion;
 		private String status;
@@ -43,12 +47,7 @@ public class Tarea {
 		public void setfAlta(Date fAlta) {
 			this.fAlta = fAlta;
 		}
-		public Date getfAtert() {
-			return fAlert;
-		}
-		public void setfAlert(Date fAlert) {
-			this.fAlert = fAlert;
-		}
+
 		public String getDescripcion() {
 			return Descripcion;
 		}
@@ -64,8 +63,18 @@ public class Tarea {
 		@Override
 		public String toString() {
 			return "Tarea [id=" + id + ", tarea=" + tarea + ", prioridad=" + prioridad + ", cliente=" + cliente
-					+ ", fAlta=" + fAlta + ", fAlert=" + fAlert + ", Descripcion=" + Descripcion + ", status=" + status
+					+ ", fAlta=" + fAlta + ", fAlert=" + 
+					fAlert+
+					", Descripcion=" + Descripcion + ", status=" + status
 					+ "]";
+		}
+		@DateTimeFormat(pattern="dd-MMM-YYYY")
+		public Date getfAlert() {
+			return fAlert;
+		}
+		@DateTimeFormat(pattern="dd-MMM-YYYY")
+		public void setfAlert(Date fAlert) {
+			this.fAlert = fAlert;
 		}
 		
 		

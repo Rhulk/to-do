@@ -19,92 +19,179 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
    <link th:href="@{/css/styles.css}" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/1d7d370a25.js" crossorigin="anonymous"></script>
     <title>TO DO list</title>
 </head>
 
 <body>
+    	<div class="container">
+    	<div class="row">
+    		<div class="col-md-5">
+    			<div role="tabpanel">
+					<ul class="nav nav-tabs" id="myTab" role="tablist">
+					  <li class="nav-item">
+					    <a class="nav-link active" id="alta-tab" data-toggle="tab" href="#alta" role="tab" aria-controls="alta" aria-selected="true">Alta</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link" id="search-tab" data-toggle="tab" href="#search" role="tab" aria-controls="search" aria-selected="false">Busqueda</a>
+					  </li>
+					</ul>
+					<div class="tab-content" id="myTabContent">
+					  <div class="tab-pane fade show active" id="alta" role="tabpanel" aria-labelledby="alta-tab">
+					  Formulario de alta.
+					  
+					  
+					  </div>
+					  <div class="tab-pane fade" id="search" role="tabpanel" aria-labelledby="search-tab">
+					  	Formulario de busqueda.
+					  
+					  </div>
 
+					</div>
+    			</div>
+    		</div>
+    	</div>	
     <div class="container">
+    
+    	<div class="row">
+    		<div class="col-md-5">
+    			<div role="tabpanel">
+    				<ul class="nav nav-tabs" role="tablist">
+    					<li role="presentation"> <a href="#" aria-controls="" data-toggle="tab" role="tab"> Alta</a></li>
+    					<li role="presentation"> <a href="#" aria-controls="" data-toggle="tab" role="tab"> Busqueda</a></li>
+
+    				</ul>
+    			</div>
+    		</div>
+    	</div>
 
         <header class="text-center text-light my-4">
             
 			<!-- Tab links Alta -- Busqueda -->
 			<div class="tab">
 				<button class="tablinks" onclick="openCity(event, 'Alta')">Alta</button>
+				<button class="tablinks" onclick="openCity(event, 'Alta2')">Alta2</button>
 				<button class="tablinks" onclick="openCity(event, 'Search')">Buscar</button>
+				<button class="tablinks" onclick="openCity(event, 'Cancelar')">Limpia</button>
 			</div>
-			<!-- Tab content -->	
-	
-			<form id ="Alta" class="add text-center my-4 tabcontent">
-				<label for="" class="text-light">Add a new "to do":</label>		
-				<div class="form-group form-inline ">	
-					<select class="styled-select space" placeholder="tarea">
-					  <option>Tarea</option>
-					  <option>Desarrollo</option>
-					  <option>Integracion</option>
-					  <option>Soporte</option>
-					  <option>Testing</option>
+			<!-- Tab content -->
+			
+				<form id ="Alta" class="add text-center my-4 tabcontent" th:action="@{/alta}" method="get" th:object="${alta}">	
+				<div class="form-group form-inline">
+					<select class="styled-select space" placeholder="tarea" th:field="*{tarea}">
+					<option th:value="${null}" selected> Seleccione una opción </option>
+					  <option th:value="Tarea" th:text="Tarea"></option>
+					  <option th:value="'en espera'" th:text="'en espera'"></option>
+					  <option th:value="Integracion" th:text="Integracion"></option>
+					  <option th:value="Soporte" th:text="Soporte"></option>
+					  <option th:value="Testing" th:text="Testing"></option>
+					  <option th:value="Desarrollo" th:text="Desarrollo"></option>
+					</select>	
+					<select class="styled-select space" placeholder="prioridad" th:field="*{prioridad}">
+					  <option th:value="Alta" th:text="Alta"></option>
+					  <option th:value="Media" th:text="Media"></option>
+					  <option th:value="Baja" th:text="Baja"></option>
 					</select>
-					<select class="styled-select space" placeholder="prioridad">
-					  <option>Alta</option>
-					  <option>Media</option>
-					  <option>Baja</option>
-					</select>					
-					<input class="form-control space" list="clientes" name="cliente" type="text" placeholder="Elige un cliente">
+					<input class="form-control space" list="clientes" name="cliente" type="text" placeholder="Elige un cliente" th:field="*{cliente}">
 					<datalist id="clientes">
-						<option value="Lorca"></option>
-						<option value="Bullas"></option>
-						<option value="Santa Cruz"></option>
-						<option value="Cieza"></option>
-						<option value="A Coruña"></option>
-						<option value="Durango"></option>
-						<option value="Torrelavega"></option>
+						<option th:value="Lorca"></option>
+						<option th:value="Bullas"></option>
+						<option th:value="'Santa Cruz'"></option>
+						<option th:value="Cieza"></option>
+						<option th:value="'A Coruña'"></option>
+						<option th:value="Durango"></option>
+						<option th:value="Torrelavega"></option>
 					</datalist>
-					<input type="date" class="form-control space" name="fAlert" placeholder="Fecha Alert">
+<!-- 					<div class="input-group date">
+						<input type="text" class="form-control" id="fecha" placeholder="Fecha Alert" th:field="*{fAlert}" >
+					</div>	 -->
 				</div>
-				<input type="text" class="form-control space" name="descripcion" placeholder="descripcion">
-				
-				<button type="button" class="btn btn-default space">To do</button>
-				<button type="button" class="btn btn-default space">Activo</button>
+				<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" th:field="*{descripcion}">
+	            <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3">En espera</button>
+    	        <button type="submit" name="action" value="activo" class="btn btn-primary mb-3">Activos</button>
+			</form>
+			
+			<form id ="Alta2" class="add text-center my-4 tabcontent" th:action="@{/alta}" method="get" th:object="${alta}">
+				<div class="form-group form-inline">
+					<select class="styled-select space" placeholder="tarea" th:field="*{tarea}">
+					<option th:value="${null}" selected> Seleccione una opción </option>
+					  <option th:value="Tarea" th:text="Tarea"></option>
+					  <option th:value="'en espera'" th:text="'en espera'"></option>
+					  <option th:value="Integracion" th:text="Integracion"></option>
+					  <option th:value="Soporte" th:text="Soporte"></option>
+					  <option th:value="Testing" th:text="Testing"></option>
+					  <option th:value="Desarrollo" th:text="Desarrollo"></option>
+					</select>	
+					<select class="styled-select space" placeholder="prioridad" th:field="*{prioridad}">
+					  <option th:value="Alta" th:text="Alta"></option>
+					  <option th:value="Media" th:text="Media"></option>
+					  <option th:value="Baja" th:text="Baja"></option>
+					</select>
+					<input class="form-control space" list="clientes" name="cliente" type="text" placeholder="Elige un cliente" th:field="*{cliente}">
+					<datalist id="clientes">
+						<option th:value="Lorca"></option>
+						<option th:value="Bullas"></option>
+						<option th:value="'Santa Cruz'"></option>
+						<option th:value="Cieza"></option>
+						<option th:value="'A Coruña'"></option>
+						<option th:value="Durango"></option>
+						<option th:value="Torrelavega"></option>
+					</datalist>
+					<div class="input-group date">
+						<input type="text" class="form-control" id="fecha" placeholder="Fecha Alert" th:field="*{fAlert}" >
+					</div>	
+				</div>
+				<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" th:field="*{descripcion}">
+	            <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3">En espera</button>
+    	        <button type="submit" name="action" value="activo" class="btn btn-primary mb-3">Activos</button>
+			</form>
 
-				
-			</form>	
 
-			<form id ="Search" class="add text-center my-4 tabcontent">
+			<form id ="Search" class="add text-center my-4 tabcontent" th:action="@{/search}" method="get" th:object="${search}">
 				<label for="" class="text-light">Buscar:</label>		
 				<div class="form-group form-inline ">	
-					<select class="styled-select space" placeholder="tarea">
-					  <option>Tarea</option>
-					  <option>Desarrollo</option>
-					  <option>Integracion</option>
-					  <option>Soporte</option>
-					  <option>Testing</option>
+					<select class="styled-select space" placeholder="tarea" th:field="*{tarea}">
+					<option th:value="${null}" selected> Seleccione una opción </option>
+					  <option th:value="Tarea" th:text="Tarea"></option>
+					  <option th:value="'en espera'" th:text="'en espera'"></option>
+					  <option th:value="Integracion" th:text="Integracion"></option>
+					  <option th:value="Soporte" th:text="Soporte"></option>
+					  <option th:value="Testing" th:text="Testing"></option>
+					  <option th:value="Desarrollo" th:text="Desarrollo"></option>
 					</select>
-					<select class="styled-select space" placeholder="prioridad">
-					  <option>Alta</option>
-					  <option>Media</option>
-					  <option>Baja</option>
-					</select>					
-					<input class="form-control space" list="clientes" name="cliente" type="text" placeholder="Elige un cliente">
+					
+					<select class="styled-select space" placeholder="prioridad" th:field="*{prioridad}">
+					  <option th:value="Alta" th:text="Alta"></option>
+					  <option th:value="Media" th:text="Media"></option>
+					  <option th:value="Baja" th:text="Baja"></option>
+					</select>
+<!-- 					<select class="styled-select space" placeholder="status" th:field="*{status}">
+					  <option th:value="Activo" th:text="Activo"></option>
+					  <option th:value="'en espera'" th:text="'en espera'"></option>
+					</select>	 -->				
+					<input class="form-control space" list="clientes" name="cliente" type="text" placeholder="Elige un cliente" th:field="*{cliente}">
 					<datalist id="clientes">
-						<option value="Lorca"></option>
-						<option value="Bullas"></option>
-						<option value="Santa Cruz"></option>
-						<option value="Cieza"></option>
-						<option value="A Coruña"></option>
-						<option value="Durango"></option>
-						<option value="Torrelavega"></option>
+						<option th:value="Lorca"></option>
+						<option th:value="Bullas"></option>
+						<option th:value="'Santa Cruz'"></option>
+						<option th:value="Cieza"></option>
+						<option th:value="'A Coruña'"></option>
+						<option th:value="Durango"></option>
+						<option th:value="Torrelavega"></option>
 					</datalist>
-					<input type="date" class="form-control space" name="fAlert" placeholder="Fecha Alert">
+					<div class="input-group date">
+						<input type="text" class="form-control" id="fecha" placeholder="Fecha Alert" th:field="*{fAlert}" >
+					</div> 
 				</div>
-				<input type="text" class="form-control space" name="descripcion" placeholder="descripcion">
+				<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" th:field="*{descripcion}">
 				
-				<button type="button" class="form-control space">Go</button>
-			</form>				
+	            <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3">En espera</button>
+    	        <button type="submit" name="action" value="activo" class="btn btn-primary mb-3">Activos</button>
+			</form>	
+			
+			
+			
 			<h2 class="mb-4">TO DO list</h2>
-            <form class="search">
-                <input type="text" class="form-control" name="search" placeholder="Search TO DOs...">
-            </form>
         </header>
 		
 
@@ -130,11 +217,13 @@
 					<td th:text="${tarea.tarea}">Soporte</td>
 					<td th:text="${tarea.prioridad}">Alta</td>
 					<td th:text="${tarea.cliente}">Oficina </td>
-					<td th:text="${tarea.fAlta}">27/07/20 11:20 </th>
+					<td th:text="${tarea.fAlta}">-- </th>
 					<th >27/07/20 15:00 </th>
-					<th th:text="${tarea.descripcion}">Bidon de agua nn</th>
-					<td> <i class="fa fa-hourglass-start" aria-hidden="true"></i> </td>
-					<td> <i class="fa fa-cog fa-fw" aria-hidden="true"></i> </td>
+					<th th:text="${tarea.descripcion}"></th>
+					<td> <a class="list-group-item" th:href="@{/changeStatus/{id} (id=${tarea.id}) }"><i class="fas fa-hourglass-start" aria-hidden="false"></i></a></td>
+					<td> <a class="list-group-item" href="#"><i class="fa fa-cog fa-fw" aria-hidden="true"></i></a></td>
+
+					
 					<td> <i class="far fa-trash-alt delete"></i></td>
 				</tr>
 
@@ -150,7 +239,7 @@
         <header class="text-center text-light my-4">
             <h2 class="mb-4">TO DO Activas</h2>
             <form class="search">
-                <input type="text" class="form-control" name="search" placeholder="Search TO DOs...">
+              
             </form>
         </header>
 		<table >
@@ -177,7 +266,7 @@
 					<td th:text="${activa.fAlta}">27/07/20 11:20 </th>
 					<th >27/07/20 15:00 </th>
 					<th th:text="${activa.descripcion}">Bidon de agua nn</th>
-					<td> <i class="fa fa-hourglass-start" aria-hidden="true"></i> </td>
+					<td> <a class="list-group-item" th:href="@{/changeStatus/{id} (id=${activa.id}) }"><i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i></a></td>
 					<td> <i class="fa fa-cog fa-fw" aria-hidden="true"></i> </td>
 					<td> <i class="far fa-trash-alt delete"></i></td>
 				</tr>
@@ -186,7 +275,25 @@
 		</table>
 
     </div>
-
+          <form class="form-inline" th:action="@{/search}" method="get" th:object="${search}">
+            <input th:field="*{tarea}" type="text" class="form-control mb-3"  placeholder="Fecha 1">&nbsp;
+            <input type="text" class="form-control" th:field="*{fAlta}"  name="fecha" id="fecha" placeholder="Fecha 2" >
+            
+            <input type="text" class="form-control space" name="fecha" id="fecha" placeholder="Fecha 3"  th:field="*{fAlert}" >
+            
+            <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3">En espera</button>
+            <button type="submit" name="action" value="activo" class="btn btn-primary mb-3">Activos</button>
+          </form>
+          <br>
+           <form class="form-inline" th:action="@{/alta}" method="get" th:object="${alta}">
+            <input th:field="*{tarea}" type="text" class="form-control mb-3"  placeholder="Fecha 1">&nbsp;
+            <input type="text" class="form-control" th:field="*{fAlta}"  name="fecha" id="fecha" placeholder="Fecha 2" >
+            
+            <input type="text" class="form-control space" name="fecha" id="fecha" placeholder="Fecha 3"  th:field="*{fAlert}" >
+            
+            <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3">En espera</button>
+            <button type="submit" name="action" value="activo" class="btn btn-primary mb-3">Activos</button>
+          </form>        
 
 
 	<br>
@@ -194,6 +301,28 @@
 	<br>
 
     <script th:src="@{/js/app.js}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>    
+    <script th:src="@{/tinymce/tinymce.min.js}"></script>  
+    <script>
+      
+      $(function () {
+          $("#fecha").datepicker({dateFormat: 'dd-mm-yy'});
+        }
+      );
+      
+      
+      tinymce.init({
+          selector: '#detalles',
+          plugins: "textcolor, table lists code",
+          toolbar: " undo redo | bold italic | alignleft aligncenter alignright alignjustify \n\
+                    | bullist numlist outdent indent | forecolor backcolor table code"
+      });
+      
+      
+      
+    </script>
 </body>
 
 </html>
