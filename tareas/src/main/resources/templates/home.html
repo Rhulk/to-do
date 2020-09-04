@@ -24,34 +24,40 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
-	        <form>
-				<label for="" class="text-light">Buscar:</label>		
-				<div class="form-group form-inline ">	
-					<select class="styled-select space" placeholder="tarea">
-					  <option>Tarea</option>
-					  <option>Desarrollo</option>
-					  <option>Integracion</option>
-					  <option>Soporte</option>
-					  <option>Testing</option>
+				<form id ="Alta" class="add text-center my-4 tabcontent" th:action="@{/alta}" method="get" th:object="${alta}">	
+				<div class="form-group form-inline">
+					<select class="styled-select space" placeholder="tarea" th:field="*{tarea}">
+					<option th:value="${null}" selected> Seleccione una opción </option>
+					  <option th:value="Tarea" th:text="Tarea"></option>
+					  <option th:value="'en espera'" th:text="'en espera'"></option>
+					  <option th:value="Integracion" th:text="Integracion"></option>
+					  <option th:value="Soporte" th:text="Soporte"></option>
+					  <option th:value="Testing" th:text="Testing"></option>
+					  <option th:value="Desarrollo" th:text="Desarrollo"></option>
+					</select>	
+					<select class="styled-select space" placeholder="prioridad" th:field="*{prioridad}">
+					  <option th:value="Alta" th:text="Alta"></option>
+					  <option th:value="Media" th:text="Media"></option>
+					  <option th:value="Baja" th:text="Baja"></option>
 					</select>
-					<select class="styled-select space" placeholder="prioridad">
-					  <option>Alta</option>
-					  <option>Media</option>
-					  <option>Baja</option>
-					</select>					
-					<input class="form-control space" list="clientes" name="cliente" type="text" placeholder="Elige un cliente">
+					<input class="form-control space" list="clientes" name="cliente" type="text" placeholder="Elige un cliente" th:field="*{cliente}">
 					<datalist id="clientes">
-						<option value="Lorca"></option>
-						<option value="Bullas"></option>
-						<option value="Santa Cruz"></option>
-						<option value="Cieza"></option>
-						<option value="A Coruña"></option>
-						<option value="Durango"></option>
-						<option value="Torrelavega"></option>
+						<option th:value="Lorca"></option>
+						<option th:value="Bullas"></option>
+						<option th:value="'Santa Cruz'"></option>
+						<option th:value="Cieza"></option>
+						<option th:value="'A Coruña'"></option>
+						<option th:value="Durango"></option>
+						<option th:value="Torrelavega"></option>
 					</datalist>
-					<input type="date" class="form-control space" name="fAlert" placeholder="Fecha Alert">
+<!-- 					<div class="input-group date">
+						<input type="text" class="form-control" id="fecha" placeholder="Fecha Alert" th:field="*{fAlert}" >
+					</div>	 -->
 				</div>
-	        </form>
+				<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" th:field="*{descripcion}">
+	            <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3">En espera</button>
+    	        <button type="submit" name="action" value="activo" class="btn btn-primary mb-3">Activos</button>
+			</form>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
