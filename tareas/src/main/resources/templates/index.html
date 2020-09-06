@@ -70,6 +70,7 @@
 						</div>	 
 					</div>
 					<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" th:field="*{descripcion}">
+					<br>
 		            <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3">En espera</button>
 	    	        <button type="submit" name="action" value="activo" class="btn btn-primary mb-3">Activos</button>
 				</form>
@@ -88,10 +89,17 @@
             
 			<!-- Tab links Alta -- Busqueda -->
 			<div class="tab">
-				<button class="tablinks" onclick="openCity(event, 'Search')">Buscar</button>
-				<button class="tablinks" onclick="openCity(event, 'Cancelar')">Limpia</button>
-			<a class="list-group-item d-flex justify-content-end " href="" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fas fa-plus" aria-hidden="true"></i>			</a>
+				<div class="container mt-3">
+				<div class="d-flex mb-3 bg-secondary">
 				
+					<div class="p-2 "><button class="tablinks" onclick="openCity(event, 'Search')">Buscar</button></div>
+					
+					<div class="p-2 "><button class="tablinks" onclick="openCity(event, 'Cancelar')">Limpia</button></div>
+					
+					<div class="p-2 ml-auto "><a class="list-group-item d-flex justify-content-end " href="" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fas fa-plus" aria-hidden="true"></i></a></div>
+				</div>
+				</div>
+			
 				
 			</div>
 			<!-- Tab content -->
@@ -295,25 +303,6 @@
 		</table>
 
     </div>
-          <form class="form-inline" th:action="@{/search}" method="get" th:object="${search}">
-            <input th:field="*{tarea}" type="text" class="form-control mb-3"  placeholder="Fecha 1">&nbsp;
-            <input type="text" class="form-control" th:field="*{fAlta}"  name="fecha" id="fecha" placeholder="Fecha 2" >
-            
-            <input type="text" class="form-control space" name="fecha" id="fecha" placeholder="Fecha 3"  th:field="*{fAlert}" >
-            
-            <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3">En espera</button>
-            <button type="submit" name="action" value="activo" class="btn btn-primary mb-3">Activos</button>
-          </form>
-          <br>
-           <form class="form-inline" th:action="@{/alta}" method="get" th:object="${alta}">
-            <input th:field="*{tarea}" type="text" class="form-control mb-3"  placeholder="Fecha 1">&nbsp;
-            <input type="text" class="form-control" th:field="*{fAlta}"  name="fecha" id="fecha" placeholder="Fecha 2" >
-            
-            <input type="text" class="form-control space" name="fecha" id="fecha" placeholder="Fecha 3"  th:field="*{fAlert}" >
-            
-            <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3">En espera</button>
-            <button type="submit" name="action" value="activo" class="btn btn-primary mb-3">Activos</button>
-          </form>        
 
 
 	<br>

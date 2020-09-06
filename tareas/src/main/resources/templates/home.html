@@ -11,34 +11,38 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    	<div class="container">
-    	<div class="row">
-    		<div class="col-md-5">
-    			<div role="tabpanel">
-					<ul class="nav nav-tabs" id="myTab" role="tablist">
-					  <li class="nav-item">
-					    <a class="nav-link active" id="alta-tab" data-toggle="tab" href="#alta" role="tab" aria-controls="alta" aria-selected="true">Alta</a>
-					  </li>
-					  <li class="nav-item">
-					    <a class="nav-link" id="search-tab" data-toggle="tab" href="#search" role="tab" aria-controls="search" aria-selected="false">Busqueda</a>
-					  </li>
-					</ul>
-					<div class="tab-content" id="myTabContent">
-					  <div class="tab-pane fade show active" id="alta" role="tabpanel" aria-labelledby="alta-tab">
-					  Formulario de alta.
-					  
-					  
-					  </div>
-					  <div class="tab-pane fade" id="search" role="tabpanel" aria-labelledby="search-tab">
-					  	Formulario de busqueda.
-					  
-					  </div>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="true" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-					</div>
-    			</div>
-    		</div>
-    	</div>	
-	</div>
+        <div class="navbar-collapse collapse show" id="navbarsExample09" style="">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown09">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-md-0">
+            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+          </form>
+          <a class="list-group-item " href="" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fas fa-plus" aria-hidden="true"></i>			</a>
+        </div>
+     </nav>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
