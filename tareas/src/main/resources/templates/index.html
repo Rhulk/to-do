@@ -26,19 +26,77 @@
 <body>
 	
     <div class="container">
+    
+    
+		<!--  ventana modal alta -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Nueva tarea</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+				<form  th:action="@{/alta}" method="get" th:object="${alta}">	
+					<div class="form-group form-inline">
+						<select class="styled-select space" placeholder="tarea" th:field="*{tarea}">
+						<option th:value="${null}" selected> Seleccione una opción </option>
+						  <option th:value="Tarea" th:text="Tarea"></option>
+						  <option th:value="'en espera'" th:text="'en espera'"></option>
+						  <option th:value="Integracion" th:text="Integracion"></option>
+						  <option th:value="Soporte" th:text="Soporte"></option>
+						  <option th:value="Testing" th:text="Testing"></option>
+						  <option th:value="Desarrollo" th:text="Desarrollo"></option>
+						</select>	
+						<select class="styled-select space" placeholder="prioridad" th:field="*{prioridad}">
+						  <option th:value="Alta" th:text="Alta"></option>
+						  <option th:value="Media" th:text="Media"></option>
+						  <option th:value="Baja" th:text="Baja"></option>
+						</select>
+						<input class="form-control space" list="clientes" name="cliente" type="text" placeholder="Elige un cliente" th:field="*{cliente}">
+						<datalist id="clientes">
+							<option th:value="Lorca"></option>
+							<option th:value="Bullas"></option>
+							<option th:value="'Santa Cruz'"></option>
+							<option th:value="Cieza"></option>
+							<option th:value="'A Coruña'"></option>
+							<option th:value="Durango"></option>
+							<option th:value="Torrelavega"></option>
+						</datalist>
+	 					<div class="input-group date">
+							<input type="text" class="form-control" id="fecha" placeholder="Fecha Alert" th:field="*{fAlert}" >
+						</div>	 
+					</div>
+					<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" th:field="*{descripcion}">
+		            <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3">En espera</button>
+	    	        <button type="submit" name="action" value="activo" class="btn btn-primary mb-3">Activos</button>
+				</form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary">Send message</button>
+		        <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3">En espera</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- fin ventana modal -->
 
         <header class="text-center text-light my-4">
             
 			<!-- Tab links Alta -- Busqueda -->
 			<div class="tab">
-				<button class="tablinks" onclick="openCity(event, 'Alta')">Alta</button>
-				<button class="tablinks" onclick="openCity(event, 'Alta2')">Alta2</button>
 				<button class="tablinks" onclick="openCity(event, 'Search')">Buscar</button>
 				<button class="tablinks" onclick="openCity(event, 'Cancelar')">Limpia</button>
+			<a class="list-group-item d-flex justify-content-end " href="" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fas fa-plus" aria-hidden="true"></i>			</a>
+				
+				
 			</div>
 			<!-- Tab content -->
 			
-				<form id ="Alta" class="add text-center my-4 tabcontent" th:action="@{/alta}" method="get" th:object="${alta}">	
+			<form id ="Alta" class="add text-center my-4 tabcontent" th:action="@{/alta}" method="get" th:object="${alta}">	
 				<div class="form-group form-inline">
 					<select class="styled-select space" placeholder="tarea" th:field="*{tarea}">
 					<option th:value="${null}" selected> Seleccione una opción </option>
