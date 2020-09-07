@@ -154,6 +154,27 @@ public class HomeController {
 		
 		return "redirect:/index";
 	}
+	
+	@GetMapping("/deleteTarea/{id}")
+	String deleteTarea(@PathVariable("id") int id) {
+		
+		System.out.println(" --> Detele id: "+ id);
+		return "redirect:/index";
+	}
+	
+	@GetMapping("/editarTarea/{id}")
+	String editarTarea(@PathVariable("id") int id) {
+		
+		System.out.println(" --> Edit id: "+ id);
+		return "redirect:/index";
+	}
+	
+	@GetMapping("/resolverTarea/{id}")
+	String resolverTarea(@PathVariable("id") int id) {
+		
+		System.out.println(" --> Resolver id: "+ id);
+		return "redirect:/index";
+	}
 
 	
 	/*

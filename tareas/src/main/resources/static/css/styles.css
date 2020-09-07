@@ -7,7 +7,12 @@ body {
 }
  
 .container {
-    max-width: 900px;
+    max-width: auto;
+    
+    margin-left: 10px;
+    padding-left: 10px;
+    
+    text-align: center;
 }
  
 input[type=text],
@@ -52,9 +57,11 @@ thead th:nth-child(3) {
 thead th:nth-child(4) {
   width: 35%;
 }
-
+th{
+	color:red;
+}
 th, td {
-  padding: 20px;
+  padding: 30px;
 }
 
 .space{
@@ -128,4 +135,5 @@ div.scrollmenu a {
 div.scrollmenu a:hover {
   background-color: #777;
 }
+
  

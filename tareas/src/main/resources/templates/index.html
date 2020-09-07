@@ -10,6 +10,8 @@
 	  <a href="#about">About</a>
 	  ...
 	</div>
+	    <div class="container">
+    
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,8 +27,7 @@
 
 <body>
 	
-    <div class="container">
-    
+
     
 		<!--  ventana modal alta -->
 		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -246,13 +247,20 @@
 					<td th:text="${tarea.prioridad}">Alta</td>
 					<td th:text="${tarea.cliente}">Oficina </td>
 					<td th:text="${tarea.fAlta}">-- </th>
-					<th >27/07/20 15:00 </th>
-					<th th:text="${tarea.descripcion}"></th>
+					<td >27/07/20 15:00 </td>
+					<td th:text="${tarea.descripcion}"></td>
 					<td> <a class="list-group-item" th:href="@{/changeStatus/{id} (id=${tarea.id}) }"><i class="fas fa-hourglass-start" aria-hidden="false"></i></a></td>
-					<td> <a class="list-group-item" href="#"><i class="fa fa-cog fa-fw" aria-hidden="true"></i></a></td>
+					<td>
+					  <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown"></button>
+					   <ul class="dropdown-menu" role="menu">
+						<div class="d-flex bg-secondary">		  
+						    <div class="p-1 "><li><a class="list-group-item" th:href="@{/editarTarea/{id} (id=${tarea.id}) }" ><i class="far fa-edit" aria-hidden="true"></i>Editar</a></li></div>
+						    <div class="p-1 "><li><a class="list-group-item" th:href="@{/resolverTarea/{id} (id=${tarea.id}) }" ><i class="far fa-check-circle" aria-hidden="true"></i>Resolver</a></li></div>
+						</div>  
+					   </ul>
+					</td>
+					<td> <a class="list-group-item" th:href="@{/deleteTarea/{id} (id=${tarea.id}) }"><i class="far fa-trash-alt delete" aria-hidden="true"></i></a></td>
 
-					
-					<td> <i class="far fa-trash-alt delete"></i></td>
 				</tr>
 
 			</tbody>
@@ -292,11 +300,19 @@
 					<td th:text="${activa.prioridad}">Alta</td>
 					<td th:text="${activa.cliente}">Oficina </td>
 					<td th:text="${activa.fAlta}">27/07/20 11:20 </th>
-					<th >27/07/20 15:00 </th>
-					<th th:text="${activa.descripcion}">Bidon de agua nn</th>
+					<td >27/07/20 15:00 </td>
+					<td th:text="${activa.descripcion}">Bidon de agua nn</td>
 					<td> <a class="list-group-item" th:href="@{/changeStatus/{id} (id=${activa.id}) }"><i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i></a></td>
-					<td> <i class="fa fa-cog fa-fw" aria-hidden="true"></i> </td>
-					<td> <i class="far fa-trash-alt delete"></i></td>
+					<td>
+					  <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown"></button>
+					   <ul class="dropdown-menu" role="menu">
+						<div class="d-flex bg-secondary">		  
+						    <div class="p-1 "><li><a class="list-group-item" th:href="@{/editarTarea/{id} (id=${activa.id}) }"><i class="far fa-edit" aria-hidden="true"></i>Editar</a></li></div>
+						    <div class="p-1 "><li><a class="list-group-item" th:href="@{/resolverTarea/{id} (id=${activa.id}) }"><i class="far fa-check-circle" aria-hidden="true"></i>Resolver</a></li></div>
+						</div>  
+					   </ul>
+					</td>
+					<td> <a class="list-group-item" th:href="@{/deleteTarea/{id} (id=${activa.id}) }"><i class="far fa-trash-alt delete" aria-hidden="true"></i></a></td>
 				</tr>
 
 			</tbody>
@@ -314,8 +330,16 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>    
     <script th:src="@{/tinymce/tinymce.min.js}"></script>  
-    <script>
-      
+    
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ 	
+ 	 <script type="text/javascript">
       $(function () {
           $("#fecha").datepicker({dateFormat: 'dd-mm-yy'});
         }
@@ -330,8 +354,9 @@
       });
       
       
-      
-    </script>
+      </script>
+   
+     
 </body>
 
 </html>
