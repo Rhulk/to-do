@@ -7,42 +7,38 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <script src="https://kit.fontawesome.com/1d7d370a25.js" crossorigin="anonymous"></script>
     <title>Hello, world!</title>
   </head>
   <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="true" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+<div class="btn-group">
 
-        <div class="navbar-collapse collapse show" id="navbarsExample09" style="">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown09">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-md-0">
-            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-          </form>
-          <a class="list-group-item " href="" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fas fa-plus" aria-hidden="true"></i>			</a>
-        </div>
-     </nav>
+	
+
+  <button type="button" class="btn btn-danger">config.</button>
+ 
+  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+    <span class="caret"></span>
+    <span class="sr-only">Desplegar menú</span>
+  </button>
+
+	  <ul class="dropdown-menu" role="menu">
+		<div class="container ">
+		<div class="d-flex bg-secondary">		  
+		    <div class="p-1 "><li><a href="#">Acción #1</a></li></div>
+		    <div class="p-1 "><li><a href="#">Acción #2</a></li></div>
+		    <div class="p-1 "><li><a href="#">Acción #3</a></li></div>
+
+		    <div class="p-1 "><li><a href="#">Acción #4</a></li></div>
+		    <div class="p-1 "><li><a class="list-group-item" ><i class="far fa-check-circle" aria-hidden="true"></i></a></li></div>
+		    
+		</div>
+		</div>			    
+	    
+	  </ul>
+	</div>
+	
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
