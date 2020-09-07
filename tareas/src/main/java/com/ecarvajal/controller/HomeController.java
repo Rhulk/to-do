@@ -154,6 +154,13 @@ public class HomeController {
 		
 		return "redirect:/index";
 	}
+	
+	@GetMapping("/deleteTarea/{id}")
+	String deleteTarea(@PathVariable("id") int id) {
+		
+		System.out.println(" --> Detele id: "+ id);
+		return "redirect:/index";
+	}
 
 	
 	/*
