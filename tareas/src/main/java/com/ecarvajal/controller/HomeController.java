@@ -163,6 +163,21 @@ public class HomeController {
 	}
 
 	
+	@GetMapping("/editarTarea/{id}")
+	String editarTarea(@PathVariable("id") int id) {
+		
+		System.out.println(" --> Edit id: "+ id);
+		return "redirect:/index";
+	}
+	
+	@GetMapping("/resolverTarea/{id}")
+	String resolverTarea(@PathVariable("id") int id) {
+		
+		System.out.println(" --> Resolver id: "+ id);
+		return "redirect:/index";
+	}
+
+	
 	/*
 	 *  Lista temporal para simular datos de BBDD
 	 * 
