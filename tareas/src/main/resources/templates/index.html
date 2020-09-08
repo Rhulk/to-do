@@ -230,6 +230,7 @@
 				<tr class="to-dos add text-center my-4" >
 					<th>Ticket</th>
 					<th>Tarea</th>
+					<th>Estado</th>
 					<th>prioridad</th>
 					<th>Cliente</th>
 					<th>Fecha Alta</th>
@@ -240,10 +241,11 @@
 					<th>Borrar</th>
 				</tr>
 			</thead>
-			<tbody class="to-dos add text-center my-4">
+			<tbody class="to-dos add text-center my-3">
 				<tr  th:each="tarea : ${tareasEnEpera}">
 					<td th:text="${tarea.id}">1</td>
 					<td th:text="${tarea.tarea}">Soporte</td>
+					<td th:text="${tarea.status}">Soporte</td>
 					<td th:text="${tarea.prioridad}">Alta</td>
 					<td th:text="${tarea.cliente}">Oficina </td>
 					<td th:text="${tarea.fAlta}">-- </th>
@@ -253,14 +255,76 @@
 					<td>
 					  <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown"></button>
 					   <ul class="dropdown-menu" role="menu">
-						<div class="d-flex bg-secondary">		  
-						    <div class="p-1 "><li><a class="list-group-item" th:href="@{/editarTarea/{id} (id=${tarea.id}) }" ><i class="far fa-edit" aria-hidden="true"></i>Editar</a></li></div>
+						<div class="d-flex bg-secondary">  
+						    <div class="p-1 "><li><a class="list-group-item" th:href="@{/editarTarea/{id} (id=${tarea.id}) }" data-toggle="modal" data-target="#ventaModaledite" data-whatever="@mdo"><i class="far fa-edit" aria-hidden="true"></i>Editar</a></li></div>
+						    
+				    
+						    
 						    <div class="p-1 "><li><a class="list-group-item" th:href="@{/resolverTarea/{id} (id=${tarea.id}) }" ><i class="far fa-check-circle" aria-hidden="true"></i>Resolver</a></li></div>
+						    
 						</div>  
 					   </ul>
 					</td>
 					<td> <a class="list-group-item" th:href="@{/deleteTarea/{id} (id=${tarea.id}) }"><i class="far fa-trash-alt delete" aria-hidden="true"></i></a></td>
 
+					<td>
+								<!--  ventana modal edit -->
+								<div class="modal fade" id="ventaModaledite" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								  <div class="modal-dialog">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <h5 class="modal-title colorNegro" id="exampleModalLabel" style="color:black">Modificar la tarea tarea</h5>
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								          <span aria-hidden="true">&times;</span>
+								        </button>
+								      </div>
+								      <div class="modal-body">
+										<form  th:action="@{/editarTarea/{id} (id=${tarea.id}) }" method="get" th:object="${alta}">	
+											<div class="form-group form-inline">
+												<select class="styled-select space" placeholder="tarea" th:field="*{tarea}">
+												<option th:value="${null}" selected> Seleccione una opción </option>
+												  <option th:value="Tarea" th:text="Tarea"></option>
+												  <option th:value="'en espera'" th:text="'en espera'"></option>
+												  <option th:value="Integracion" th:text="Integracion"></option>
+												  <option th:value="Soporte" th:text="Soporte"></option>
+												  <option th:value="Testing" th:text="Testing"></option>
+												  <option th:value="Desarrollo" th:text="Desarrollo"></option>
+												</select>	
+												<select class="styled-select space" placeholder="prioridad" th:field="*{prioridad}">
+												  <option th:value="Alta" th:text="Alta"></option>
+												  <option th:value="Media" th:text="Media"></option>
+												  <option th:value="Baja" th:text="Baja"></option>
+												</select>
+												<input class="form-control space" list="clientes" name="cliente" type="text" placeholder="Elige un cliente" th:field="*{cliente}">
+												<datalist id="clientes">
+													<option th:value="Lorca"></option>
+													<option th:value="Bullas"></option>
+													<option th:value="'Santa Cruz'"></option>
+													<option th:value="Cieza"></option>
+													<option th:value="'A Coruña'"></option>
+													<option th:value="Durango"></option>
+													<option th:value="Torrelavega"></option>
+												</datalist>
+							 					<div class="input-group date">
+													<input type="text" class="form-control" id="fecha" placeholder="Fecha Alert" th:field="*{fAlert}" >
+												</div>	 
+											</div>
+											<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" th:field="*{descripcion}">
+											<br>
+								            <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3">En espera</button>
+							    	        <button type="submit" name="action" value="activo" class="btn btn-primary mb-3">Activos</button>
+										</form>
+								      </div>
+								      <div class="modal-footer">
+								        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								        <button type="button" class="btn btn-primary">Send message</button>
+								        <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3">En espera</button>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+								<!-- fin ventana modal -->		
+					</td>
 				</tr>
 
 			</tbody>
@@ -283,6 +347,8 @@
 				<tr class="to-dos add text-center my-4" >
 					<th>Ticket</th>
 					<th>Tarea</th>
+					<th>Estado</th>
+					<th>Estatus</th>
 					<th>prioridad</th>
 					<th>Cliente</th>
 					<th>Fecha Alta</th>
@@ -297,6 +363,7 @@
 				<tr  th:each="activa : ${tareasActivas}">
 					<td th:text="${activa.id}">1</td>
 					<td th:text="${activa.tarea}">Soporte</td>
+					<td th:text="${activa.status}">Soporte</td>
 					<td th:text="${activa.prioridad}">Alta</td>
 					<td th:text="${activa.cliente}">Oficina </td>
 					<td th:text="${activa.fAlta}">27/07/20 11:20 </th>

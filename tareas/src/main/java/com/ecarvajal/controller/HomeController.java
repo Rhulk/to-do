@@ -166,14 +166,54 @@ public class HomeController {
 	@GetMapping("/editarTarea/{id}")
 	String editarTarea(@PathVariable("id") int id) {
 		
+		for(int i=0; i< listaEspera.size() ;i++) {
+			if (listaEspera.get(i).getId() == id) {
+				listaEspera.get(i).setStatus("Editado");
+				listaEspera.add(listaEspera.get(i));
+				listaEspera.remove(i);
+				System.out.println(" - | lista en espera | - "+listaEspera.toString());
+				System.out.println(" - | lista activo | - "+listaActiva.toString());
+				return "redirect:/index";
+			}
+		}
+		for(int i=0; i< listaActiva.size() ;i++) {
+			if (listaActiva.get(i).getId() == id) {
+				listaActiva.get(i).setStatus("Editado");
+				listaActiva.add( listaActiva.get(i));
+				listaActiva.remove(i);
+				System.out.println(" - | lista en espera | - "+listaEspera.toString());
+				System.out.println(" - | lista activo | - "+listaActiva.toString());
+			}
+		}	
+		
 		System.out.println(" --> Edit id: "+ id);
 		return "redirect:/index";
 	}
+
 	
 	@GetMapping("/resolverTarea/{id}")
 	String resolverTarea(@PathVariable("id") int id) {
-		
 		System.out.println(" --> Resolver id: "+ id);
+		
+		for(int i=0; i< listaEspera.size() ;i++) {
+			if (listaEspera.get(i).getId() == id) {
+				listaEspera.get(i).setStatus("Resuelto");
+				listaEspera.add(listaEspera.get(i));
+				listaEspera.remove(i);
+				System.out.println(" - | lista en espera | - "+listaEspera.toString());
+				System.out.println(" - | lista activo | - "+listaActiva.toString());
+				return "redirect:/index";
+			}
+		}
+		for(int i=0; i< listaActiva.size() ;i++) {
+			if (listaActiva.get(i).getId() == id) {
+				listaActiva.get(i).setStatus("Resuelto");
+				listaActiva.add( listaActiva.get(i));
+				listaActiva.remove(i);
+				System.out.println(" - | lista en espera | - "+listaEspera.toString());
+				System.out.println(" - | lista activo | - "+listaActiva.toString());
+			}
+		}	
 		return "redirect:/index";
 	}
 
