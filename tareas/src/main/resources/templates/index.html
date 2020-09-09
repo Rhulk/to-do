@@ -279,7 +279,7 @@
 								        </button>
 								      </div>
 								      <div class="modal-body">
-										<form  th:action="@{/editarTarea/{id} (id=${tarea.id}) }" method="get" th:object="${alta}">	
+										<form  th:action="@{/editarTarea/{id} (id=${tarea.id}) }" method="get" th:object="${edit}">	
 											<div class="form-group form-inline">
 												<select class="styled-select space" placeholder="tarea" th:field="*{tarea}">
 												<option th:value="${null}" selected> Seleccione una opción </option>
@@ -309,7 +309,7 @@
 													<input type="text" class="form-control" id="fecha" placeholder="Fecha Alert" th:field="*{fAlert}" >
 												</div>	 
 											</div>
-											<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" th:field="*{descripcion}">
+											<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" th:text="${tarea.descripcion}" th:field="*{descripcion}">
 											<br>
 								            <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3">En espera</button>
 							    	        <button type="submit" name="action" value="activo" class="btn btn-primary mb-3">Activos</button>

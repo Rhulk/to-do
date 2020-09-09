@@ -54,11 +54,11 @@ public class HomeController {
 	@ModelAttribute
 	public void setGenericos(Model model) {
 		//String tarea= "Sin definir";
-		Tarea tarea = new Tarea();
-		Tarea tareaAlta = new Tarea();
+
 		System.out.println("  IMPORTANTE  *******  Cargando datos a la vista --->> ");
-		model.addAttribute("search", tarea);
-		model.addAttribute("alta", tareaAlta);
+		model.addAttribute("search",new Tarea());
+		model.addAttribute("alta", new Tarea());
+		model.addAttribute("edit", new Tarea());
 		System.out.println(" -- setGenericos -- Se declaran variables para la vista");
 	}
 
@@ -164,11 +164,18 @@ public class HomeController {
 
 	
 	@GetMapping("/editarTarea/{id}")
-	String editarTarea(@PathVariable("id") int id) {
+	String editarTarea(@PathVariable("id") int id,@ModelAttribute("edit") Tarea tarea) {
 		
 		for(int i=0; i< listaEspera.size() ;i++) {
 			if (listaEspera.get(i).getId() == id) {
 				listaEspera.get(i).setStatus("Editado");
+				listaEspera.get(i).setCliente(tarea.getCliente());
+				listaEspera.get(i).setDescripcion(tarea.getDescripcion());
+				listaEspera.get(i).setfAlert(tarea.getfAlert());
+				listaEspera.get(i).setfAlta(tarea.getfAlta());
+				listaEspera.get(i).setPrioridad(tarea.getPrioridad());
+				listaEspera.get(i).setSolucion(tarea.getSolucion());
+				listaEspera.get(i).setTarea(tarea.getTarea());
 				listaEspera.add(listaEspera.get(i));
 				listaEspera.remove(i);
 				System.out.println(" - | lista en espera | - "+listaEspera.toString());
@@ -179,6 +186,13 @@ public class HomeController {
 		for(int i=0; i< listaActiva.size() ;i++) {
 			if (listaActiva.get(i).getId() == id) {
 				listaActiva.get(i).setStatus("Editado");
+				listaActiva.get(i).setCliente(tarea.getCliente());
+				listaActiva.get(i).setDescripcion(tarea.getDescripcion());
+				listaActiva.get(i).setfAlert(tarea.getfAlert());
+				listaActiva.get(i).setfAlta(tarea.getfAlta());
+				listaActiva.get(i).setPrioridad(tarea.getPrioridad());
+				listaActiva.get(i).setSolucion(tarea.getSolucion());
+				listaActiva.get(i).setTarea(tarea.getTarea());
 				listaActiva.add( listaActiva.get(i));
 				listaActiva.remove(i);
 				System.out.println(" - | lista en espera | - "+listaEspera.toString());
