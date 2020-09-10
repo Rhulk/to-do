@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ecarvajal.model.Tarea;
+import com.ecarvajal.service.HomeService;
 
 
 
@@ -36,6 +37,9 @@ public class HomeController {
 	boolean busqueda=false;
 	
 	Tarea tarea = new Tarea();
+	
+	@Autowired
+	HomeService hService = new HomeService();
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -70,6 +74,7 @@ public class HomeController {
 	@GetMapping("index")
 	public String inicio(Model vista) {
 	
+		hService.prueba();
 		if (listaEspera.isEmpty() && listaActiva.isEmpty()) {
 			System.out.println("Lista vacia se inicializa ...");
 			
