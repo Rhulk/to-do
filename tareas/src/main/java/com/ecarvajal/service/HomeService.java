@@ -19,7 +19,9 @@ public class HomeService {
 		
 	try {
 	 // Load the file.
-		 File file = new File("c:/git/toDo/to-do/tareas/src/main/resources/holaExcel.ods");
+		 File file = new File("src/main/resources/static/doc/holaExcel.ods");
+		 System.out.println(" Ruta --- "+file.getAbsolutePath());
+		 System.out.println(" -- existe ?? " +file.exists());
 		 Sheet sheet= SpreadSheet.createFromFile(file).getSheet(0);
 	
 		 // Change date.
@@ -61,7 +63,7 @@ public class HomeService {
 		  TableModel model = new DefaultTableModel(data, columns);  
 		    
 		  // Save the data to an ODS file and open it.
-		  final File file = new File("temperature.ods");
+		  final File file = new File("src/main/resources/static/doc/holaExcel.ods");
 		  SpreadSheet.createEmpty(model).saveAs(file);
 		    
 		  OOUtils.open(file);
