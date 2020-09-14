@@ -28,7 +28,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+<<<<<<< HEAD
 <!--  		para que no me pida de la BBDD.
+=======
+<!-- 		
+>>>>>>> branch 'Pestaña' of https://github.com/Rhulk/to-do.git
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -39,7 +43,11 @@
 			<artifactId>mssql-jdbc</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+<<<<<<< HEAD
 -->
+=======
+ -->
+>>>>>>> branch 'Pestaña' of https://github.com/Rhulk/to-do.git
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -56,6 +64,14 @@
 					<artifactId>junit-vintage-engine</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/org.jopendocument/jOpenDocument -->
+		<dependency>
+		    <groupId>org.jopendocument</groupId>
+		    <artifactId>jOpenDocument</artifactId>
+		    <version>1.3b1</version>
 		</dependency>
 
 		
