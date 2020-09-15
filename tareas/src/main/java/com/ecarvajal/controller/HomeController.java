@@ -123,11 +123,19 @@ public class HomeController {
 		if (action.equals("en espera"))	{  
 			listaEspera.add(tarea);
 			// registro
+			registro.setId(99);
+			registro.setId_todo(tarea.getId());
 			registro.setF_inicioEspera(new Date());
-			registros.add(e)
-			
+			registros.add(registro);
+			// lo guardo en el excel ... BBDD
 		}else {
 			listaActiva.add(tarea);
+			// registro
+			registro.setId(98);
+			registro.setId_todo(tarea.getId());
+			registro.setF_inicioActivo(new Date());
+			registros.add(registro);
+			// lo guardo en el excel ... BBDD
 		}
 		return "redirect:/index";
 	}
