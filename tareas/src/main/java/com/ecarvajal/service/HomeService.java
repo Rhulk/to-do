@@ -19,7 +19,7 @@ public class HomeService {
 		
 	try {
 	 // Load the file.
-		 File file = new File("src/main/resources/static/doc/holaExcel.ods");
+		 File file = new File("src/main/resources/holaExcel.ods");
 		 System.out.println(" Ruta --- "+file.getAbsolutePath());
 		 System.out.println(" -- existe ?? " +file.exists());
 		 Sheet sheet= SpreadSheet.createFromFile(file).getSheet(0);
@@ -27,7 +27,7 @@ public class HomeService {
 		 // Change date.
 		 sheet.getCellAt("I10").setValue(new Date());
 		 // Change strings.
-		 sheet.setValueAt("Filling test", 1, 1);
+		 sheet.setValueAt("Hola mundo", 1, 1);
 		 sheet.getCellAt("B27").setValue("On site support");
 		 // Change number.
 		               //  C:\git\toDo\to-do\tareas\src\main\resources

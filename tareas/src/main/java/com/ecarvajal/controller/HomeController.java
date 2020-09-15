@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ecarvajal.model.Registro;
 import com.ecarvajal.model.Tarea;
 import com.ecarvajal.service.HomeService;
 
@@ -29,12 +30,17 @@ import com.ecarvajal.service.HomeService;
 
 @Controller
 public class HomeController {
+	SimpleDateFormat formatear = new SimpleDateFormat("dd-mm-yyyy");
 	
 	List<Tarea> listaActiva = new LinkedList<Tarea>();
 	List<Tarea> listaActivaB = new LinkedList<Tarea>();
 	List<Tarea> listaEspera = new LinkedList<Tarea>();
 	List<Tarea> listaEsperaB = new LinkedList<Tarea>();
+	
+	List<Registro> registros = new LinkedList<Registro>();
+	
 	boolean busqueda=false;
+	int id_registro=1;
 	
 	Tarea tarea = new Tarea();
 	
@@ -74,7 +80,8 @@ public class HomeController {
 	@GetMapping("index")
 	public String inicio(Model vista) {
 	
-		hService.prueba();
+		//hService.prueba(); // para escribir en un ods
+		
 		if (listaEspera.isEmpty() && listaActiva.isEmpty()) {
 			System.out.println("Lista vacia se inicializa ...");
 			
@@ -111,9 +118,14 @@ public class HomeController {
 	
 	@RequestMapping(value="/alta")
 	public String alta(@ModelAttribute("alta") Tarea tarea, @RequestParam String action ) {
+		Registro registro = new Registro();
 		tarea.setId(proximoId());
 		if (action.equals("en espera"))	{  
 			listaEspera.add(tarea);
+			// registro
+			registro.setF_inicioEspera(new Date());
+			registros.add(e)
+			
 		}else {
 			listaActiva.add(tarea);
 		}
@@ -375,7 +387,7 @@ public class HomeController {
 	private List<Tarea> getLista(int id){
 		System.out.println(" GetLista Status");
 		
-		SimpleDateFormat formatear = new SimpleDateFormat("dd-mm-yyyy");
+		
 		List<Tarea> lista = new LinkedList<Tarea>();
 		
 		try {
