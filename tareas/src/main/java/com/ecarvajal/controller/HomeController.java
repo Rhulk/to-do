@@ -85,7 +85,7 @@ public class HomeController {
 		
 		if (listaEspera.isEmpty() && listaActiva.isEmpty()) {
 			System.out.println("Lista vacia se inicializa ...");
-			
+			//Carga inicial de datos.
 			listaEspera = getLista("en espera");
 			listaActiva = getLista("Activo");
 		}
@@ -118,32 +118,28 @@ public class HomeController {
 	
 	
 	@RequestMapping(value="/alta")
-	public String alta(@ModelAttribute("alta") Tarea tarea, @RequestParam String action ) {
+	public String alta(@ModelAttribute("alta") Tarea tarea //, @ModelAttribute("registro") Registro registro  // no hace falta.
+			, @RequestParam String action ) {
 		Registro registro = new Registro();
+		
 		tarea.setId(proximoId());
 		if (action.equals("en espera"))	{  
 			listaEspera.add(tarea);
-			// registro
-			
-			registro.setId(id_registro+=1);
-			registro.setId_todo(tarea.getId());
-			registro.setF_inicioEspera(new Date());
-			registros.add(registro);
-			// lo guardo en el excel ... BBDD
+
 		}else {
 			listaActiva.add(tarea);
-			// registro
-			registro.setId(id_registro+=1);
-			registro.setId_todo(tarea.getId());
-			registro.setF_inicioActivo(new Date());
-			registros.add(registro);
-			// lo guardo en el excel ... BBDD
 		}
+		registro.setId(id_registro+=1);
+		registro.setId_todo(tarea.getId());
+		registro.setF_inicio(new Date());
+		registro.setActivo(true);
+		registros.add(registro);
+		
 		return "redirect:/index";
 	}
 
 	@GetMapping(value="/changeStatus/{id}")
-	public String changeStatus(@PathVariable("id") int id, Model vista ) {
+	public String changeStatus(@PathVariable("id") int id, Model vista , @ModelAttribute("registro") Registro registro) {
 		//System.out.println(" -- ChangeStatus/"+id+" action "+action);
 		System.out.println(" -- Lista espera -- "+listaEspera.toString());
 		
@@ -154,10 +150,16 @@ public class HomeController {
 					listaEspera.get(i).setStatus("Activo");
 					listaActiva.add(listaEspera.get(i));
 					listaEspera.remove(i);
-					// buscar el id del registro.
-					for (int x=0; i<registros.size(); x++) {
-
+					// buscar el id del registro. por el id tarea mas activo.
+					// buscar la posicion del registro
+					for (int x=0; x< registros.size(); x++) {
+						if(registros.get(x).getId() == id && registros.get(x).isActivo()) {
+							registros.get(x).setF_fin(new Date());
+							registros.get(x).setF_inicio(new Date());
+						}
+						
 					}
+
 					
 					System.out.println(" - | lista en espera | - "+listaEspera.toString());
 					System.out.println(" - | lista activo | - "+listaActiva.toString());
@@ -171,6 +173,8 @@ public class HomeController {
 					listaActiva.get(i).setStatus("en espera");
 					listaEspera.add( listaActiva.get(i));
 					listaActiva.remove(i);
+					// Guardamos el registro.
+					
 					System.out.println(" - | lista en espera | - "+listaEspera.toString());
 					System.out.println(" - | lista activo | - "+listaActiva.toString());
 				}
