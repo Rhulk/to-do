@@ -10,11 +10,8 @@ public class Registro {
 	private Date f_fin;
 	private String tipo_registro;
 	private boolean activo;
-	@Override
-	public String toString() {
-		return "Registro [id=" + id + ", id_todo=" + id_todo + ", f_inicio=" + f_inicio + ", f_fin=" + f_fin
-				+ ", tipo_registro=" + tipo_registro + ", activo=" + activo + "]";
-	}
+	private String descripcion;
+
 	public int getId() {
 		return id;
 	}
@@ -50,6 +47,17 @@ public class Registro {
 	}
 	public void setActivo(boolean activo) {
 		this.activo = activo;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	@Override
+	public String toString() {
+		return "Registro [id=" + id + ", id_todo=" + id_todo + ", f_inicio=" + f_inicio + ", f_fin=" + f_fin
+				+ ", tipo_registro=" + tipo_registro + ", activo=" + activo + ", descripcion=" + descripcion + "]";
 	}
 	
 	
