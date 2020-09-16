@@ -10,6 +10,7 @@ public class Registro {
 	private Date f_finEspera;
 	private Date f_inicioActivo;
 	private Date f_finActivo;
+	private boolean activo;
 	public int getId() {
 		return id;
 	}
@@ -46,10 +47,18 @@ public class Registro {
 	public void setF_finActivo(Date f_finActivo) {
 		this.f_finActivo = f_finActivo;
 	}
+	public boolean isActivo() {
+		return activo;
+	}
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
 	@Override
 	public String toString() {
 		return "Registro [id=" + id + ", id_todo=" + id_todo + ", f_inicioEspera=" + f_inicioEspera + ", f_finEspera="
-				+ f_finEspera + ", f_inicioActivo=" + f_inicioActivo + ", f_finActivo=" + f_finActivo + "]";
+				+ f_finEspera + ", f_inicioActivo=" + f_inicioActivo + ", f_finActivo=" + f_finActivo + ", activo="
+				+ activo + "]";
 	}
+
 
 }
