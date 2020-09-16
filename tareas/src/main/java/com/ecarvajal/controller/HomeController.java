@@ -120,7 +120,6 @@ public class HomeController {
 	@RequestMapping(value="/alta")
 	public String alta(@ModelAttribute("alta") Tarea tarea //, @ModelAttribute("registro") Registro registro  // no hace falta.
 			, @RequestParam String action ) {
-		Registro registro = new Registro();
 		
 		tarea.setId(proximoId());
 		if (action.equals("en espera"))	{  
@@ -129,11 +128,7 @@ public class HomeController {
 		}else {
 			listaActiva.add(tarea);
 		}
-		registro.setId(id_registro+=1);
-		registro.setId_todo(tarea.getId());
-		registro.setF_inicio(new Date());
-		registro.setActivo(true);
-		registros.add(registro);
+		registros.add(altaRegistro());
 		
 		return "redirect:/index";
 	}
@@ -152,10 +147,12 @@ public class HomeController {
 					listaEspera.remove(i);
 					// buscar el id del registro. por el id tarea mas activo.
 					// buscar la posicion del registro
+					// Se guarda la fecha fin y se da de alta un registro nuevo.
 					for (int x=0; x< registros.size(); x++) {
 						if(registros.get(x).getId() == id && registros.get(x).isActivo()) {
 							registros.get(x).setF_fin(new Date());
-							registros.get(x).setF_inicio(new Date());
+							registros.get(x).setActivo(false);
+							registros.add(altaRegistro());
 						}
 						
 					}
@@ -173,7 +170,17 @@ public class HomeController {
 					listaActiva.get(i).setStatus("en espera");
 					listaEspera.add( listaActiva.get(i));
 					listaActiva.remove(i);
-					// Guardamos el registro.
+					// buscar el id del registro. por el id tarea mas activo.
+					// buscar la posicion del registro
+					// Se guarda la fecha fin y se da de alta un registro nuevo.
+					for (int x=0; x< registros.size(); x++) {
+						if(registros.get(x).getId() == id && registros.get(x).isActivo()) {
+							registros.get(x).setF_fin(new Date());
+							registros.get(x).setActivo(false);
+							registros.add(altaRegistro());
+						}
+						
+					}
 					
 					System.out.println(" - | lista en espera | - "+listaEspera.toString());
 					System.out.println(" - | lista activo | - "+listaActiva.toString());
@@ -466,6 +473,15 @@ public class HomeController {
 			if (listaEspera.get(i).getId() > id) id =listaEspera.get(i).getId();
 		}
 		return id+=1;
+	}
+	public Registro altaRegistro() {
+		Registro registro = new Registro();
+		registro.setId(id_registro+=1);
+		registro.setId_todo(tarea.getId());
+		registro.setF_inicio(new Date());
+		registro.setActivo(true);
+		
+		return registro;
 	}
 	
 	
