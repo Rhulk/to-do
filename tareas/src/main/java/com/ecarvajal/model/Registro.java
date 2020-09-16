@@ -6,11 +6,15 @@ public class Registro {
 	
 	private int id;
 	private int id_todo;
-	private Date f_inicioEspera;
-	private Date f_finEspera;
-	private Date f_inicioActivo;
-	private Date f_finActivo;
+	private Date f_inicio;
+	private Date f_fin;
+	private String tipo_registro;
 	private boolean activo;
+	@Override
+	public String toString() {
+		return "Registro [id=" + id + ", id_todo=" + id_todo + ", f_inicio=" + f_inicio + ", f_fin=" + f_fin
+				+ ", tipo_registro=" + tipo_registro + ", activo=" + activo + "]";
+	}
 	public int getId() {
 		return id;
 	}
@@ -23,29 +27,23 @@ public class Registro {
 	public void setId_todo(int id_todo) {
 		this.id_todo = id_todo;
 	}
-	public Date getF_inicioEspera() {
-		return f_inicioEspera;
+	public Date getF_inicio() {
+		return f_inicio;
 	}
-	public void setF_inicioEspera(Date f_inicioEspera) {
-		this.f_inicioEspera = f_inicioEspera;
+	public void setF_inicio(Date f_inicio) {
+		this.f_inicio = f_inicio;
 	}
-	public Date getF_finEspera() {
-		return f_finEspera;
+	public Date getF_fin() {
+		return f_fin;
 	}
-	public void setF_finEspera(Date f_finEspera) {
-		this.f_finEspera = f_finEspera;
+	public void setF_fin(Date f_fin) {
+		this.f_fin = f_fin;
 	}
-	public Date getF_inicioActivo() {
-		return f_inicioActivo;
+	public String getTipo_registro() {
+		return tipo_registro;
 	}
-	public void setF_inicioActivo(Date f_inicioActivo) {
-		this.f_inicioActivo = f_inicioActivo;
-	}
-	public Date getF_finActivo() {
-		return f_finActivo;
-	}
-	public void setF_finActivo(Date f_finActivo) {
-		this.f_finActivo = f_finActivo;
+	public void setTipo_registro(String tipo_registro) {
+		this.tipo_registro = tipo_registro;
 	}
 	public boolean isActivo() {
 		return activo;
@@ -53,12 +51,8 @@ public class Registro {
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
-	@Override
-	public String toString() {
-		return "Registro [id=" + id + ", id_todo=" + id_todo + ", f_inicioEspera=" + f_inicioEspera + ", f_finEspera="
-				+ f_finEspera + ", f_inicioActivo=" + f_inicioActivo + ", f_finActivo=" + f_finActivo + ", activo="
-				+ activo + "]";
-	}
+	
+	
 
 
 }
