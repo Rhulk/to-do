@@ -40,7 +40,7 @@ public class HomeController {
 	List<Registro> registros = new LinkedList<Registro>();
 	
 	boolean busqueda=false;
-	int id_registro=1;
+	int id_registro=0;
 	
 	Tarea tarea = new Tarea();
 	
@@ -69,6 +69,7 @@ public class HomeController {
 		model.addAttribute("search",new Tarea());
 		model.addAttribute("alta", new Tarea());
 		model.addAttribute("edit", new Tarea());
+		model.addAttribute("registro", new Registro());
 		System.out.println(" -- setGenericos -- Se declaran variables para la vista");
 	}
 
@@ -153,6 +154,11 @@ public class HomeController {
 					listaEspera.get(i).setStatus("Activo");
 					listaActiva.add(listaEspera.get(i));
 					listaEspera.remove(i);
+					// buscar el id del registro.
+					for (int x=0; i<registros.size(); x++) {
+
+					}
+					
 					System.out.println(" - | lista en espera | - "+listaEspera.toString());
 					System.out.println(" - | lista activo | - "+listaActiva.toString());
 					return "redirect:/index";
