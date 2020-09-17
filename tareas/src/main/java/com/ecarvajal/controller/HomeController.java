@@ -39,8 +39,10 @@ public class HomeController {
 	
 	List<Registro> registros = new LinkedList<Registro>();
 	
+	boolean carga_inicial=true;
 	boolean busqueda=false;
 	int id_registro=0;
+	
 	
 	Tarea tarea = new Tarea();
 	
@@ -83,7 +85,7 @@ public class HomeController {
 	
 		//hService.prueba(); // para escribir en un ods
 		
-		if (listaEspera.isEmpty() && listaActiva.isEmpty()) {
+		if (listaEspera.isEmpty() && listaActiva.isEmpty() && carga_inicial) {
 			System.out.println("Lista vacia se inicializa ...");
 			//Carga inicial de datos.
 			listaEspera = getLista("en espera");
@@ -207,7 +209,28 @@ public class HomeController {
 	@GetMapping("/deleteTarea/{id}")
 	String deleteTarea(@PathVariable("id") int id) {
 		
-		System.out.println(" --> Detele id: "+ id);
+		for(int i=0; i< listaEspera.size() ;i++) {
+			if (listaEspera.get(i).getId() == id) {
+
+				listaEspera.remove(i);
+				System.out.println(" --> Detele id: "+ id);
+				System.out.println(" - | lista en espera | - "+listaEspera.toString());
+				System.out.println(" - | lista activo | - "+listaActiva.toString());
+				carga_inicial=false;
+				return "redirect:/index";
+			}
+		}
+		for(int i=0; i< listaActiva.size() ;i++) {
+			if (listaActiva.get(i).getId() == id) {
+				listaActiva.remove(i);
+				System.out.println(" --> Detele id: "+ id);
+				System.out.println(" - | lista en espera | - "+listaEspera.toString());
+				System.out.println(" - | lista activo | - "+listaActiva.toString());
+				carga_inicial=false;
+				return "redirect:/index"; 
+			}
+		}		
+		System.out.println(" --> No se borro nada");
 		return "redirect:/index";
 	}
 
