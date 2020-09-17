@@ -80,9 +80,9 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String home() {
-		CrearFicherosExcel.inicial();
-		CrearFicherosExcel.lectura();
-		CrearFicherosExcel.nextRegistro();
+		//CrearFicherosExcel.inicial();
+		//CrearFicherosExcel.lectura();
+		CrearFicherosExcel.nextRecord();
 		return "home";
 	}
 	

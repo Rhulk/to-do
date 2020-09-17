@@ -7,14 +7,21 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
 
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+
  
 public class CrearFicherosExcel {
  
@@ -84,7 +91,7 @@ public class CrearFicherosExcel {
 		
 	}
 	
-	public static void nextRegistro() {
+	public static void nextRegistro_old() {
 		String nombreArchivo="Registro-.xlsx";
 		String rutaArchivo= "src/main/resources/static/doc/"+nombreArchivo;
 		String hoja="Hoja1";
@@ -104,10 +111,61 @@ public class CrearFicherosExcel {
 		      break;
 		   }	
 	  
-		}
-		
-		
+		}	
 	}
+	
+
+
+		 
+    public static void nextRecord() {
+        String excelFilePath = "src/main/resources/static/doc/Registro.xlsx";
+         
+        try {
+            FileInputStream inputStream = new FileInputStream(new File(excelFilePath));
+          //  Workbook workbook = WorkbookFactory.create(inputStream);
+           // Workbook libro= WorkbookFactory.create(inputStream);
+            XSSFWorkbook libro= new XSSFWorkbook();
+ 
+            Sheet sheet = libro.getSheetAt(0);
+	 
+            Object[][] bookData = {
+                    {"The Passionate Programmer", "Chad Fowler", 16},
+                    {"Software Craftmanship", "Pete McBreen", 26},
+                    {"The Art of Agile Development", "James Shore", 32},
+                    {"Continuous Delivery", "Jez Humble", 41},
+            };
+ 
+            int rowCount = sheet.getLastRowNum();
+ 
+            for (Object[] aBook : bookData) {
+                Row row = sheet.createRow(++rowCount);
+ 
+                int columnCount = 0;
+	                 
+                Cell cell = row.createCell(columnCount);
+                cell.setCellValue(rowCount);
+	                 
+                for (Object field : aBook) {
+                    cell = row.createCell(++columnCount);
+                    if (field instanceof String) {
+                        cell.setCellValue((String) field);
+                    } else if (field instanceof Integer) {
+                        cell.setCellValue((Integer) field);
+                    }
+                }	 
+            }
+            inputStream.close();
+	 
+            FileOutputStream outputStream = new FileOutputStream("src/main/resources/static/doc/Registro.xlsx");
+            libro.write(outputStream);
+            libro.close();
+            outputStream.close();
+	             
+        	} catch (IOException | EncryptedDocumentException ex) {
+        		ex.printStackTrace();
+        	}
+    	}
+
 	
 	public static void lectura() {
 		String nombreArchivo="Registro.xlsx";
