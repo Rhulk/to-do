@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ecarvajal.model.Registro;
 import com.ecarvajal.model.Tarea;
+import com.ecarvajal.service.CrearFicherosExcel;
 import com.ecarvajal.service.HomeService;
 
 
@@ -44,7 +45,9 @@ public class HomeController {
 	int id_registro=0;
 	
 	
-	Tarea tarea = new Tarea();
+	//Tarea tarea = new Tarea();
+	
+
 	
 	@Autowired
 	HomeService hService = new HomeService();
@@ -77,6 +80,9 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String home() {
+		CrearFicherosExcel.inicial();
+		CrearFicherosExcel.lectura();
+		CrearFicherosExcel.nextRegistro();
 		return "home";
 	}
 	
