@@ -128,7 +128,8 @@ public class HomeController {
 		}else {
 			listaActiva.add(tarea);
 		}
-		registros.add(altaRegistro());
+		registros.add(altaRegistro(tarea.getId()));
+		System.out.println(" - | lista de registros | - "+registros.toString());
 		
 		return "redirect:/index";
 	}
@@ -138,26 +139,28 @@ public class HomeController {
 		//System.out.println(" -- ChangeStatus/"+id+" action "+action);
 		System.out.println(" -- Lista espera -- "+listaEspera.toString());
 		
-		//if (action.equals("en espera"))	{ 
 			for(int i=0; i< listaEspera.size() ;i++) {
-				System.out.println(" -- i "+ i );
+				//System.out.println(" -- i "+ i );
 				if (listaEspera.get(i).getId() == id) {
 					listaEspera.get(i).setStatus("Activo");
 					listaActiva.add(listaEspera.get(i));
-					listaEspera.remove(i);
+					
 					// buscar el id del registro. por el id tarea mas activo.
 					// buscar la posicion del registro
 					// Se guarda la fecha fin y se da de alta un registro nuevo.
+					System.out.println(" ------- Registros");
 					for (int x=0; x< registros.size(); x++) {
-						if(registros.get(x).getId() == id && registros.get(x).isActivo()) {
-							registros.get(x).setF_fin(new Date());
-							registros.get(x).setActivo(false);
-							registros.add(altaRegistro());
+						System.out.println(" ------- id registro > "+registros.get(x).getId());
+						if(registros.get(x).getId_todo() == id && registros.get(x).isActivo()) {
+							saveRegistro(x); // Guardamos el registro y le quitamos el activo(predeterminado)
 						}
 						
 					}
-
 					
+					registros.add(altaRegistro(listaEspera.get(i).getId()));// add fuera del buble para que no crezce infinitamente.
+					listaEspera.remove(i); // borro la tarea despues de crear el nuevo registro para no perder la referencia.
+
+					System.out.println(" - | lista de registros | - "+registros.toString());				
 					System.out.println(" - | lista en espera | - "+listaEspera.toString());
 					System.out.println(" - | lista activo | - "+listaActiva.toString());
 					return "redirect:/index";
@@ -169,19 +172,22 @@ public class HomeController {
 				if (listaActiva.get(i).getId() == id) {
 					listaActiva.get(i).setStatus("en espera");
 					listaEspera.add( listaActiva.get(i));
-					listaActiva.remove(i);
+					
 					// buscar el id del registro. por el id tarea mas activo.
 					// buscar la posicion del registro
 					// Se guarda la fecha fin y se da de alta un registro nuevo.
+					System.out.println(" ------- Registros");
 					for (int x=0; x< registros.size(); x++) {
-						if(registros.get(x).getId() == id && registros.get(x).isActivo()) {
-							registros.get(x).setF_fin(new Date());
-							registros.get(x).setActivo(false);
-							registros.add(altaRegistro());
+						System.out.println(" ------- id registro > "+registros.get(x).getId());
+						if(registros.get(x).getId_todo() == id && registros.get(x).isActivo()) {
+							saveRegistro(x); // Guardamos el registro y le quitamos el activo(predeterminado)	
 						}
 						
 					}
+					registros.add(altaRegistro(listaActiva.get(i).getId()));
+					listaActiva.remove(i);// borro la tarea despues de crear el nuevo registro para no perder la referencia.
 					
+					System.out.println(" - | lista de registros | - "+registros.toString());
 					System.out.println(" - | lista en espera | - "+listaEspera.toString());
 					System.out.println(" - | lista activo | - "+listaActiva.toString());
 				}
@@ -474,14 +480,19 @@ public class HomeController {
 		}
 		return id+=1;
 	}
-	public Registro altaRegistro() {
+	public Registro altaRegistro(int id_tarea) {
 		Registro registro = new Registro();
 		registro.setId(id_registro+=1);
-		registro.setId_todo(tarea.getId());
+		registro.setId_todo(id_tarea);
 		registro.setF_inicio(new Date());
 		registro.setActivo(true);
 		
 		return registro;
+	}
+	
+	public void saveRegistro (int posicionReg) {
+		registros.get(posicionReg).setF_fin(new Date());
+		registros.get(posicionReg).setActivo(false);
 	}
 	
 	
