@@ -167,7 +167,7 @@ public class CrearFicherosExcel {
         }
     }
 	
-	public static void nextRecord_Falta_() {
+	public static void nextRecord(String campo1, String campo2) {
         String excelFilePath = "src/main/resources/static/doc/Registro.xlsx";
          
         try {
@@ -179,10 +179,7 @@ public class CrearFicherosExcel {
             Sheet sheet = libro.getSheetAt(0);
 	 
             Object[][] bookData = {
-                    {"The Passionate Programmer", "Chad Fowler", 16},
-                    {"Software Craftmanship", "Pete McBreen", 26},
-                    {"The Art of Agile Development", "James Shore", 32},
-                    {"Continuous Delivery", "Jez Humble", 41},
+                    {campo1, campo2, 16},
             };
  
             int rowCount = sheet.getLastRowNum();
