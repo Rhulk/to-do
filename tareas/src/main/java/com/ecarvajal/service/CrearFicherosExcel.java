@@ -16,6 +16,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -123,8 +124,8 @@ public class CrearFicherosExcel {
         try {
             FileInputStream inputStream = new FileInputStream(new File(excelFilePath));
           //  Workbook workbook = WorkbookFactory.create(inputStream);
-           // Workbook libro= WorkbookFactory.create(inputStream);
-            XSSFWorkbook libro= new XSSFWorkbook();
+            Workbook libro= WorkbookFactory.create(inputStream);
+           // XSSFWorkbook libro= new XSSFWorkbook();
  
             Sheet sheet = libro.getSheetAt(0);
 	 
