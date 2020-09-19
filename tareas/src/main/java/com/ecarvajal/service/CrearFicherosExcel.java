@@ -1,10 +1,12 @@
 package com.ecarvajal.service;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Iterator;
 
 import org.apache.poi.EncryptedDocumentException;
@@ -167,19 +169,20 @@ public class CrearFicherosExcel {
         }
     }
 	
-	public static void nextRecord(String campo1, String campo2) {
+	public static void nextRecord(String id_registro, String id_todo, String f_inicio, String f_fin, String descripcion ) {
         String excelFilePath = "src/main/resources/static/doc/Registro.xlsx";
-         
         try {
             FileInputStream inputStream = new FileInputStream(new File(excelFilePath));
           //  Workbook workbook = WorkbookFactory.create(inputStream);
             Workbook libro= WorkbookFactory.create(inputStream);
            // XSSFWorkbook libro= new XSSFWorkbook();
- 
+            
+            
+            
             Sheet sheet = libro.getSheetAt(0);
 	 
             Object[][] bookData = {
-                    {campo1, campo2, 16},
+                    {id_registro, id_todo, f_inicio, f_fin, descripcion},
             };
  
             int rowCount = sheet.getLastRowNum();
@@ -202,14 +205,19 @@ public class CrearFicherosExcel {
                 }	 
             }
             inputStream.close();
-	 
+            
             FileOutputStream outputStream = new FileOutputStream("src/main/resources/static/doc/Registro.xlsx");
+            
+
             libro.write(outputStream);
             libro.close();
             outputStream.close();
+            System.out.println(" -- Grabado registro en Excel --");
+            System.out.println(" -- Id registro: "+id_registro+" id_tarea: "+id_todo+" Ficha inicio: "+f_inicio+" Fecha fin: "+f_fin);
 	             
         } catch (IOException | EncryptedDocumentException ex) {
        		ex.printStackTrace();
+       		
         }
     }
 

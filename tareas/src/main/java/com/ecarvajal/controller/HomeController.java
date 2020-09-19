@@ -1,11 +1,18 @@
 package com.ecarvajal.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -44,8 +51,8 @@ public class HomeController {
 	boolean busqueda=false;
 	int id_registro=0;
 	
-	
-	//Tarea tarea = new Tarea();
+	String ruta="src/main/resources/static/doc/Registro.xlsx";
+
 	
 
 	
@@ -59,6 +66,13 @@ public class HomeController {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         dateFormat.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor( dateFormat,false));
+		
+		/*
+		 * try { FileOutputStream outputStream = new FileOutputStream(ruta);
+		 * outputStream.close(); } catch (FileNotFoundException e) { // TODO
+		 * Auto-generated catch block e.printStackTrace(); } catch (IOException e) { //
+		 * TODO Auto-generated catch block e.printStackTrace(); }
+		 */
 	}
 	
 	/*
@@ -145,6 +159,20 @@ public class HomeController {
 	@GetMapping(value="/changeStatus/{id}")
 	public String changeStatus(@PathVariable("id") int id, Model vista , @ModelAttribute("registro") Registro registro) {
 		//System.out.println(" -- ChangeStatus/"+id+" action "+action);
+		
+		if (!excelIsClose(ruta)) {
+			// pendiente validacion informando al usuario que debe cerrar el excel
+			System.out.println(" ---- Cerrar Excel ---");
+			
+			try {
+				String [] cmd = {"taskkill","/IM","excel.exe"}; 
+				Runtime.getRuntime().exec(cmd); 
+			} catch (IOException ioe) {
+				System.out.println (ioe);
+			}
+
+		if (!excelIsClose(ruta)) return "redirect:/index";
+		}
 		System.out.println(" -- Lista espera -- "+listaEspera.toString());
 		
 			for(int i=0; i< listaEspera.size() ;i++) {
@@ -160,7 +188,7 @@ public class HomeController {
 					for (int x=0; x< registros.size(); x++) {
 						System.out.println(" ------- id registro > "+registros.get(x).getId());
 						if(registros.get(x).getId_todo() == id && registros.get(x).isActivo()) {
-							saveRegistro(x); // Guardamos el registro y le quitamos el activo(predeterminado)
+							saveRegistro(x); // Guardamos el registro y le quitamos el activo(predeterminado) Y en el excel
 						}
 						
 					}
@@ -522,6 +550,33 @@ public class HomeController {
 	public void saveRegistro (int posicionReg) {
 		registros.get(posicionReg).setF_fin(new Date());
 		registros.get(posicionReg).setActivo(false);
+		CrearFicherosExcel.nextRecord(registros.get(posicionReg).getId()+"", registros.get(posicionReg).getId_todo()+"",registros.get(posicionReg).getF_inicio()+"",registros.get(posicionReg).getF_fin()+"",registros.get(posicionReg).getDescripcion()+"");
+		
+
+	}
+	
+	public boolean excelIsClose(String ruta) {
+		try {
+			FileInputStream inputStream = new FileInputStream(new File(ruta));
+			Workbook libro= WorkbookFactory.create(inputStream);
+			
+			inputStream.close();
+			
+			FileOutputStream outputStream = new FileOutputStream(ruta);
+			libro.write(outputStream);
+			
+			libro.close();
+			outputStream.close();
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return true;
 	}
 	
 	
