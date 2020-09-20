@@ -22,6 +22,9 @@
    <link th:href="@{/css/styles.css}" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/1d7d370a25.js" crossorigin="anonymous"></script>
+    
+
+    
     <title>TO DO list</title>
 </head>
 
@@ -253,17 +256,26 @@
 					<td th:text="${tarea.descripcion}"></td>
 					<td> <a class="list-group-item" th:href="@{/changeStatus/{id} (id=${tarea.id}) }"><i class="fas fa-hourglass-start" aria-hidden="false"></i></a></td>
 					<td>
-					  <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown"></button>
-					   <ul class="dropdown-menu" role="menu">
-						<div class="d-flex bg-secondary">  
-						    <div class="p-1 "><li><a class="list-group-item" th:href="@{/editarTarea/{id} (id=${tarea.id}) }" data-toggle="modal" data-target="#ventaModaledite" data-whatever="@mdo"><i class="far fa-edit" aria-hidden="true"></i>Editar</a></li></div>
-						    
-				    
-						    
-						    <div class="p-1 "><li><a class="list-group-item" th:href="@{/resolverTarea/{id} (id=${tarea.id}) }" ><i class="far fa-check-circle" aria-hidden="true"></i>Resolver</a></li></div>
-						    
-						</div>  
-					   </ul>
+					
+					<nav class="navbar navbar-expand-lg navbar-dark ">
+					  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
+					    <span class="navbar-toggler-icon"></span>
+					  </button>
+					  <div class="collapse navbar-collapse" id="main_nav">
+					
+						<ul class="navbar-nav ml-auto">
+							<li class="nav-item dropdown">
+								<a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown"> Opciones </a>
+							    <ul class="dropdown-menu dropdown-menu">
+								  <div class="p-1 "><li><a class="list-group-item" th:href="@{/editarTarea/{id} (id=${tarea.id}) }" data-toggle="modal" data-target="#ventaModaledite" data-whatever="@mdo"><i class="fas fa-keyboard" aria-hidden="true"></i> Registro</a></li></div>
+						    	  <div class="p-1 "><li><a class="list-group-item" th:href="@{/editarTarea/{id} (id=${tarea.id}) }" data-toggle="modal" data-target="#ventaModaledite" data-whatever="@mdo"><i class="far fa-edit" aria-hidden="true"></i> Editar</a></li></div>
+						          <div class="p-1 "><li><a class="list-group-item" th:href="@{/resolverTarea/{id} (id=${tarea.id}) }" ><i class="far fa-check-circle" aria-hidden="true"></i> Resolver</a></li></div>
+							    </ul>
+							</li>
+						</ul>
+					  </div> <!-- navbar-collapse.// -->
+					</nav>
+					
 					</td>
 					<td> <a class="list-group-item" th:href="@{/deleteTarea/{id} (id=${tarea.id}) }"><i class="far fa-trash-alt delete" aria-hidden="true"></i></a></td>
 
@@ -422,6 +434,22 @@
       });
       
       
+      </script>
+      
+      <script type="text/javascript">
+      $('#dmenu').hover(function(){
+    		$('#navbarDropdown').trigger('click')
+    	  //console.log('hover');
+    	})
+      
+      </script>
+      
+      <script type="text/javascript">
+      $('#dropdown-mensualidades').hover(function() {
+    	  $(".dropdown-menu").delay(200).show();
+    	}, function() {
+    	  $(".dropdown-menu").delay(1000).hide(500);
+    	});
       </script>
    
      
