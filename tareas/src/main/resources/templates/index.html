@@ -267,7 +267,8 @@
 							<li class="nav-item dropdown">
 								<a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown"> Opciones </a>
 							    <ul class="dropdown-menu dropdown-menu">
-								  <div class="p-1 "><li><a class="list-group-item" th:href="@{/editarTarea/{id} (id=${tarea.id}) }" data-toggle="modal" data-target="#ventaModaledite" data-whatever="@mdo"><i class="fas fa-keyboard" aria-hidden="true"></i> Registro</a></li></div>
+								  <div class="p-1 "><li><a class="list-group-item" th:href="@{/changeStatus/{id} (id=${tarea.id}) }" data-toggle="modal" data-target="#ventanaModalChange" data-whatever="@mdo"><i class="fas fa-keyboard" aria-hidden="true"></i> Registro</a></li></div>
+								  
 						    	  <div class="p-1 "><li><a class="list-group-item" th:href="@{/editarTarea/{id} (id=${tarea.id}) }" data-toggle="modal" data-target="#ventaModaledite" data-whatever="@mdo"><i class="far fa-edit" aria-hidden="true"></i> Editar</a></li></div>
 						          <div class="p-1 "><li><a class="list-group-item" th:href="@{/resolverTarea/{id} (id=${tarea.id}) }" ><i class="far fa-check-circle" aria-hidden="true"></i> Resolver</a></li></div>
 							    </ul>
@@ -338,6 +339,32 @@
 								  </div>
 								</div>
 								<!-- fin ventana modal -->		
+					</td>
+					<td>
+														  <!--  venta modal change status -->
+								  
+								<div class="modal fade" id="ventanaModalChange" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								  <div class="modal-dialog">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <h5 class="modal-title colorNegro" id="exampleModalLabel" style="color:black">Iniciar registro de la tarea</h5>
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								          <span aria-hidden="true">&times;</span>
+								        </button>
+								      </div>
+								      <div class="modal-body">
+										<form  th:action="@{/changeStatus/{id} (id=${tarea.id}) }" method="get" th:object="${registro}">	
+
+											<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" th:value="${registro.descripcion}" th:text="${registro.descripcion}" th:field="*{descripcion}">
+											<br>
+								            <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3"> Acceptar</button>
+										</form>
+								      </div>
+								    </div>
+								  </div>
+								</div>							  
+								  
+								  <!-- FIN  venta modal change status -->
 					</td>
 				</tr>
 

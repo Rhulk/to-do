@@ -1,6 +1,6 @@
 package com.ecarvajal.service;
 
-import java.awt.Desktop;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -23,8 +23,6 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-
  
 public class CrearFicherosExcel {
  
@@ -116,9 +114,6 @@ public class CrearFicherosExcel {
 	  
 		}	
 	}
-	
-
-
 		 
 	public static void nextRecord() {
         String excelFilePath = "src/main/resources/static/doc/Registro.xlsx";
@@ -220,7 +215,6 @@ public class CrearFicherosExcel {
        		
         }
     }
-
 	
 	public static void lectura() {
 		String nombreArchivo="Registro.xlsx";

@@ -67,12 +67,6 @@ public class HomeController {
         dateFormat.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor( dateFormat,false));
 		
-		/*
-		 * try { FileOutputStream outputStream = new FileOutputStream(ruta);
-		 * outputStream.close(); } catch (FileNotFoundException e) { // TODO
-		 * Auto-generated catch block e.printStackTrace(); } catch (IOException e) { //
-		 * TODO Auto-generated catch block e.printStackTrace(); }
-		 */
 	}
 	
 	/*
@@ -82,7 +76,6 @@ public class HomeController {
 	 */
 	@ModelAttribute
 	public void setGenericos(Model model) {
-		//String tarea= "Sin definir";
 
 		System.out.println("  IMPORTANTE  *******  Cargando datos a la vista --->> ");
 		model.addAttribute("search",new Tarea());
@@ -150,7 +143,7 @@ public class HomeController {
 		}else {
 			listaActiva.add(tarea);
 		}
-		registros.add(altaRegistro(tarea.getId()));
+		registros.add(altaRegistro(tarea.getId()));// para recuperar el registro uso el id de la tarea y unico registro activo.
 		System.out.println(" - | lista de registros | - "+registros.toString());
 		
 		return "redirect:/index";
@@ -158,9 +151,8 @@ public class HomeController {
 
 	@GetMapping(value="/changeStatus/{id}")
 	public String changeStatus(@PathVariable("id") int id, Model vista , @ModelAttribute("registro") Registro registro) {
-		//System.out.println(" -- ChangeStatus/"+id+" action "+action);
 		
-		if (!excelIsClose(ruta)) {
+		if (!excelIsClose(ruta)) {// cierro el excel de registros
 			// pendiente validacion informando al usuario que debe cerrar el excel
 			System.out.println(" ---- Cerrar Excel ---");
 			
@@ -171,7 +163,7 @@ public class HomeController {
 				System.out.println (ioe);
 			}
 
-		if (!excelIsClose(ruta)) return "redirect:/index";
+		if (!excelIsClose(ruta)) return "redirect:/index";// valido que esta cerrado
 		}
 		System.out.println(" -- Lista espera -- "+listaEspera.toString());
 		
@@ -188,9 +180,10 @@ public class HomeController {
 					for (int x=0; x< registros.size(); x++) {
 						System.out.println(" ------- id registro > "+registros.get(x).getId());
 						if(registros.get(x).getId_todo() == id && registros.get(x).isActivo()) {
-							saveRegistro(x); // Guardamos el registro y le quitamos el activo(predeterminado) Y en el excel
+							Tarea tarea = new Tarea();
+							tarea = listaEspera.get(i);
+							saveFinRegistro(x,listaEspera.get(i), registro); // Guardamos el registro y le quitamos el activo(predeterminado) Y en el excel
 						}
-						
 					}
 					
 					registros.add(altaRegistro(listaEspera.get(i).getId()));// add fuera del buble para que no crezce infinitamente.
@@ -216,7 +209,7 @@ public class HomeController {
 					for (int x=0; x< registros.size(); x++) {
 						System.out.println(" ------- id registro > "+registros.get(x).getId());
 						if(registros.get(x).getId_todo() == id && registros.get(x).isActivo()) {
-							saveRegistro(x); // Guardamos el registro y le quitamos el activo(predeterminado)	
+							saveFinRegistro(x, listaEspera.get(i),registro); // Guardamos el registro y le quitamos el activo(predeterminado)	
 						}
 						
 					}
@@ -546,13 +539,19 @@ public class HomeController {
 		
 		return registro;
 	}
+	/*
+	 *  Pendiente modificar la vista con la descripción del registro.
+	 */
 	
-	public void saveRegistro (int posicionReg) {
+	public void saveFinRegistro (int posicionReg, Tarea tarea, Registro registro) {
 		registros.get(posicionReg).setF_fin(new Date());
 		registros.get(posicionReg).setActivo(false);
-		CrearFicherosExcel.nextRecord(registros.get(posicionReg).getId()+"", registros.get(posicionReg).getId_todo()+"",registros.get(posicionReg).getF_inicio()+"",registros.get(posicionReg).getF_fin()+"",registros.get(posicionReg).getDescripcion()+"");
-		
-
+		// --
+		System.out.println("-- Save Fin Registro -- Id "+registro.getId()+" -- Id Todo "+ registros.get(posicionReg).getId_todo()+" Fecha inicio "+ registros.get(posicionReg).getF_inicio()+" Fecha fin "+ registros.get(posicionReg).getF_fin()+" Descripcion "+registro.getDescripcion());
+		CrearFicherosExcel.nextRecord(registro.getId()+"",
+				registros.get(posicionReg).getId_todo()+"",registros.get(posicionReg).getF_inicio()+"",
+				registros.get(posicionReg).getF_fin()+"",
+				registro.getDescripcion()+"");
 	}
 	
 	public boolean excelIsClose(String ruta) {
