@@ -89,7 +89,7 @@ public class HomeController {
 	public String home() {
 		//CrearFicherosExcel.inicial();
 		//CrearFicherosExcel.lectura();
-		CrearFicherosExcel.nextRecord();
+		//CrearFicherosExcel.nextRecord();
 		return "home";
 	}
 	
