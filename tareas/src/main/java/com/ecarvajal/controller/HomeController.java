@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ecarvajal.model.Registro;
 import com.ecarvajal.model.Tarea;
-import com.ecarvajal.model.Task;
+//import com.ecarvajal.model.Task;
 import com.ecarvajal.service.CrearFicherosExcel;
 import com.ecarvajal.service.HomeService;
 
@@ -83,7 +83,7 @@ public class HomeController {
 		model.addAttribute("alta", new Tarea());
 		model.addAttribute("edit", new Tarea());
 		model.addAttribute("registro", new Registro());
-		model.addAttribute("reqTask", new Task());
+	//	model.addAttribute("reqTask", new Task());
 		System.out.println(" -- setGenericos -- Se declaran variables para la vista");
 	}
 
