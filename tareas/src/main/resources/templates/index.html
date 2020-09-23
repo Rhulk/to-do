@@ -215,6 +215,8 @@
 						<input type="text" class="form-control" id="fecha" placeholder="Fecha Alert" th:field="*{fAlert}" >
 					</div> 
 				</div>
+
+                
 				<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" th:field="*{descripcion}">
 				
 	            <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3">En espera</button>
@@ -280,14 +282,14 @@
 					</td>
 					<td> <a class="list-group-item" th:href="@{/deleteTarea/{id} (id=${tarea.id}) }"><i class="far fa-trash-alt delete" aria-hidden="true"></i></a></td>
 
-					<td>
+					
 						
 								<!--  ventana modal edit -->
 								<div class="modal fade" th:id="ventaModaledite+${tarea.id}"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
 								  <div class="modal-dialog">
 								    <div class="modal-content">
 								      <div class="modal-header">
-								        <h5 class="modal-title colorNegro" id="exampleModalLabel" style="color:black">Modificar la tarea tarea</h5>
+								        <h5 class="modal-title colorNegro" id="exampleModalLabel" >Modificar la tarea tarea</h5>
 								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								          <span aria-hidden="true">&times;</span>
 								        </button>
@@ -310,7 +312,7 @@
 												  <option th:value="Media" th:text="Media"></option>
 												  <option th:value="Baja" th:text="Baja"></option>
 												</select>
-												<input class="form-control space" list="clientes" name="cliente" type="text" placeholder="Elige un cliente" th:field="*{cliente}">
+												<input class="form-control space" list="clientes" name="cliente" type="text" th:placeholder="${tarea.cliente}" th:field="*{cliente}" th:text="${tarea.cliente}">
 												<datalist id="clientes">
 													<option th:value="${tarea.cliente}" th:text="${tarea.cliente}" selected></option>
 													<option th:value="Lorca"></option>
@@ -322,33 +324,30 @@
 													<option th:value="Torrelavega"></option>
 												</datalist>
 							 					<div class="input-group date">
-													<input type="text" class="form-control" id="fecha" placeholder="Fecha Alert" th:field="*{fAlert}" th:text="${tarea.fAlert}">
+													<input type="text" class="form-control" id="fecha" th:placeholder="${tarea.fAlert}" th:field="*{fAlert}" th:text="${tarea.fAlert}">
 												</div>	 
 											</div>
-											<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" th:value="${tarea.descripcion}" th:text="${tarea.descripcion}" th:field="*{descripcion}">
+											<input type="text" class="form-control space" name="descripcion" th:placeholder="${tarea.descripcion}" th:value="${tarea.descripcion}" th:text="${tarea.descripcion}" th:field="*{descripcion}">
 											<br>
+											<br>
+											<h6> Elija el destino </h6>
 								            <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3">En espera</button>
 							    	        <button type="submit" name="action" value="activo" class="btn btn-primary mb-3">Activos</button>
 										</form>
-								      </div>
-								      <div class="modal-footer">
-								        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-								        <button type="button" class="btn btn-primary">Send message</button>
-								        <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3">En espera</button>
 								      </div>
 								    </div>
 								  </div>
 								</div>
 								<!-- fin ventana modal -->		
-					</td>
-					<td>
+					
+					
 														  <!--  venta modal change status -->
 								  
 								<div class="modal fade" th:id="ventanaModalChange+${tarea.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								  <div class="modal-dialog">
 								    <div class="modal-content">
 								      <div class="modal-header">
-								        <h5 class="modal-title colorNegro" id="exampleModalLabel" style="color:black">Iniciar registro de la tarea</h5>
+								        <h5 class="modal-title colorNegro" id="exampleModalLabel">Iniciar registro de la tarea</h5>
 								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								          <span aria-hidden="true">&times;</span>
 								        </button>
@@ -356,7 +355,7 @@
 								      <div class="modal-body">
 										<form  th:action="@{/changeStatus/{id} (id=${tarea.id}) }" method="get" th:object="${registro}">	
 
-											<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" th:value="${registro.descripcion}" th:text="${registro.descripcion}" th:field="*{descripcion}">
+											<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" th:value="${registro.descripcion}"  th:field="*{descripcion}">
 											<br>
 								            <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3"> Acceptar</button>
 										</form>
@@ -366,7 +365,7 @@
 								</div>							  
 								  
 								  <!-- FIN  venta modal change status -->
-					</td>
+					
 				</tr>
 
 			</tbody>
