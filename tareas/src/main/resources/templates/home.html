@@ -24,8 +24,22 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        <div class="description">
+        <div class="description ">
           <h2>Listado Tareas</h2>
+          <div class="fresh-table full-color-orange">
+          	<form>
+          		<br>
+          		<samp> Filtros de busqueda</samp>
+          		<br>
+				<spam> Cliente</spam>          	
+          		<input type="text">
+          		<samp> Ciudad</samp>
+          		<input type="text">
+          		<br></br>
+          		<button type="button"> Buscar</button>
+          	
+          	</form>
+          </div>
         </div>
 
         <div class="fresh-table full-color-orange">
@@ -41,7 +55,7 @@
               <th data-field="salary" data-sortable="true">Salary</th>
               <th data-field="country" data-sortable="true">Country</th>
               <th data-field="city">City</th>
-              <th data-field="actions" data-formatter="operateFormatter" data-events="operateEvents">Actions</th>
+              <th >Actions</th>
             </thead>
             <tbody>
               <tr>
@@ -903,7 +917,7 @@
       $table.bootstrapTable({
         classes: 'table table-hover table-striped',
         toolbar: '.toolbar',
-
+		
         search: true,
         showRefresh: true,
         showToggle: true,
