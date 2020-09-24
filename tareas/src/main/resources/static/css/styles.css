@@ -63,6 +63,9 @@ th{
 th, td {
   padding: 30px;
 }
+td{
+	color:white;
+}
 
 .space{
   margin: 0 10px 0 10px;
