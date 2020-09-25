@@ -57,16 +57,31 @@ h1 small{
 /*          For demo purpose         */
 
 
+
+
 .fixed-plugin{
+
+	text-align: center;
+	background: rgba(0,0,0,.3);
+    z-index: 1031;
+    border-radius: 8px 0 0 8px;
+}
+
+.posicion-alta{
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 64px;
+}
+
+.posicion-ajustes{
     position: absolute;
     top: 150px;
     right: 0;
     width: 64px;
-    background: rgba(0,0,0,.3);
-    z-index: 1031;
-    border-radius: 8px 0 0 8px;
-    text-align: center;
 }
+
+
 .fixed-plugin .fa-cog{
     color: #FFFFFF;
     padding: 10px;
