@@ -54,6 +54,24 @@ h1{
 h1 small{
    color: #EEE;
 }
+select{
+	padding: 10px;
+	border-color: rgba(255, 255, 255, 0.8);
+	border-radius: 30px;
+    background-color: transparent;
+    
+    color: #FFFFFF;
+    color: -internal-light-dark(black, white);
+    
+    /* tamaño imput */
+    
+    size: 300px;
+    padding-top: 10px;
+    padding: 10px;
+}
+.padding_10{
+	padding: 10px;
+}
 /*          For demo purpose         */
 
 
