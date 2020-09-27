@@ -69,11 +69,20 @@ select{
     padding-top: 10px;
     padding: 10px;
 }
+
+
+option { color: black; background-color: transparent; border-radius: 30px;}
+option:hover { color: black; background-color: transparent; }
+
+
 .padding_10{
 	padding: 10px;
 }
 .marging_30{
 	margin-top: 30px;
+}
+.radius_30{
+	border-radius: 30px;
 }
 /*          For demo purpose         */
 
