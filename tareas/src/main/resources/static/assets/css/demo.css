@@ -119,8 +119,9 @@ option:hover { color: black; background-color: transparent; }
 }
 .fixed-plugin .dropdown-menu{
     right: 80px;
-    left: auto;
+    left: -290px;
     width: 260px;
+    top: 220px;
     border-radius: 10px;
 }
 .fixed-plugin .dropdown-menu:after, .fixed-plugin .dropdown-menu:before{
@@ -132,7 +133,7 @@ option:hover { color: black; background-color: transparent; }
     color: #FFFFFF;
 }
 .fixed-plugin .active .fa-circle-thin{
-    color: #00bbff;
+    color: #777777;
 }
 
 .footer-dropdown{
@@ -172,7 +173,7 @@ option:hover { color: black; background-color: transparent; }
 }
 .fixed-plugin .badge.active,
 .fixed-plugin .badge:hover{
-    border-color: #00bbff;
+    border-color: #777777;
 }
 
 .fixed-plugin .badge-white{
