@@ -84,6 +84,10 @@ option:hover { color: black; background-color: transparent; }
 .radius_30{
 	border-radius: 30px;
 }
+
+.margin_5{
+	margin: 5px;
+}
 /*          For demo purpose         */
 
 

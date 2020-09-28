@@ -94,6 +94,14 @@ public class HomeController {
 		//CrearFicherosExcel.nextRecord();
 		return "home";
 	}
+
+	// pendiente el id del detalle a cargar
+	@GetMapping("/detalle")
+	public String detail() {
+
+		return "detalle";
+	}
+	
 	
 	@GetMapping("index")
 	public String inicio(Model vista) {
