@@ -25,61 +25,36 @@
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         <div class="description ">
-          <h2>Listado Tareas</h2>
-          <div class="fresh-table full-color-orange padding_10 ">
-          <br><!--  jugar el border padin -->
-				<div class="form-group form-inline ">	
-					<select class="styled-select space" placeholder="tarea" >
-					<option   selected> Seleccione una opción </option>
-					  <option th:value="Tarea" th:text="Tarea"></option>
-					  <option th:value="'en espera'" th:text="'en espera'"></option>
-					  <option th:value="Integracion" th:text="Integracion"></option>
-					  <option th:value="Soporte" th:text="Soporte"></option>
-					  <option th:value="Testing" th:text="Testing"></option>
-					  <option th:value="Desarrollo" th:text="Desarrollo"></option>
-					</select>
-					
-					<select class="styled-select space" placeholder="prioridad" >
-					  <option th:value="Alta" th:text="Alta"></option>
-					  <option th:value="Media" th:text="Media"></option>
-					  <option th:value="Baja" th:text="Baja"></option>
-					</select>
-<!-- 					<select class="styled-select space" placeholder="status" th:field="*{status}">
-					  <option th:value="Activo" th:text="Activo"></option>
-					  <option th:value="'en espera'" th:text="'en espera'"></option>
-					</select>	 -->				
-					<input class="form-control space" list="clientes" name="cliente" type="text" placeholder="Elige un cliente" >
-					<datalist id="clientes">
-						<option th:value="Lorca"></option>
-						<option th:value="Bullas"></option>
-						<option th:value="'Santa Cruz'"></option>
-						<option th:value="Cieza"></option>
-						<option th:value="'A Coruña'"></option>
-						<option th:value="Durango"></option>
-						<option th:value="Torrelavega"></option>
-					</datalist>
-					<div class="input-group radius_30">
-						<input type="date" class="form-control radius_30" id="fecha" placeholder="Fecha Alert" >
-					</div> 
-				</div>
+          <h2>Detalle Tarea</h2>
 
-                
-				<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" >
-				<div class="marging_30">
-	            	<button type="submit" name="action" value="en espera" class="btn btn-primary mb-3 ">En espera</button>
-    	        	<button type="submit" name="action" value="activo" class="btn btn-primary mb-3">Activos</button>
-    	        </div>
-			</form>
-			<br> <!--  Jugar con el padin -->	
-          </div>
-        </div>
 
         <div class="fresh-table full-color-orange">
         <!--
           Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
           Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
         -->
+		<div class="fresh-table full-color-orange margin_5">Detalle</div>
+          <table id="fresh-table_detalle" class="table">
+          	
+            <thead>
+              <th data-field="id">ID</th>
+              <th data-field="name" data-sortable="true">Tarea</th>
+              <th data-field="salary" data-sortable="true">Fecha Alta</th>
+              <th data-field="country" data-sortable="true">Fecha fin</th>
 
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Dakota Rice</td>
+                <td>$36,738</td>
+                <td>Niger</td>
+                <td></td>
+              </tr>
+             </tbody>
+          	</table>
+			
+		<div class="fresh-table full-color-orange margin_5">Listado Registros</div>
           <table id="fresh-table" class="table">
             <thead>
               <th data-field="id">ID</th>
@@ -466,38 +441,7 @@
                 <td>Biała Podlaska</td>
                 <td></td>
               </tr>
-              <tr>
-                <td>48</td>
-                <td>Imogene May</td>
-                <td>$23,589</td>
-                <td>Turkmenistan</td>
-                <td>Gressan</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>49</td>
-                <td>Bernard Yang</td>
-                <td>$14,082</td>
-                <td>Timor-Leste</td>
-                <td>Saint-Eugene</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>50</td>
-                <td>Amber Gillespie</td>
-                <td>$23,133</td>
-                <td>Sao Tome and Principe</td>
-                <td>Bucharest</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>51</td>
-                <td>Grady Melton</td>
-                <td>$73,501</td>
-                <td>Tokelau</td>
-                <td>Colobraro</td>
-                <td></td>
-              </tr>
+
               <tr>
                 <td>52</td>
                 <td>Rae Williams</td>
@@ -754,142 +698,7 @@
                 <td>Melville</td>
                 <td></td>
               </tr>
-              <tr>
-                <td>84</td>
-                <td>Amery Spears</td>
-                <td>$62,359</td>
-                <td>Montenegro</td>
-                <td>Logroño</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>85</td>
-                <td>Kirk Miller</td>
-                <td>$45,812</td>
-                <td>Belize</td>
-                <td>Conca Casale</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>86</td>
-                <td>Elton Clayton</td>
-                <td>$23,513</td>
-                <td>Paraguay</td>
-                <td>Linton</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>87</td>
-                <td>Rhonda Chavez</td>
-                <td>$40,242</td>
-                <td>Korea, North</td>
-                <td>Mellery</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>88</td>
-                <td>Florence Tillman</td>
-                <td>$79,225</td>
-                <td>Cayman Islands</td>
-                <td>S�lange</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>89</td>
-                <td>Hayley Valencia</td>
-                <td>$26,047</td>
-                <td>Vanuatu</td>
-                <td>Crowsnest Pass</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>90</td>
-                <td>Wing Love</td>
-                <td>$72,505</td>
-                <td>Wallis and Futuna</td>
-                <td>Diadema</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>91</td>
-                <td>Gary Cochran</td>
-                <td>$50,642</td>
-                <td>Saint Lucia</td>
-                <td>Wilmington</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>92</td>
-                <td>Karleigh Cochran</td>
-                <td>$42,292</td>
-                <td>Korea, South</td>
-                <td>Newton Stewart</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>93</td>
-                <td>Jin Levy</td>
-                <td>$73,247</td>
-                <td>Honduras</td>
-                <td>Sudbury</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>94</td>
-                <td>Mari Webb</td>
-                <td>$26,412</td>
-                <td>Finland</td>
-                <td>Tarvisio</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>95</td>
-                <td>Jenette Roman</td>
-                <td>$15,920</td>
-                <td>France</td>
-                <td>Forbach</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>96</td>
-                <td>Fritz Silva</td>
-                <td>$18,512</td>
-                <td>Macedonia</td>
-                <td>Lauco</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>97</td>
-                <td>Rigel Mathews</td>
-                <td>$75,899</td>
-                <td>Congo</td>
-                <td>Madrid</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>98</td>
-                <td>Stephen Pace</td>
-                <td>$60,739</td>
-                <td>Hungary</td>
-                <td>Cinco Esquinas</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>99</td>
-                <td>Desiree Humphrey</td>
-                <td>$51,795</td>
-                <td>Portugal</td>
-                <td>Forst</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>100</td>
-                <td>Vielka Norton</td>
-                <td>$44,584</td>
-                <td>Spain</td>
-                <td>Thane</td>
-                <td></td>
-              </tr>
+
             </tbody>
           </table>
         </div>
@@ -1045,9 +854,9 @@
         toolbar: '.toolbar',
 		
         search: true,
-        showRefresh: true,
-        showToggle: true,
-        showColumns: true,
+        showRefresh: false,
+        showToggle: false,
+        showColumns: false,
         pagination: true,
         striped: true,
         sortable: true,
