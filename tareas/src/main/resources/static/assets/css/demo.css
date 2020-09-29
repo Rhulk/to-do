@@ -85,8 +85,14 @@ option:hover { color: black; background-color: transparent; }
 	border-radius: 30px;
 }
 
-.margin_5{
-	margin: 5px;
+.margin_5{ /* Cabecera para el detalle */
+	margin: -10px;
+    margin-block-end: auto;
+    padding: 10px;
+}
+.margin_li{/* reducir los blancos de la ventana alta y busqueda*/
+	margin-top: -40px;
+	margin-block-end: -62px;
 }
 /*          For demo purpose         */
 
