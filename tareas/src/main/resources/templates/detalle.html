@@ -53,7 +53,7 @@
               </tr>
              </tbody>
           	</table>
-			
+		<div> . </div>
 		<div class="fresh-table full-color-orange margin_5">Listado Registros</div>
           <table id="fresh-table" class="table">
             <thead>
@@ -753,6 +753,8 @@
 
   <script type="text/javascript">
     var $table = $('#fresh-table')
+    var $tableDetail = $('#fresh-table_detalle')
+    
     var $alertBtn = $('#alertBtn')
 
 
@@ -779,10 +781,31 @@
           return pageNumber + ' rows visible'
         }
       })
-
-
     })
 
+        $(function () {
+      $tableDetail.bootstrapTable({
+        classes: 'table table-hover table-striped',
+        toolbar: '.toolbar',
+		
+        search: true,
+        showRefresh: false,
+        showToggle: false,
+        showColumns: false,
+        pagination: true,
+        striped: true,
+        sortable: true,
+        pageSize: 8,
+        pageList: [8, 10, 25, 50, 100],
+
+        formatShowingRows: function (pageFrom, pageTo, totalRows) {
+          return ''
+        },
+        formatRecordsPerPage: function (pageNumber) {
+          return pageNumber + ' rows visible'
+        }
+      })
+    })
 
 
 
