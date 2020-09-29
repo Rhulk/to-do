@@ -95,6 +95,13 @@ public class HomeController {
 		return "home";
 	}
 	
+	@GetMapping("/orange")
+	public String orange() {
+		//copia home para integrar con los datos del controller
+
+		return "orange";
+	}
+	
 	@GetMapping("index")
 	public String inicio(Model vista) {
 	
