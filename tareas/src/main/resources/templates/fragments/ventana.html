@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
+<div th:fragment=busqueda>
+          <div class="fresh-table full-color-orange padding_10 ">
+          <form action="">
+          <br><!--  jugar el border padin -->
+				<div class="form-group form-inline ">	
+					<select class="styled-select space" placeholder="tarea" >
+					<option   selected> Seleccione una opción </option>
+					  <option th:value="Tarea" th:text="Tarea"></option>
+					  <option th:value="'en espera'" th:text="'en espera'"></option>
+					  <option th:value="Integracion" th:text="Integracion"></option>
+					  <option th:value="Soporte" th:text="Soporte"></option>
+					  <option th:value="Testing" th:text="Testing"></option>
+					  <option th:value="Desarrollo" th:text="Desarrollo"></option>
+					</select>
+					
+					<select class="styled-select space" placeholder="prioridad" >
+					  <option th:value="Alta" th:text="Alta"></option>
+					  <option th:value="Media" th:text="Media"></option>
+					  <option th:value="Baja" th:text="Baja"></option>
+					</select>
+<!-- 					<select class="styled-select space" placeholder="status" th:field="*{status}">
+					  <option th:value="Activo" th:text="Activo"></option>
+					  <option th:value="'en espera'" th:text="'en espera'"></option>
+					</select>	 -->				
+					<input class="form-control space" list="clientes" name="cliente" type="text" placeholder="Elige un cliente" >
+					<datalist id="clientes">
+						<option th:value="Lorca"></option>
+						<option th:value="Bullas"></option>
+						<option th:value="'Santa Cruz'"></option>
+						<option th:value="Cieza"></option>
+						<option th:value="'A Coruña'"></option>
+						<option th:value="Durango"></option>
+						<option th:value="Torrelavega"></option>
+					</datalist>
+					<div class="input-group date radius_30">
+						<input type="date" class="form-control radius_30" id="fecha" placeholder="Fecha Alert" >
+					</div> 
+				</div>
+
+                
+				<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" >
+				<div class="marging_30">
+	            	<button type="submit" name="action" value="en espera" class="btn btn-primary mb-3 ">En espera</button>
+    	        	<button type="submit" name="action" value="activo" class="btn btn-primary mb-3">Activos</button>
+    	        </div>
+			</form>
+			<br> 
+          </div>
+</div>
+
+<div th:fragment="alta">
+          <div class="fresh-table full-color-orange padding_10 ">
+          <form action="">
+          <br><!--  jugar el border padin -->
+				<div class="form-group form-inline ">	
+					<select class="styled-select space" placeholder="tarea" >
+					<option   selected> Seleccione una opción </option>
+					  <option th:value="Tarea" th:text="Tarea"></option>
+					  <option th:value="'en espera'" th:text="'en espera'"></option>
+					  <option th:value="Integracion" th:text="Integracion"></option>
+					  <option th:value="Soporte" th:text="Soporte"></option>
+					  <option th:value="Testing" th:text="Testing"></option>
+					  <option th:value="Desarrollo" th:text="Desarrollo"></option>
+					</select>
+					
+					<select class="styled-select space" placeholder="prioridad" >
+					  <option th:value="Alta" th:text="Alta"></option>
+					  <option th:value="Media" th:text="Media"></option>
+					  <option th:value="Baja" th:text="Baja"></option>
+					</select>
+<!-- 					<select class="styled-select space" placeholder="status" th:field="*{status}">
+					  <option th:value="Activo" th:text="Activo"></option>
+					  <option th:value="'en espera'" th:text="'en espera'"></option>
+					</select>	 -->				
+					<input class="form-control space" list="clientes" name="cliente" type="text" placeholder="Elige un cliente" >
+					<datalist id="clientes">
+						<option th:value="Lorca"></option>
+						<option th:value="Bullas"></option>
+						<option th:value="'Santa Cruz'"></option>
+						<option th:value="Cieza"></option>
+						<option th:value="'A Coruña'"></option>
+						<option th:value="Durango"></option>
+						<option th:value="Torrelavega"></option>
+					</datalist>
+					<div class="input-group date radius_30">
+						<input type="date" class="form-control radius_30" id="fecha" placeholder="Fecha Alert" >
+					</div> 
+				</div>
+
+                
+				<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" >
+				<div class="marging_30">
+	            	<button type="submit" name="action" value="en espera" class="btn btn-primary mb-3 ">En espera</button>
+    	        	<button type="submit" name="action" value="activo" class="btn btn-primary mb-3">Activos</button>
+    	        </div>
+			</form>
+			<br> <!--  Jugar con el padin -->	
+          </div>
+</div>
+</body>
+</html>

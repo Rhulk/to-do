@@ -907,31 +907,15 @@
 <div class="fixed-plugin posicion-ajustes" >
   <div class="dropdown ">
     <a href="#" data-toggle="dropdown">
-    <i class="fa fa-cog fa-2x"> </i>
-    </a>
-    <ul class="dropdown-menu">
-      <li class="header-title">Adjustments</li>
-      <li class="adjustments-line">
-        <a href="javascript:void(0)" class="switch-trigger">
-          <p>Full Background</p>
-          <div class="switch" data-on-label="ON" data-off-label="OFF">
-            <input type="checkbox" checked data-target="section-header" data-type="parallax"/>
-          </div>
-          <div class="clearfix"></div>
-        </a>
+    <i class="fa fa-cog fa-2x"> </i></a><samp>  Busqueda </samp>
+    <ul class="dropdown-menu"> <!-- dropdown-menu  header-title adjustments-line clearfix  dropdown fixed-plugin -->
+    
+      <li class="header-title">Busqueda Avanzada:</li>
+      <li class=" margin_li">
+		<div th:insert="fragments/ventana :: busqueda"> </div>
       </li>
-      <li class="adjustments-line">
-        <a href="javascript:void(0)" class="switch-trigger">
-          <p>Colors</p>
-          <div class="pull-right">
-            <span class="badge filter badge-blue" data-color="blue"></span>
-            <span class="badge filter badge-azure" data-color="azure"></span>
-            <span class="badge filter badge-green" data-color="green"></span>
-            <span class="badge filter badge-orange active" data-color="orange"></span>
-            <span class="badge filter badge-red" data-color="red"></span>
-          </div>
-          <div class="clearfix"></div>
-        </a>
+      <li >
+
       </li>
     </ul>
   </div>
@@ -941,58 +925,13 @@
 <div class="fixed-plugin posicion-alta " >
   <div class="dropdown ">
     <a href="#" data-toggle="dropdown">    <i class="fa fa-cog fa-2x"> </i>    </a>
-    <samp>Alta </samp>
+	<samp> Alta </samp>
     <ul class="dropdown-menu"> <!-- dropdown-menu  header-title adjustments-line clearfix  dropdown fixed-plugin -->
     
       <li class="header-title">Registro nueva tarea:</li>
-      <li class=" margin_li">
-          <div class="fresh-table full-color-orange padding_10 ">
-          <form action="">
-          <br><!--  jugar el border padin -->
-				<div class="form-group form-inline ">	
-					<select class="styled-select space" placeholder="tarea" >
-					<option   selected> Seleccione una opción </option>
-					  <option th:value="Tarea" th:text="Tarea"></option>
-					  <option th:value="'en espera'" th:text="'en espera'"></option>
-					  <option th:value="Integracion" th:text="Integracion"></option>
-					  <option th:value="Soporte" th:text="Soporte"></option>
-					  <option th:value="Testing" th:text="Testing"></option>
-					  <option th:value="Desarrollo" th:text="Desarrollo"></option>
-					</select>
-					
-					<select class="styled-select space" placeholder="prioridad" >
-					  <option th:value="Alta" th:text="Alta"></option>
-					  <option th:value="Media" th:text="Media"></option>
-					  <option th:value="Baja" th:text="Baja"></option>
-					</select>
-<!-- 					<select class="styled-select space" placeholder="status" th:field="*{status}">
-					  <option th:value="Activo" th:text="Activo"></option>
-					  <option th:value="'en espera'" th:text="'en espera'"></option>
-					</select>	 -->				
-					<input class="form-control space" list="clientes" name="cliente" type="text" placeholder="Elige un cliente" >
-					<datalist id="clientes">
-						<option th:value="Lorca"></option>
-						<option th:value="Bullas"></option>
-						<option th:value="'Santa Cruz'"></option>
-						<option th:value="Cieza"></option>
-						<option th:value="'A Coruña'"></option>
-						<option th:value="Durango"></option>
-						<option th:value="Torrelavega"></option>
-					</datalist>
-					<div class="input-group date radius_30">
-						<input type="date" class="form-control radius_30" id="fecha" placeholder="Fecha Alert" >
-					</div> 
-				</div>
-
-                
-				<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" >
-				<div class="marging_30">
-	            	<button type="submit" name="action" value="en espera" class="btn btn-primary mb-3 ">En espera</button>
-    	        	<button type="submit" name="action" value="activo" class="btn btn-primary mb-3">Activos</button>
-    	        </div>
-			</form>
-			<br> <!--  Jugar con el padin -->	
-          </div>
+      <li class="margin_li ">
+			<!-- falta include -->
+			<div th:insert="fragments/ventana :: alta"> </div>
       </li>
       <li >
 
