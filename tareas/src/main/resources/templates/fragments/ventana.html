@@ -6,7 +6,7 @@
 <body>
 <div th:fragment=busqueda>
           <div class="fresh-table full-color-orange padding_10 ">
-          <form action="">
+          <form th:action="@{/alta}" method="get" th:object="${alta}">
           <br><!--  jugar el border padin -->
 				<div class="form-group form-inline ">	
 					<select class="styled-select space" placeholder="tarea" >
@@ -56,8 +56,8 @@
 
 <div th:fragment="alta">
           <div class="fresh-table full-color-orange padding_10 ">
-          <form action="">
-          <br><!--  jugar el border padin -->
+          <form th:action="@{/alta}" method="get" th:object="${alta}">
+          <br><!--  ventana.html -->
 				<div class="form-group form-inline ">	
 					<select class="styled-select space" placeholder="tarea" >
 					<option   selected> Seleccione una opción </option>
