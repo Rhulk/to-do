@@ -105,8 +105,25 @@ public class HomeController {
 	
 	
 	@GetMapping("/orange")
-	public String orange() {
-		//copia home para integrar con los datos del controller
+	public String orange(Model vista) {
+		
+		if (listaEspera.isEmpty() && listaActiva.isEmpty() && carga_inicial) {
+			System.out.println("Lista vacia se inicializa ...");
+			//Carga inicial de datos.
+			listaEspera = getLista("en espera");
+			listaActiva = getLista("Activo");
+		}
+		
+		if (busqueda) {
+			busqueda=false;
+			vista.addAttribute("tareasEnEpera", listaEsperaB);
+			vista.addAttribute("tareasActivas", listaActivaB);
+			
+		}else {
+			vista.addAttribute("tareasEnEpera", listaEspera);
+			vista.addAttribute("tareasActivas", listaActiva);
+		}
+		
 
 		return "orange";
 	}
@@ -146,7 +163,7 @@ public class HomeController {
 			listaActivaB = getLista("Activo",tarea.getTarea());
 		}
 		
-		return "redirect:/index";
+		return "redirect:/orange";
 	}
 	
 	
@@ -164,7 +181,7 @@ public class HomeController {
 		registros.add(altaRegistro(tarea.getId()));// para recuperar el registro uso el id de la tarea y unico registro activo.
 		System.out.println(" - | lista de registros | - "+registros.toString());
 		
-		return "redirect:/index";
+		return "redirect:/orange";
 	}
 
 	@GetMapping(value="/changeStatus/{id}")
@@ -181,7 +198,7 @@ public class HomeController {
 				System.out.println (ioe);
 			}
 
-		if (!excelIsClose(ruta)) return "redirect:/index";// valido que esta cerrado
+		if (!excelIsClose(ruta)) return "redirect:/orange";// valido que esta cerrado
 		}
 		System.out.println(" -- Lista espera -- "+listaEspera.toString());
 		
@@ -210,7 +227,7 @@ public class HomeController {
 					System.out.println(" - | lista de registros | - "+registros.toString());				
 					System.out.println(" - | lista en espera | - "+listaEspera.toString());
 					System.out.println(" - | lista activo | - "+listaActiva.toString());
-					return "redirect:/index";
+					return "redirect:/orange";
 				}
 			}
 			
@@ -248,7 +265,7 @@ public class HomeController {
 	//	vista.addAttribute("tareasActivas", listaActiva);
 
 		
-		return "redirect:/index";
+		return "redirect:/orange";
 	}
 	
 	@GetMapping("/deleteTarea/{id}")
@@ -262,7 +279,7 @@ public class HomeController {
 				System.out.println(" - | lista en espera | - "+listaEspera.toString());
 				System.out.println(" - | lista activo | - "+listaActiva.toString());
 				carga_inicial=false;
-				return "redirect:/index";
+				return "redirect:/orange";
 			}
 		}
 		for(int i=0; i< listaActiva.size() ;i++) {
@@ -272,11 +289,11 @@ public class HomeController {
 				System.out.println(" - | lista en espera | - "+listaEspera.toString());
 				System.out.println(" - | lista activo | - "+listaActiva.toString());
 				carga_inicial=false;
-				return "redirect:/index"; 
+				return "redirect:/orange"; 
 			}
 		}		
 		System.out.println(" --> No se borro nada");
-		return "redirect:/index";
+		return "redirect:/orange";
 	}
 
 	
@@ -297,7 +314,7 @@ public class HomeController {
 				listaEspera.remove(i);
 				System.out.println(" - | lista en espera | - "+listaEspera.toString());
 				System.out.println(" - | lista activo | - "+listaActiva.toString());
-				return "redirect:/index";
+				return "redirect:/orange";
 			}
 		}
 		for(int i=0; i< listaActiva.size() ;i++) {
@@ -318,7 +335,7 @@ public class HomeController {
 		}	
 		
 		System.out.println(" --> Edit id: "+ id);
-		return "redirect:/index";
+		return "redirect:/orange";
 	}
 
 	
@@ -333,7 +350,7 @@ public class HomeController {
 				listaEspera.remove(i);
 				System.out.println(" - | lista en espera | - "+listaEspera.toString());
 				System.out.println(" - | lista activo | - "+listaActiva.toString());
-				return "redirect:/index";
+				return "redirect:/orange";
 			}
 		}
 		for(int i=0; i< listaActiva.size() ;i++) {
@@ -345,7 +362,7 @@ public class HomeController {
 				System.out.println(" - | lista activo | - "+listaActiva.toString());
 			}
 		}	
-		return "redirect:/index";
+		return "redirect:/orange";
 	}
 
 	
