@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.poi.EmptyFileException;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -591,6 +592,11 @@ public class HomeController {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
+		} catch (EmptyFileException e) {
+			e.printStackTrace(); 
+			CrearFicherosExcel.inicial();// Esta vacio o corrupto. Se crea de nuevo.
+			return true;
 		}
 		return true;
 	}

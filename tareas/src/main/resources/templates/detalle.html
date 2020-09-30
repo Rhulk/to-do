@@ -10,7 +10,7 @@
 
 <div class="wrapper">
   <!--   Creative Tim Branding   -->
-  <a href="http://localhost:8080">
+  <a href="http://localhost:8080/detalle">
     <div class="logo-container">
       <div class="logo">
         <img src="assets/img/new_logo.png">
@@ -26,7 +26,7 @@
       <div class="col-md-8 col-md-offset-2">
         <div class="description ">
           <h2>Detalle Tarea</h2>
-
+		</div>
 
         <div class="fresh-table full-color-orange">
         <!--
@@ -36,24 +36,28 @@
 		<div class="fresh-table full-color-orange margin_5">Detalle</div>
           <table id="fresh-table_detalle" class="table">
           	
-            <thead>
-              <th data-field="id">ID</th>
-              <th data-field="name" data-sortable="true">Tarea</th>
-              <th data-field="salary" data-sortable="true">Fecha Alta</th>
-              <th data-field="country" data-sortable="true">Fecha fin</th>
+          	<tr>
+ 				<th> </th>
+ 				<th></th>
+ 				<th>Fecha Alta</th>
+ 				<th>Fecha Fin</th>         	    	
+          	</tr>
+          	
+          	<tr>
+          		<th>Cliente</th>
+          		<td>Lorca</td>
+          		<td>30/09/2020</td>
+          		<td>1/10/2020</td>
+          	</tr>
+          	
+          	<tr>
+          		<th>Descripcion</th>
+          		<td colspan="3">El mobile no funciona</td>
 
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Dakota Rice</td>
-                <td>$36,738</td>
-                <td>Niger</td>
-                <td></td>
-              </tr>
-             </tbody>
+          	</tr>
+
           	</table>
-			
+		<div> . </div>
 		<div class="fresh-table full-color-orange margin_5">Listado Registros</div>
           <table id="fresh-table" class="table">
             <thead>
@@ -707,7 +711,7 @@
 
           <p>Copyright &copy; 2022  by kike </p>
         </div>
-      </div>
+      
     </div>
   </div>
 </div>
@@ -753,6 +757,8 @@
 
   <script type="text/javascript">
     var $table = $('#fresh-table')
+    var $tableDetail = $('#fresh-table_detalle')
+    
     var $alertBtn = $('#alertBtn')
 
 
@@ -779,10 +785,31 @@
           return pageNumber + ' rows visible'
         }
       })
-
-
     })
 
+        $(function () {
+      $tableDetail.bootstrapTable({
+        classes: 'table table-hover table-striped',
+        toolbar: '.toolbar',
+		
+        search: true,
+        showRefresh: false,
+        showToggle: false,
+        showColumns: false,
+        pagination: true,
+        striped: true,
+        sortable: true,
+        pageSize: 8,
+        pageList: [8, 10, 25, 50, 100],
+
+        formatShowingRows: function (pageFrom, pageTo, totalRows) {
+          return ''
+        },
+        formatRecordsPerPage: function (pageNumber) {
+          return pageNumber + ' rows visible'
+        }
+      })
+    })
 
 
 

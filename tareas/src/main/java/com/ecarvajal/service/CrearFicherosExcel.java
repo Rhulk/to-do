@@ -28,7 +28,7 @@ public class CrearFicherosExcel {
  
 	public static void inicial() {
 		
-		String nombreArchivo="Registro-.xlsx";
+		String nombreArchivo="Registro.xlsx";
 		String rutaArchivo= "src/main/resources/static/doc/"+nombreArchivo;
 		String hoja="Hoja1";
 		

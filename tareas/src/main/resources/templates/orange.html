@@ -10,7 +10,7 @@
 
 <div class="wrapper">
   <!--   Creative Tim Branding   -->
-  <a href="http://localhost:8080">
+  <a href="http://localhost:8080/orange">
     <div class="logo-container">
       <div class="logo">
         <img src="assets/img/new_logo.png">
@@ -26,60 +26,38 @@
       <div class="col-md-8 col-md-offset-2">
         <div class="description ">
           <h2>Listado Tareas</h2>
-          <div class="fresh-table full-color-orange padding_10 ">
-          <br><!--  jugar el border padin -->
-				<div class="form-group form-inline ">	
-					<select class="styled-select space" placeholder="tarea" >
-					<option   selected> Seleccione una opción </option>
-					  <option th:value="Tarea" th:text="Tarea"></option>
-					  <option th:value="'en espera'" th:text="'en espera'"></option>
-					  <option th:value="Integracion" th:text="Integracion"></option>
-					  <option th:value="Soporte" th:text="Soporte"></option>
-					  <option th:value="Testing" th:text="Testing"></option>
-					  <option th:value="Desarrollo" th:text="Desarrollo"></option>
-					</select>
-					
-					<select class="styled-select space" placeholder="prioridad" >
-					  <option th:value="Alta" th:text="Alta"></option>
-					  <option th:value="Media" th:text="Media"></option>
-					  <option th:value="Baja" th:text="Baja"></option>
-					</select>
-<!-- 					<select class="styled-select space" placeholder="status" th:field="*{status}">
-					  <option th:value="Activo" th:text="Activo"></option>
-					  <option th:value="'en espera'" th:text="'en espera'"></option>
-					</select>	 -->				
-					<input class="form-control space" list="clientes" name="cliente" type="text" placeholder="Elige un cliente" >
-					<datalist id="clientes">
-						<option th:value="Lorca"></option>
-						<option th:value="Bullas"></option>
-						<option th:value="'Santa Cruz'"></option>
-						<option th:value="Cieza"></option>
-						<option th:value="'A Coruña'"></option>
-						<option th:value="Durango"></option>
-						<option th:value="Torrelavega"></option>
-					</datalist>
-					<div class="input-group radius_30">
-						<input type="date" class="form-control radius_30" id="fecha" placeholder="Fecha Alert" >
-					</div> 
-				</div>
-
-                
-				<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" >
-				<div class="marging_30">
-	            	<button type="submit" name="action" value="en espera" class="btn btn-primary mb-3 ">En espera</button>
-    	        	<button type="submit" name="action" value="activo" class="btn btn-primary mb-3">Activos</button>
-    	        </div>
-			</form>
-			<br> <!--  Jugar con el padin -->	
-          </div>
         </div>
+          <div class="fresh-table full-color-orange ">
+          	  <div class="fresh-table full-color-orange margin_5"> Tareas Activas</div>
+	          <table id="fresh-table_espera" class="table">
+	            <thead>
+	              <th data-field="id">ID</th>
+	              <th data-field="name" data-sortable="true">Name</th>
+	              <th data-field="salary" data-sortable="true">Salary</th>
+	              <th data-field="country" data-sortable="true">Country</th>
+	              <th data-field="city">City</th>
+	              <th >Actions</th>
+	            </thead>
+	            <tbody>
+	              <tr>
+	                <td>1</td>
+	                <td>Dakota Rice</td>
+	                <td>$36,738</td>
+	                <td>Niger</td>
+	                <td>Oud-Turnhout</td>
+	                <td> --</td>
+	              </tr>
+              	</tbody>
+              </table>
+          </div>
+        
 
         <div class="fresh-table full-color-orange">
         <!--
           Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
           Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
         -->
-
+		  <div class="fresh-table full-color-orange margin_5"> Tareas en espera</div>
           <table id="fresh-table" class="table">
             <thead>
               <th data-field="id">ID</th>
@@ -928,7 +906,7 @@
 	<samp> Alta </samp>
     <ul class="dropdown-menu"> <!-- dropdown-menu  header-title adjustments-line clearfix  dropdown fixed-plugin -->
     
-      <li class="header-title">Registro nueva tarea:</li>
+      <li class="header-title">Registro nueva tarea Orange:</li>
       <li class="margin_li ">
 			<!-- falta include -->
 			<div th:insert="fragments/ventana :: alta"> </div>
@@ -944,6 +922,7 @@
 
   <script type="text/javascript">
     var $table = $('#fresh-table')
+    var $tableEspera = $('#fresh-table_espera')
     var $alertBtn = $('#alertBtn')
 
 
@@ -970,10 +949,31 @@
           return pageNumber + ' rows visible'
         }
       })
-
-
     })
+    
+    $(function () {
+      $tableEspera.bootstrapTable({
+        classes: 'table table-hover table-striped',
+        toolbar: '.toolbar',
+		
+        search: true,
+        showRefresh: true,
+        showToggle: true,
+        showColumns: true,
+        pagination: true,
+        striped: true,
+        sortable: true,
+        pageSize: 8,
+        pageList: [8, 10, 25, 50, 100],
 
+        formatShowingRows: function (pageFrom, pageTo, totalRows) {
+          return ''
+        },
+        formatRecordsPerPage: function (pageNumber) {
+          return pageNumber + ' rows visible'
+        }
+      })
+    })
 
 
 
