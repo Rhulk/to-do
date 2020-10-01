@@ -19,7 +19,7 @@ body{
 }
 
 .description{
-    margin-top: 60px;
+    margin-top: -20px;
     text-align: center;
 }
 .description-footer{
@@ -97,8 +97,8 @@ option:hover { color: black; background-color: transparent; }
 /*          For demo purpose         */
 
 .change{
-	width:30px;
-	color: orange;
+	
+	margin-left: 9px;
 }
 
 
