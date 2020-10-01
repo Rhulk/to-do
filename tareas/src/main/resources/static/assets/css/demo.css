@@ -478,13 +478,13 @@ option:hover { color: black; background-color: transparent; }
 
          transform-origin: 0 0;
     }
-
+	
     .fixed-plugin .dropdown-menu:before,
     .fixed-plugin .dropdown-menu:after{
         content: "";
         display: inline-block;
         position: absolute;
-        top: 50%;
+        top: 20%;
         width: 16px;
         transform: translateY(-50%);
         -webkit-transform: translateY(-50%);
@@ -510,7 +510,7 @@ option:hover { color: black; background-color: transparent; }
 @media (max-width: 767px){
     .fixed-plugin .dropdown-menu{
         right: 60px;
-        width: 220px;
+        width: 12220px;
     }
     .fixed-plugin .dropdown-menu li{
         width: 100%;
@@ -537,4 +537,23 @@ option:hover { color: black; background-color: transparent; }
     .description {
         margin-top: 130px;
     }
+}
+/* ======== */
+/*    mod tamaño y ubicación de los listados      */
+/* ========*/
+@media (min-width: 992px)
+.col-md-offset-2-full {
+    
+    width: 80%;
+}
+@media (min-width: 768px)
+.container-full {
+    width: 80%;
+}
+.container-full {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 89%;
 }
