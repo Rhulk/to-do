@@ -19,6 +19,7 @@
         Creative Kike
       </div>
     </div>
+    <a class="list-group-item" href="http://localhost:8080/orange" ><i class="fas fa-hourglass-start" aria-hidden="false"></i></a>
   </a>
 
   <div class="container-full">
@@ -26,6 +27,7 @@
       <div class="">  <!--  original classs col-md-8 col-md-offset-2 -->
         <div class="description ">
           <h2>Listado Tareas</h2>
+          <a class="" href="http://localhost:8080/orange" ><i class="fas fa-hourglass-start" aria-hidden="false"></i></a>
         </div>
           <div class="fresh-table full-color-orange ">
           	  <div class="fresh-table full-color-orange margin_5"> Tareas Activas</div>
@@ -53,7 +55,7 @@
 					<td >27/07/20 15:00 </th>
 					<td >27/07/20 15:00 </td>
 					<td th:text="${tarea.descripcion}"></td>
-					<td> <a class="list-group-item" th:href="@{/changeStatus/{id} (id=${tarea.id}) }"    ><i class="fas fa-hourglass-start" aria-hidden="false"></i></a></td>
+					<td> <a class="list-group-item change" th:href="@{/changeStatus/{id} (id=${tarea.id}) }"    ><i class="fas fa-hourglass-start" aria-hidden="false"></i></a></td>
 										
 					
 					

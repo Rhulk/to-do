@@ -245,11 +245,11 @@
     &[class*="full-color-"]{
         .table td{
             a{
-                color: $light-white;
+                color: $orange;
 
                 &:hover,
                 &:focus{
-                    color: $white-color;
+                    color: $red;
                 }
             }
         }

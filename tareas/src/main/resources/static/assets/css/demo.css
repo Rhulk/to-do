@@ -96,6 +96,11 @@ option:hover { color: black; background-color: transparent; }
 }
 /*          For demo purpose         */
 
+.change{
+	width:30px;
+	color: orange;
+}
+
 
 
 
