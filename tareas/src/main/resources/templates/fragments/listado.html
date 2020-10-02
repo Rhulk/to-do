@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
+<div th:fragment=espera>
+	          <table id="fresh-table_espera" class="table">
+	            <thead>            
+	              <th data-sortable="true">Ticket</th>
+				  <th data-sortable="true">Tarea</th>
+				  <th data-sortable="true">Estado</th>
+				  <th data-sortable="true">prioridad</th>
+				  <th data-sortable="true">Cliente</th>
+				  <th data-sortable="true">Fecha Alta</th>
+				  <th data-sortable="true">Alert Fecha</th>
+				  <th data-sortable="true">Descripcion</th>
+				  <th data-sortable="true">Start</th>
+				  <th data-sortable="true">Editar</th>
+				  <th data-sortable="true">Borrar</th>
+	            </thead>
+	            <tbody>
+	              <tr  th:each="tarea : ${tareasEnEpera}">
+					<td th:text="${tarea.id}">1</td>
+					<td th:text="${tarea.tarea}">Soporte</td>
+					<td th:text="${tarea.status}">Soporte</td>
+					<td th:text="${tarea.prioridad}">Alta</td>
+					<td th:text="${tarea.cliente}">Oficina </td>
+					<td >27/07/20 15:00 </th>
+					<td >27/07/20 15:00 </td>
+					<td th:text="${tarea.descripcion}"></td>
+					
+					<td>
+						 <a class="change" th:href="@{/changeStatus/{id} (id=${tarea.id}) }">
+						 	<i class="fas fa-stopwatch fa-2x" aria-hidden="false"></i>
+						 </a>
+					 </td>
+					</td>
+					<td>
+
+					</td>					
+					<td>
+
+					</td>										
+					
+					
+	              </tr>
+              	</tbody>
+              </table>
+</div>
+
+<div th:fragment="activos">
+          <table id="fresh-table" class="table">
+            <thead>
+			  <th data-sortable="true">Ticket</th>
+			  <th data-sortable="true">Tarea</th>
+		   	  <th data-sortable="true">Estado</th>
+              <th data-sortable="true">prioridad</th>
+		      <th data-sortable="true">Cliente</th>
+			  <th data-sortable="true">Fecha Alta</th>
+			  <th data-sortable="true">Alert Fecha</th>
+			  <th data-sortable="true">Descripcion</th>
+			  <th >Start</th>
+			  <th >Editar</th>
+			  <th >Borrar</th>
+			  
+            </thead>
+            <tbody>
+				<tr  th:each="activa : ${tareasActivas}">
+					<td th:text="${activa.id}">1</td>
+					<td th:text="${activa.tarea}">Soporte</td>
+					<td th:text="${activa.status}">Soporte</td>
+					<td th:text="${activa.prioridad}">Alta</td>
+					<td th:text="${activa.cliente}">Oficina </td>
+					<td th:text="${activa.fAlta}">27/07/20 11:20 </th>
+					<td >27/07/20 15:00 </td>
+					<td th:text="${activa.descripcion}">Bidon de agua nn</td>
+					<td>
+					 <a class="change" th:href="@{/changeStatus/{id} (id=${activa.id}) }">
+					 	<i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+					 </a>
+					</td>
+					<td>
+
+					</td>					
+					<td>
+
+					</td>					
+              </tr>
+    
+            </tbody>
+          </table>
+</div>
+</body>
+</html>

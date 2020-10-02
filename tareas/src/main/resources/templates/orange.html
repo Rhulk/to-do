@@ -31,42 +31,8 @@
         </div>
           <div class="fresh-table full-color-orange ">
           	  <div class="fresh-table full-color-orange margin_5"> Tareas Activas</div>
-	          <table id="fresh-table_espera" class="table">
-	            <thead>            
-	              <th data-sortable="true">Ticket</th>
-				  <th data-sortable="true">Tarea</th>
-				  <th data-sortable="true">Estado</th>
-				  <th data-sortable="true">prioridad</th>
-				  <th data-sortable="true">Cliente</th>
-				  <th data-sortable="true">Fecha Alta</th>
-				  <th data-sortable="true">Alert Fecha</th>
-				  <th data-sortable="true">Descripcion</th>
-				  <th data-sortable="true">Start</th>
-				  <th data-sortable="true">Editar</th>
-				  <th data-sortable="true">Borrar</th>
-	            </thead>
-	            <tbody>
-	              <tr  th:each="tarea : ${tareasEnEpera}">
-					<td th:text="${tarea.id}">1</td>
-					<td th:text="${tarea.tarea}">Soporte</td>
-					<td th:text="${tarea.status}">Soporte</td>
-					<td th:text="${tarea.prioridad}">Alta</td>
-					<td th:text="${tarea.cliente}">Oficina </td>
-					<td >27/07/20 15:00 </th>
-					<td >27/07/20 15:00 </td>
-					<td th:text="${tarea.descripcion}"></td>
-					
-					<td>
-						 <a class="change" th:href="@{/changeStatus/{id} (id=${tarea.id}) }">
-						 	<i class="fas fa-stopwatch fa-2x" aria-hidden="false"></i>
-						 </a>
-					 </td>
-									
-					
-					
-	              </tr>
-              	</tbody>
-              </table>
+          	  <div th:insert="fragments/listado :: activos"> </div>
+
           </div>
         
 
@@ -76,41 +42,8 @@
           Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
         -->
 		  <div class="fresh-table full-color-orange margin_5"> Tareas en espera</div>
-          <table id="fresh-table" class="table">
-            <thead>
-			  <th data-sortable="true">Ticket</th>
-			  <th data-sortable="true">Tarea</th>
-		   	  <th data-sortable="true">Estado</th>
-              <th data-sortable="true">prioridad</th>
-		      <th data-sortable="true">Cliente</th>
-			  <th data-sortable="true">Fecha Alta</th>
-			  <th data-sortable="true">Alert Fecha</th>
-			  <th data-sortable="true">Descripcion</th>
-			  <th >Start</th>
-			  <th >Editar</th>
-			  <th >Borrar</th>
-			  
-            </thead>
-            <tbody>
-				<tr  th:each="activa : ${tareasActivas}">
-					<td th:text="${activa.id}">1</td>
-					<td th:text="${activa.tarea}">Soporte</td>
-					<td th:text="${activa.status}">Soporte</td>
-					<td th:text="${activa.prioridad}">Alta</td>
-					<td th:text="${activa.cliente}">Oficina </td>
-					<td th:text="${activa.fAlta}">27/07/20 11:20 </th>
-					<td >27/07/20 15:00 </td>
-					<td th:text="${activa.descripcion}">Bidon de agua nn</td>
-					<td>
-					 <a class="change" th:href="@{/changeStatus/{id} (id=${activa.id}) }">
-					 	<i class="fa-li fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
-					 </a>
-					</td>
-					
-              </tr>
-    
-            </tbody>
-          </table>
+		  <div th:insert="fragments/listado :: espera"> </div>
+
         </div>
 
         <div class="description description-footer">
