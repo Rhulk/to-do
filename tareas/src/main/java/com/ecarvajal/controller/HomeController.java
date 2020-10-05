@@ -143,6 +143,30 @@ public class HomeController {
 		return vistaIndex;
 	}
 	
+	@GetMapping("/orange2")
+	public String orangeb(Model vista) {
+		vistaIndex="orange2";
+		if (listaEspera.isEmpty() && listaActiva.isEmpty() && carga_inicial) {
+			System.out.println("Lista vacia se inicializa ...");
+			//Carga inicial de datos.
+			listaEspera = getLista("en espera");
+			listaActiva = getLista("Activo");
+		}
+		
+		if (busqueda) {
+			busqueda=false;
+			vista.addAttribute("tareasEnEpera", listaEsperaB);
+			vista.addAttribute("tareasActivas", listaActivaB);
+			
+		}else {
+			vista.addAttribute("tareasEnEpera", listaEspera);
+			vista.addAttribute("tareasActivas", listaActiva);
+		}
+		
+
+		return vistaIndex;
+	}
+	
 	@GetMapping("index")
 	public String inicio(Model vista) {
 		vistaIndex="index";
@@ -166,7 +190,36 @@ public class HomeController {
 		}
 		return vistaIndex;
 	}
-
+/*
+ * 
+ * Temporal para el menu de opciones
+ * 
+ * 
+ */
+	@GetMapping("index2")
+	public String inicioB(Model vista) {
+		vistaIndex="index2";
+		//hService.prueba(); // para escribir en un ods
+		
+		if (listaEspera.isEmpty() && listaActiva.isEmpty() && carga_inicial) {
+			System.out.println("Lista vacia se inicializa ...");
+			//Carga inicial de datos.
+			listaEspera = getLista("en espera");
+			listaActiva = getLista("Activo");
+		}
+		
+		if (busqueda) {
+			busqueda=false;
+			vista.addAttribute("tareasEnEpera", listaEsperaB);
+			vista.addAttribute("tareasActivas", listaActivaB);
+			
+		}else {
+			vista.addAttribute("tareasEnEpera", listaEspera);
+			vista.addAttribute("tareasActivas", listaActiva);
+		}
+		return vistaIndex;
+	}	
+	
 	@RequestMapping(value="/search")
 	public String buscar(@ModelAttribute("search") Tarea tarea, @RequestParam String action) {
 		

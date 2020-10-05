@@ -100,6 +100,14 @@ option:hover { color: black; background-color: transparent; }
 	
 	margin-left: 9px;
 }
+.opciones{
+	position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fb9e4c;
+    border: 1px solid #ddd;
+}
 
 
 
@@ -110,6 +118,7 @@ option:hover { color: black; background-color: transparent; }
 	background: rgba(0,0,0,.3);
     z-index: 1031;
     border-radius: 8px 0 0 8px;
+    color: #f7d8cf;
 }
 
 .posicion-alta{
