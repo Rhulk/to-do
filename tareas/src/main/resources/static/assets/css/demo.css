@@ -571,3 +571,9 @@ option:hover { color: black; background-color: transparent; }
     margin-left: auto;
     width: 89%;
 }
+.table-varios{
+	color: white;
+}
+.modal-varios{
+	background: orange;
+}
