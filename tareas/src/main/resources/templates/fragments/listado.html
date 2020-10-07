@@ -21,15 +21,25 @@
 	            </thead>
 	            <tbody>
 	              <tr  th:each="tarea : ${tareasEnEpera}">
-					<td th:text="${tarea.id}">1</td>
-					<td th:text="${tarea.tarea}">Soporte</td>
-
-					<td th:text="${tarea.prioridad}">Alta</td>
-					<td th:text="${tarea.cliente}">Oficina </td>
-					<td >27/07/20 15:00 </th>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.id}"> </a>
+					</td>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.tarea}"> </a>
+					</td>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.prioridad}"> </a>
+					</td>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.cliente}"> </a>
+					</td>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.fAlta}"> </a>
+					</th>
 					<td >27/07/20 15:00 </td>
-					<td th:text="${tarea.descripcion}"></td>
-					
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.descripcion}"> </a>
+					</td>
 					<td>
 						 <a class="change" th:href="@{/changeStatus/{id} (id=${tarea.id}) }">
 						 	<i class="fas fa-stopwatch fa-2x" aria-hidden="false"></i>
@@ -37,7 +47,7 @@
 					 </td>
 
 					<td>
-						<nav class="navbar navbar-expand-lg navbar-dark ">
+	<!-- 					<nav class="navbar navbar-expand-lg navbar-dark ">
 						  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
 						    <span class="navbar-toggler-icon"></span>
 						  </button>
@@ -55,7 +65,7 @@
 								</li>
 							</ul>
 						  </div> <!-- navbar-collapse.// -->
-						</nav>
+						</nav>   -->
 					</td>	
 					<td> 
 						<a class="change" th:href="@{/deleteTarea/{id} (id=${tarea.id}) }">
@@ -169,21 +179,32 @@
             </thead>
             <tbody>
 				<tr  th:each="activa : ${tareasActivas}">
-					<td th:text="${activa.id}">1</td>
-					<td th:text="${activa.tarea}">Soporte</td>
-
-					<td th:text="${activa.prioridad}">Alta</td>
-					<td th:text="${activa.cliente}">Oficina </td>
-					<td th:text="${activa.fAlta}">27/07/20 11:20 </th>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.id}"> </a>
+					</td>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.tarea}"> </a>
+					</td>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.prioridad}"> </a>
+					</td>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.cliente}"> </a>
+					</td>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.fAlta}"> </a>
+					</th>
 					<td >27/07/20 15:00 </td>
-					<td th:text="${activa.descripcion}">Bidon de agua nn</td>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.descripcion}"> </a>
+					</td>
 					<td>
 					 <a class="change" th:href="@{/changeStatus/{id} (id=${activa.id}) }">
 					 	<i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
 					 </a>
 					</td>
 					<td>
-						<nav class="navbar navbar-expand-lg navbar-dark ">
+	<!--  					<nav class="navbar navbar-expand-lg navbar-dark ">
 						  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
 						    <span class="navbar-toggler-icon"></span>
 						  </button>
@@ -201,7 +222,7 @@
 								</li>
 							</ul>
 						  </div> <!-- navbar-collapse.// -->
-						</nav>
+						</nav>  -->
 					</td>
 					<td>
 						<a class="change" th:href="@{/deleteTarea/{id} (id=${activa.id}) }">

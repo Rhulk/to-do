@@ -84,6 +84,7 @@ public class HomeController {
 		model.addAttribute("search",new Tarea());
 		model.addAttribute("alta", new Tarea());
 		model.addAttribute("edit", new Tarea());
+		model.addAttribute("view", new Tarea());
 		model.addAttribute("registro", new Registro());
 	//	model.addAttribute("reqTask", new Task());
 		System.out.println(" -- setGenericos -- Se declaran variables para la vista");
@@ -111,13 +112,27 @@ public class HomeController {
 		return "home";
 	}
 
-	// pendiente el id del detalle a cargar
+	@GetMapping("/detalle/{id}")
+	public String detail(@PathVariable("id") int id, Model vista) {
+		for(int i=0; i< listaEspera.size() ;i++) {
+			if (listaEspera.get(i).getId() == id) {
+				vista.addAttribute("view", listaEspera.get(i));
+				return "redirect:/"+"detalle";
+			}
+		}
+		for(int i=0; i< listaActiva.size() ;i++) {
+			if (listaActiva.get(i).getId() == id) {
+				vista.addAttribute("view", listaActiva.get(i));
+				return "redirect:/"+"detalle";
+			}
+		}
+		return "redirect:/"+"detalle";
+	}
 	@GetMapping("/detalle")
-	public String detail() {
+	public String detalle() {
 
 		return "detalle";
-	}
-	
+	}	
 	
 	@GetMapping("/orange")
 	public String orange(Model vista) {

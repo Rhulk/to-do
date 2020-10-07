@@ -445,6 +445,12 @@ option:hover { color: black; background-color: transparent; }
     top: 20px;
      z-index: 3;
 }
+.logo-container-back{
+    left: 50px;
+    position: absolute;
+    top: 20px;
+     z-index: 3;
+}
 .logo-container.full-screen-table-demo{
     left: 13px;
     top: 10px;
@@ -457,7 +463,28 @@ option:hover { color: black; background-color: transparent; }
     width: 60px;
     float: left;
 }
+.logo-container-back .logo-back{
+
+    width: 60px;
+    float: left;
+}
+.logo-container-back .img-back{
+	
+    vertical-align: middle;
+    height: 50px;
+    width: 33px;
+}
 .logo-container .brand{
+    font-size: 18px;
+    color: #FFFFFF;
+    line-height: 20px;
+    font-family: "Helvetica Neue",Helvetica,Arial, sans-serif;
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 60px
+}
+.logo-container-back .brand{
     font-size: 18px;
     color: #FFFFFF;
     line-height: 20px;
@@ -576,4 +603,9 @@ option:hover { color: black; background-color: transparent; }
 }
 .modal-varios{
 	background: orange;
+}
+.img{
+    vertical-align: middle;
+    height: 50px;
+    width: 33px;
 }
