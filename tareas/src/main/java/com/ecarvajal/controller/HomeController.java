@@ -52,6 +52,7 @@ public class HomeController {
 	boolean carga_inicial=true;
 	boolean busqueda=false;
 	int id_registro=0;
+	int id_=0;
 	
 	String ruta="src/main/resources/static/doc/Registro.xlsx";
 	String vistaIndex="orange";
@@ -114,6 +115,7 @@ public class HomeController {
 
 	@GetMapping("/detalle/{id}")
 	public String detail(@PathVariable("id") int id, Model vista) {
+		id_=id;
 		for(int i=0; i< listaEspera.size() ;i++) {
 			if (listaEspera.get(i).getId() == id) {
 				vista.addAttribute("view", listaEspera.get(i));
@@ -123,14 +125,28 @@ public class HomeController {
 		for(int i=0; i< listaActiva.size() ;i++) {
 			if (listaActiva.get(i).getId() == id) {
 				vista.addAttribute("view", listaActiva.get(i));
+				System.out.println(" -- > Detalle: "+listaActiva.get(i).toString());
 				return "redirect:/"+"detalle";
 			}
 		}
 		return "redirect:/"+"detalle";
 	}
 	@GetMapping("/detalle")
-	public String detalle() {
-
+	public String detalle(Model vista) {
+		int id=id_;
+		for(int i=0; i< listaEspera.size() ;i++) {
+			if (listaEspera.get(i).getId() == id) {
+				vista.addAttribute("view", listaEspera.get(i));
+				return "detalle";
+			}
+		}
+		for(int i=0; i< listaActiva.size() ;i++) {
+			if (listaActiva.get(i).getId() == id) {
+				vista.addAttribute("view", listaActiva.get(i));
+				System.out.println(" -- > Detalle: "+listaActiva.get(i).toString());
+				return "detalle";
+			}
+		}
 		return "detalle";
 	}	
 	
