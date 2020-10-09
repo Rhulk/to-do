@@ -48,6 +48,7 @@ public class HomeController {
 	List<Tarea> listaEsperaB = new LinkedList<Tarea>();
 	
 	List<Registro> registros = new LinkedList<Registro>();
+//	List<Registro> rHistorico = new LinkedList<Registro>();
 	
 	boolean carga_inicial=true;
 	boolean busqueda=false;
@@ -116,19 +117,7 @@ public class HomeController {
 	@GetMapping("/detalle/{id}")
 	public String detail(@PathVariable("id") int id, Model vista) {
 		id_=id;
-		for(int i=0; i< listaEspera.size() ;i++) {
-			if (listaEspera.get(i).getId() == id) {
-				vista.addAttribute("view", listaEspera.get(i));
-				return "redirect:/"+"detalle";
-			}
-		}
-		for(int i=0; i< listaActiva.size() ;i++) {
-			if (listaActiva.get(i).getId() == id) {
-				vista.addAttribute("view", listaActiva.get(i));
-				System.out.println(" -- > Detalle: "+listaActiva.get(i).toString());
-				return "redirect:/"+"detalle";
-			}
-		}
+
 		return "redirect:/"+"detalle";
 	}
 	@GetMapping("/detalle")
@@ -136,14 +125,15 @@ public class HomeController {
 		int id=id_;
 		for(int i=0; i< listaEspera.size() ;i++) {
 			if (listaEspera.get(i).getId() == id) {
+				vista.addAttribute("hReg", getRegistrosByTarea(id));
 				vista.addAttribute("view", listaEspera.get(i));
 				return "detalle";
 			}
 		}
 		for(int i=0; i< listaActiva.size() ;i++) {
 			if (listaActiva.get(i).getId() == id) {
+				vista.addAttribute("hReg", getRegistrosByTarea(id));
 				vista.addAttribute("view", listaActiva.get(i));
-				System.out.println(" -- > Detalle: "+listaActiva.get(i).toString());
 				return "detalle";
 			}
 		}
@@ -599,6 +589,17 @@ public class HomeController {
 			return null;
 		}
 	}
+	private List<Registro> getRegistrosByTarea(int id_tarea){
+		List<Registro> rHistorico = new LinkedList<Registro>();
+		for (int x=0; x< registros.size(); x++) {
+			System.out.println(" ------- registro > "+registros.get(x).toString());
+			if(registros.get(x).getId_todo() == id_tarea ) {
+				rHistorico.add(registros.get(x));
+			}
+		}
+		
+		return rHistorico;
+	}
 	
 	private List<Tarea> getLista(int id){
 		System.out.println(" GetLista Status");
@@ -702,11 +703,11 @@ public class HomeController {
 			outputStream.close();
 			
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			return false;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			return false;
 		} catch (EmptyFileException e) {
