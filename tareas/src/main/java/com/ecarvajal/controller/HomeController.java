@@ -267,7 +267,7 @@ public class HomeController {
 		}else {
 			listaActiva.add(tarea);
 		}
-		registros.add(altaRegistro(tarea.getId()));// para recuperar el registro uso el id de la tarea y unico registro activo.
+		registros.add(altaRegistro(tarea.getId(),tarea.getDescripcion()+" _Incion Tarea_"));// para recuperar el registro uso el id de la tarea y unico registro activo.
 		System.out.println(" - | lista de registros | - "+registros.toString());
 		
 		return "redirect:/"+vistaIndex;
@@ -309,8 +309,8 @@ public class HomeController {
 							saveFinRegistro(x,listaEspera.get(i), registro); // Guardamos el registro y le quitamos el activo(predeterminado) Y en el excel
 						}
 					}
-					
-					registros.add(altaRegistro(listaEspera.get(i).getId()));// add fuera del buble para que no crezce infinitamente.
+					// falta la descripción
+					registros.add(altaRegistro(listaEspera.get(i).getId(),registro.getDescripcion()));// add fuera del buble para que no crezce infinitamente.
 					listaEspera.remove(i); // borro la tarea despues de crear el nuevo registro para no perder la referencia.
 
 					System.out.println(" - | lista de registros | - "+registros.toString());				
@@ -337,7 +337,7 @@ public class HomeController {
 						}
 						
 					}
-					registros.add(altaRegistro(listaActiva.get(i).getId()));
+					registros.add(altaRegistro(listaActiva.get(i).getId(), registro.getDescripcion()));
 					listaActiva.remove(i);// borro la tarea despues de crear el nuevo registro para no perder la referencia.
 					
 					System.out.println(" - | lista de registros | - "+registros.toString());
@@ -665,12 +665,13 @@ public class HomeController {
 		}
 		return id+=1;
 	}
-	public Registro altaRegistro(int id_tarea) {
+	public Registro altaRegistro(int id_tarea, String descripcion) {
 		Registro registro = new Registro();
 		registro.setId(id_registro+=1);
 		registro.setId_todo(id_tarea);
 		registro.setF_inicio(new Date());
 		registro.setActivo(true);
+		registro.setDescripcion(descripcion);
 		
 		return registro;
 	}
