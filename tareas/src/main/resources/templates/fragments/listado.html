@@ -138,18 +138,18 @@
 								<div class="modal fade" th:id="ventanaModalChange+${tarea.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								  <div class="modal-dialog">
 								    <div class="modal-content">
-								      <div class="modal-header">
-								        <h5 class="modal-title colorNegro" id="exampleModalLabel">Iniciar registro de la tarea</h5>
+								      <div class="modal-header-change">
+								        <h5 class="modal-title-change" id="exampleModalLabel">Iniciar registro de la tarea</h5>
 								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								          <span aria-hidden="true">&times;</span>
 								        </button>
 								      </div>
-								      <div class="modal-body">
+								      <div class="modal-body-change">
 										<form  th:action="@{/changeStatus/{id} (id=${tarea.id}) }" method="get" th:object="${registro}">	
 
 											<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" th:value="${registro.descripcion}"  th:field="*{descripcion}">
 											<br>
-								            <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3"> Acceptar</button>
+								            <button type="submit" name="action" value="en espera" class="btn btn-primary btn-modal-change"> Acceptar</button>
 										</form>
 								      </div>
 								    </div>
@@ -202,9 +202,12 @@
 						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.descripcion}"> </a>
 					</td>
 					<td>
-					 <a class="change" th:href="@{/changeStatus/{id} (id=${activa.id}) }">
+					<!--   <a class="change" th:href="@{/changeStatus/{id} (id=${activa.id}) }">
 					 	<i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
-					 </a>
+					 </a> -->
+						 <a class="change" th:attr="data-target='#ventanaModalChange'+${activa.id}" href="#" data-toggle="modal" data-target="#ventanaModalChange" data-whatever="@mdo">
+						 	<i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i> 
+						 </a>
 					</td>
 					<td>
 	<!--  					<nav class="navbar navbar-expand-lg navbar-dark ">
@@ -236,13 +239,13 @@
 								<div class="modal fade" th:id="ventaModaledite+${activa.id}"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
 								  <div class="modal-dialog">
 								    <div class="modal-content">
-								      <div class="modal-header">
-								        <h5 class="modal-title colorNegro" id="exampleModalLabel" >Modificar la tarea tarea</h5>
+								      <div class="modal-header-change">
+								        <h5 class="modal-title-change" id="exampleModalLabel" >Modificar la tarea tarea</h5>
 								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								          <span aria-hidden="true">&times;</span>
 								        </button>
 								      </div>
-								      <div class="modal-body">
+								      <div class="modal-body-change">
 										<form  th:action="@{/editarTarea/{id} (id=${activa.id}) }" method="get" th:object="${edit}">	
 											<div class="form-group form-inline">
 												<select class="styled-select space" placeholder="tarea" th:field="*{tarea}">
@@ -294,18 +297,18 @@
 								<div class="modal fade" th:id="ventanaModalChange+${activa.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								  <div class="modal-dialog">
 								    <div class="modal-content">
-								      <div class="modal-header">
-								        <h5 class="modal-title colorNegro" id="exampleModalLabel">Iniciar registro de la tarea</h5>
+								      <div class="modal-header-change">
+								        <h5 class="modal-title-change" id="exampleModalLabel">Iniciar registro de la tarea</h5>
 								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								          <span aria-hidden="true">&times;</span>
 								        </button>
 								      </div>
-								      <div class="modal-body">
+								      <div class="modal-body-change">
 										<form  th:action="@{/changeStatus/{id} (id=${activa.id}) }" method="get" th:object="${registro}">	
 
 											<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" th:value="${registro.descripcion}"  th:field="*{descripcion}">
 											<br>
-								            <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3"> Acceptar</button>
+								            <button type="submit" name="action" value="en espera" class="btn btn-primary btn-modal-change"> Acceptar</button>
 										</form>
 								      </div>
 								    </div>
@@ -372,7 +375,7 @@
 								<div class="modal fade" th:id="ventaModaledite+${activa.id}"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
 								  <div class="modal-dialog">
 								    <div class="modal-content">
-								      <div class="modal-header ">
+								      <div class="modal-header-change ">
 								        <h5 class="modal-title colorNegro" id="exampleModalLabel" >Modificar la tarea tarea</h5>
 								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								          <span aria-hidden="true">&times;</span>
@@ -430,18 +433,18 @@
 								<div class="modal fade" th:id="ventanaModalChange+${activa.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								  <div class="modal-dialog">
 								    <div class="modal-content">
-								      <div class="modal-header">
-								        <h5 class="modal-title colorNegro" id="exampleModalLabel">Iniciar registro de la tarea</h5>
+								      <div class="modal-header-change">
+								        <h5 class="modal-title-change" id="exampleModalLabel">Iniciar registro de la tarea</h5>
 								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								          <span aria-hidden="true">&times;</span>
 								        </button>
 								      </div>
-								      <div class="modal-body">
+								      <div class="modal-body-change">
 										<form  th:action="@{/changeStatus/{id} (id=${activa.id}) }" method="get" th:object="${registro}">	
 
 											<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" th:value="${registro.descripcion}"  th:field="*{descripcion}">
 											<br>
-								            <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3"> Acceptar</button>
+								            <button type="submit" name="action" value="en espera" class="btn btn-primary btn-modal-change"> Acceptar</button>
 										</form>
 								      </div>
 								    </div>
