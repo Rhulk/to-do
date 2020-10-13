@@ -17,6 +17,7 @@ public class Tarea {
 		private String Descripcion;
 		private String status;
 		private String solucion;
+		private String fecha;
 		
 		public int getId() {
 			return id;
@@ -69,13 +70,14 @@ public class Tarea {
 					", Descripcion=" + Descripcion + ", status=" + status
 					+ "]";
 		}
-		@DateTimeFormat(pattern="dd-MMM-YYYY")
+		
 		public Date getfAlert() {
 			return fAlert;
 		}
 		@DateTimeFormat(pattern="dd-MMM-YYYY")
 		public void setfAlert(Date fAlert) {
 			this.fAlert = fAlert;
+			
 		}
 		public String getSolucion() {
 			return solucion;
