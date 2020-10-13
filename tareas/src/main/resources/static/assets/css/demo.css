@@ -609,15 +609,31 @@ option:hover { color: black; background-color: transparent; }
     height: 50px;
     width: 33px;
 }
+.modal-content-change {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #ff8040;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 10px;
+    outline: 0;
+}
 .modal-body-change {
     background-color: orange;
     position: relative;
     padding: 15px;
+    border-radius: 10px;
 }
 .modal-header-change {
     background-color: #fb8803;
     display: -ms-flexbox;
     color: white;
+    border-radius: 10px;
 }
 
 .modal-title-change {
@@ -646,4 +662,18 @@ option:hover { color: black; background-color: transparent; }
     line-height: 1.42857143;
     border: 1px solid transparent;
     margin-left: 189px;
+}
+.close-change {
+    float: right;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: 0.6;
+    margin-top: -10px;
+    margin-right: 10px;
+    background: transparent;
+    border-color: transparent;
 }
