@@ -19,7 +19,8 @@ body{
 }
 
 .description{
-    margin-top: -20px;
+    margin-top: -48px;
+    margin-bottom: -38px;
     text-align: center;
 }
 .description-footer{
@@ -440,7 +441,7 @@ option:hover { color: black; background-color: transparent; }
 
 
 .logo-container{
-    left: 50px;
+    left: 12px;
     position: absolute;
     top: 20px;
      z-index: 3;
@@ -448,7 +449,7 @@ option:hover { color: black; background-color: transparent; }
 .logo-container-back{
     left: 50px;
     position: absolute;
-    top: 20px;
+    top: 4px;
      z-index: 3;
 }
 .logo-container.full-screen-table-demo{
@@ -676,4 +677,7 @@ option:hover { color: black; background-color: transparent; }
     margin-right: 10px;
     background: transparent;
     border-color: transparent;
+}
+.menu-ajustes{
+	left: 174px;
 }
