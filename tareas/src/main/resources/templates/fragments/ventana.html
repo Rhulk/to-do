@@ -59,8 +59,8 @@
           <form th:action="@{/alta}" method="get" th:object="${alta}">
           <br><!--  ventana.html -->
 				<div class="form-group form-inline ">	
-					<select class="styled-select space" placeholder="tarea" >
-					<option   selected> Seleccione una opción </option>
+					<select class="styled-select space" placeholder="tarea" th:field="*{tarea}">
+					<option th:value="${null}"   selected> Seleccione una opción </option>
 					  <option th:value="Tarea" th:text="Tarea"></option>
 					  <option th:value="'en espera'" th:text="'en espera'"></option>
 					  <option th:value="Integracion" th:text="Integracion"></option>
@@ -69,7 +69,7 @@
 					  <option th:value="Desarrollo" th:text="Desarrollo"></option>
 					</select>
 					
-					<select class="styled-select space" placeholder="prioridad" >
+					<select class="styled-select space" placeholder="prioridad" th:field="*{prioridad}">
 					  <option th:value="Alta" th:text="Alta"></option>
 					  <option th:value="Media" th:text="Media"></option>
 					  <option th:value="Baja" th:text="Baja"></option>
@@ -89,7 +89,7 @@
 						<option th:value="Torrelavega"></option>
 					</datalist>
 					<div class="input-group date radius_30">
-						<input type="date" class="form-control radius_30" id="fecha" placeholder="Fecha Alert" >
+						<input type="date" class="form-control radius_30" id="fecha" placeholder="Fecha Alert" th:field="*{fAlert}">
 					</div> 
 				</div>
 

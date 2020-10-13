@@ -67,7 +67,7 @@ public class HomeController {
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
-		System.out.println(" --- InitBinder ---");
+		//System.out.println(" --- InitBinder ---");
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         dateFormat.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor( dateFormat,false));
@@ -82,14 +82,14 @@ public class HomeController {
 	@ModelAttribute
 	public void setGenericos(Model model) {
 
-		System.out.println("  IMPORTANTE  *******  Cargando datos a la vista --->> ");
+	//	System.out.println("  IMPORTANTE  *******  Cargando datos a la vista --->> ");
 		model.addAttribute("search",new Tarea());
 		model.addAttribute("alta", new Tarea());
 		model.addAttribute("edit", new Tarea());
 		model.addAttribute("view", new Tarea());
 		model.addAttribute("registro", new Registro());
 	//	model.addAttribute("reqTask", new Task());
-		System.out.println(" -- setGenericos -- Se declaran variables para la vista");
+	//	System.out.println(" -- setGenericos -- Se declaran variables para la vista");
 	}
 
 	@GetMapping("/")
@@ -263,12 +263,13 @@ public class HomeController {
 		tarea.setId(proximoId());
 		if (action.equals("en espera"))	{  
 			listaEspera.add(tarea);
-
+			System.out.println("-- Alta de tarea en espera: "+tarea.toString());
 		}else {
 			listaActiva.add(tarea);
+			System.out.println("-- Alta de tarea Activa: "+tarea.toString());
 		}
 		registros.add(altaRegistro(tarea.getId(),tarea.getDescripcion()+" _Incion Tarea_"));// para recuperar el registro uso el id de la tarea y unico registro activo.
-		System.out.println(" - | lista de registros | - "+registros.toString());
+		//System.out.println(" - | lista de registros | - "+registros.toString());
 		
 		return "redirect:/"+vistaIndex;
 	}
@@ -312,7 +313,7 @@ public class HomeController {
 						}
 					}
 					// falta la descripción
-					registros.add(altaRegistro(listaEspera.get(i).getId(),"Se inicia registro: "));// add fuera del buble para que no crezce infinitamente.
+					registros.add(altaRegistro(listaEspera.get(i).getId(),"Fin registro en espera"));// add fuera del buble para que no crezce infinitamente.
 					listaEspera.remove(i); // borro la tarea despues de crear el nuevo registro para no perder la referencia.
 
 					System.out.println(" - | lista de registros | - "+registros.toString());				

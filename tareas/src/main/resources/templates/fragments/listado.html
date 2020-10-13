@@ -36,7 +36,9 @@
 					<td >
 						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.fAlta}"> </a>
 					</th>
-					<td >27/07/20 15:00 </td>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.fAlert}"> </a>
+					</th>
 					<td >
 						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.descripcion}"> </a>
 					</td>
@@ -198,8 +200,10 @@
 					<td >
 						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.fAlta}"> </a>
 					</th>
-					<td >27/07/20 15:00 </td>
 					<td >
+						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.fAlert}"> </a>
+					</th>
+					<td>
 						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.descripcion}"> </a>
 					</td>
 					<td>
