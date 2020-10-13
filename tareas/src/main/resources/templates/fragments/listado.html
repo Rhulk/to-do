@@ -41,12 +41,13 @@
 						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.descripcion}"> </a>
 					</td>
 					<td>
-						<!--   <a class="change" th:href="@{/changeStatus/{id} (id=${tarea.id}) }">
+						   <a class="change" th:href="@{/changeStatus/{id} (id=${tarea.id}) }">
 						 	<i class="fas fa-stopwatch fa-2x" aria-hidden="false"></i>
-						 </a> -->
-						 <a class="change" th:attr="data-target='#ventanaModalChange'+${tarea.id}" href="#" data-toggle="modal" data-target="#ventanaModalChange" data-whatever="@mdo">
+						 </a> 
+						<!--   <a class="change" th:attr="data-target='#ventanaModalChange'+${tarea.id}" href="#" data-toggle="modal" data-target="#ventanaModalChange" data-whatever="@mdo">
 						 	<i class="fas fa-stopwatch fa-2x" aria-hidden="true"></i> 
 						 </a>
+						 -->
 					 </td>
 
 					<td>

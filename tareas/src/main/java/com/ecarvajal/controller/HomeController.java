@@ -306,11 +306,13 @@ public class HomeController {
 						if(registros.get(x).getId_todo() == id && registros.get(x).isActivo()) {
 							Tarea tarea = new Tarea();
 							tarea = listaEspera.get(i);
-							saveFinRegistro(x,listaEspera.get(i), registro); // Guardamos el registro y le quitamos el activo(predeterminado) Y en el excel
+							registro.setDescripcion("Iniciamos Registro");
+							// el paso de activar tarea no lo registro en el excel
+							//saveFinRegistro(x,listaEspera.get(i), registro); // Guardamos el registro y le quitamos el activo(predeterminado) Y en el excel
 						}
 					}
 					// falta la descripción
-					registros.add(altaRegistro(listaEspera.get(i).getId(),registro.getDescripcion()));// add fuera del buble para que no crezce infinitamente.
+					registros.add(altaRegistro(listaEspera.get(i).getId(),"Se inicia registro: "));// add fuera del buble para que no crezce infinitamente.
 					listaEspera.remove(i); // borro la tarea despues de crear el nuevo registro para no perder la referencia.
 
 					System.out.println(" - | lista de registros | - "+registros.toString());				

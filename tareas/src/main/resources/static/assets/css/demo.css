@@ -19,9 +19,9 @@ body{
 }
 
 .description{
-    margin-top: -48px;
+	margin-top: 8px;
     margin-bottom: -38px;
-    text-align: center;
+    text-align: -webkit-right;
 }
 .description-footer{
     margin-bottom: 20px;
@@ -442,7 +442,7 @@ option:hover { color: black; background-color: transparent; }
 
 .logo-container{
     left: 12px;
-    position: absolute;
+    position: fixed;
     top: 20px;
      z-index: 3;
 }
@@ -680,4 +680,5 @@ option:hover { color: black; background-color: transparent; }
 }
 .menu-ajustes{
 	left: 174px;
+	position: fixed;
 }
