@@ -37,7 +37,8 @@
 						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.fAlta}"> </a>
 					</th>
 					<td >
-						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.fAlert}"> </a>
+						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${#calendars.format(tarea.fAlert,' dd-MM-yy')}"> </a>
+						
 					</th>
 					<td >
 						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.descripcion}"> </a>

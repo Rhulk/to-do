@@ -259,12 +259,29 @@ public class HomeController {
 	@RequestMapping(value="/alta")
 	public String alta(@ModelAttribute("alta") Tarea tarea //, @ModelAttribute("registro") Registro registro  // no hace falta.
 			, @RequestParam String action ) {
-		
+
+		SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
 		tarea.setId(proximoId());
 		if (action.equals("en espera"))	{  
+			 try {
+				tarea.setfAlert(	formatoDelTexto.parse(tarea.getFecha()) );
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+			
 			listaEspera.add(tarea);
-			System.out.println("-- Alta de tarea en espera: "+tarea.toString());
+			System.out.println("-- Alta de tarea en espera: "+tarea.toString()+" "+tarea.getFecha());
+			
+
 		}else {
+			
+			 try {
+				tarea.setfAlert(	formatoDelTexto.parse(tarea.getFecha()) );
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			listaActiva.add(tarea);
 			System.out.println("-- Alta de tarea Activa: "+tarea.toString());
 		}
