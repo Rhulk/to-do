@@ -261,11 +261,12 @@ public class HomeController {
 	public String alta(@ModelAttribute("alta") Tarea tarea //, @ModelAttribute("registro") Registro registro  // no hace falta.
 			, @RequestParam String action ) {
 
-		SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+		
 		tarea.setId(proximoId());
+		tarea.setfAlta(new Date());
 		if (action.equals("en espera"))	{  
 		
-			System.out.println("-- Alta de tarea en espera: "+tarea.toString()+" "+tarea.getFecha()+" fPrueba: "+tarea.getfPrueba());
+			System.out.println("-- Alta de tarea en espera: "+tarea.toString());
 			listaEspera.add(tarea);
 			
 			
