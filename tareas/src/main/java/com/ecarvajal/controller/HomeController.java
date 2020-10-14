@@ -68,7 +68,8 @@ public class HomeController {
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
 		//System.out.println(" --- InitBinder ---");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
+        //SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         dateFormat.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor( dateFormat,false));
 		
@@ -263,25 +264,13 @@ public class HomeController {
 		SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
 		tarea.setId(proximoId());
 		if (action.equals("en espera"))	{  
-			 try {
-				tarea.setfAlert(	formatoDelTexto.parse(tarea.getFecha()) );
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}			
-			
+		
+			System.out.println("-- Alta de tarea en espera: "+tarea.toString()+" "+tarea.getFecha()+" fPrueba: "+tarea.getfPrueba());
 			listaEspera.add(tarea);
-			System.out.println("-- Alta de tarea en espera: "+tarea.toString()+" "+tarea.getFecha());
+			
 			
 
 		}else {
-			
-			 try {
-				tarea.setfAlert(	formatoDelTexto.parse(tarea.getFecha()) );
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			listaActiva.add(tarea);
 			System.out.println("-- Alta de tarea Activa: "+tarea.toString());
 		}

@@ -1,5 +1,6 @@
 package com.ecarvajal.model;
 
+
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -10,13 +11,15 @@ public class Tarea {
 		private String tarea;
 		private String prioridad;
 		private String cliente;
-		@DateTimeFormat(pattern = "dd/MM/yyyy")
+		
 		private Date fAlta;
 		private Date fAlert;
 		private String Descripcion;
 		private String status;
 		private String solucion;
-		private String fecha;
+
+		
+		
 		
 		public int getId() {
 			return id;
@@ -73,7 +76,7 @@ public class Tarea {
 		public Date getfAlert() {
 			return fAlert;
 		}
-		@DateTimeFormat(pattern="dd-MMM-YYYY")
+
 		public void setfAlert(Date fAlert) {
 			this.fAlert = fAlert;
 			
@@ -84,12 +87,8 @@ public class Tarea {
 		public void setSolucion(String solucion) {
 			this.solucion = solucion;
 		}
-		public String getFecha() {
-			return fecha;
-		}
-		public void setFecha(String fecha) {
-			this.fecha = fecha;
-		}
+
+
 		
 		
 }

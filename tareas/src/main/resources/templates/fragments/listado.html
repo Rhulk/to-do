@@ -34,10 +34,10 @@
 						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.cliente}"> </a>
 					</td>
 					<td >
-						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.fAlta}"> </a>
+						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${#calendars.format(tarea.fAlta,' dd-MM-yyyy')}"> </a>
 					</th>
 					<td >
-						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${#calendars.format(tarea.fAlert,' dd-MM-yy')}"> </a>
+						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${#calendars.format(tarea.fAlert,' dd-MM-yyyy')}"> </a>
 						
 					</th>
 					<td >
@@ -199,10 +199,10 @@
 						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.cliente}"> </a>
 					</td>
 					<td >
-						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.fAlta}"> </a>
+						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${#calendars.format(activa.fAlta,' dd-MM-yyyy')}"> </a>
 					</th>
 					<td >
-						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.fAlert}"> </a>
+						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${#calendars.format(activa.fAlert,' dd-MM-yyyy')}"> </a>
 					</th>
 					<td>
 						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.descripcion}"> </a>
