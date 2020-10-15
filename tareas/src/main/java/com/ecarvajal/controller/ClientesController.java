@@ -6,10 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ClientesController {
 
-	@GetMapping("/clientes/listado")
-	public String listado() {
+	
+	@GetMapping("/listclientes")
+	public String list() {
 		System.out.println("Vista listado clientes");
 		
-		return "clientes/listadoclientes";
+		return "clientes/list";
 	}
 }
