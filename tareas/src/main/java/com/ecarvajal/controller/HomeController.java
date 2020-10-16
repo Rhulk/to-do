@@ -34,6 +34,7 @@ import com.ecarvajal.model.Tarea;
 //import com.ecarvajal.model.Task;
 import com.ecarvajal.service.CrearFicherosExcel;
 import com.ecarvajal.service.HomeService;
+import com.ecarvajal.service.Listas;
 
 
 
@@ -41,11 +42,14 @@ import com.ecarvajal.service.HomeService;
 @Controller
 public class HomeController {
 	SimpleDateFormat formatear = new SimpleDateFormat("dd-mm-yyyy");
-	
+
+		
 	List<Tarea> listaActiva = new LinkedList<Tarea>();
 	List<Tarea> listaActivaB = new LinkedList<Tarea>();
 	List<Tarea> listaEspera = new LinkedList<Tarea>();
 	List<Tarea> listaEsperaB = new LinkedList<Tarea>();
+	
+	List<Listas> clientes = new LinkedList<Listas>();
 	
 	List<Registro> registros = new LinkedList<Registro>();
 //	List<Registro> rHistorico = new LinkedList<Registro>();
@@ -58,8 +62,8 @@ public class HomeController {
 	String ruta="src/main/resources/static/doc/Registro.xlsx";
 	String vistaIndex="orange";
 
-	
-
+	@Autowired
+	Listas list = new Listas();	
 	
 	@Autowired
 	HomeService hService = new HomeService();
@@ -89,9 +93,13 @@ public class HomeController {
 		model.addAttribute("edit", new Tarea());
 		model.addAttribute("view", new Tarea());
 		model.addAttribute("registro", new Registro());
+	//	model.addAttribute("clientes", list.getClientes());// recuperamos los clientes seteados. desde ClientesController
 	//	model.addAttribute("reqTask", new Task());
 	//	System.out.println(" -- setGenericos -- Se declaran variables para la vista");
 	}
+	
+	
+
 
 	@GetMapping("/")
 	public String home(Model vista) {
