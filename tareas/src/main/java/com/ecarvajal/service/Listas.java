@@ -17,7 +17,7 @@ public class Listas {
 	 * 
 	 * 
 	 */
-	private List<Cliente> getClientes(){
+	public List<Cliente> getClientes(){
 		System.out.println(" GetLista Clientes ");
 		//SimpleDateFormat formatear = new SimpleDateFormat("dd-mm-yyyy");
 		List<Cliente> lista = new LinkedList<Cliente>();
@@ -33,9 +33,10 @@ public class Listas {
 			cliente1.setEmail("FranGG@gmail.com");
 			cliente1.setTelefono(67565432);
 			cliente1.setObservaciones("Muy majo");
+			cliente1.setMunicipio("San Lorenzo");
 			
 			Cliente cliente2 = new Cliente();
-			cliente2.setId(1);
+			cliente2.setId(2);
 			cliente2.setNombre("Marck");
 			cliente2.setApellido1("Jara");
 			cliente2.setApellido2("Ruiz");
@@ -43,10 +44,11 @@ public class Listas {
 			cliente2.setEmail("MarckJR@gmail.com");
 			cliente2.setTelefono(67455432);
 			cliente2.setObservaciones("---");
+			cliente2.setMunicipio("Lorca");
 			
 			
 			Cliente cliente3 = new Cliente();
-			cliente3.setId(1);
+			cliente3.setId(3);
 			cliente3.setNombre("Maria");
 			cliente3.setApellido1("Ventero");
 			cliente3.setApellido2("Martin");
@@ -54,6 +56,7 @@ public class Listas {
 			cliente3.setEmail("MariaVC@gmail.com");
 			cliente3.setTelefono(63465432);
 			cliente3.setObservaciones(":)");
+			cliente3.setMunicipio("Cieza");
 
 			
 			lista.add(cliente1);

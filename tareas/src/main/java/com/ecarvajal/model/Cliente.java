@@ -6,8 +6,16 @@ public class Cliente {
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
+	private String municipio;
 	private String direccion;
 	private int telefono;
+	
+	public String getMunicipio() {
+		return municipio;
+	}
+	public void setMunicipio(String municipio) {
+		this.municipio = municipio;
+	}
 	private String email;
 	private String observaciones;
 	public int getId() {

@@ -338,23 +338,48 @@
 		      <th data-sortable="true">Apellido 2</th>
 			  <th data-sortable="true">Teléfono</th>
 			  <th data-sortable="true">Correo</th>
+			  <th data-sortable="true">Municipio</th>
 			  <th data-sortable="true">Dirección</th>
+			  <th data-sortable="true">Observaciones</th>
 			  <th >Editar</th>
 			  <th >Borrar</th>
 			  
             </thead>
             <tbody>
-				<tr  >
+				<tr th:each="cliente : ${clientes}" >
 					<td >
-						
-					</td>
-
-					<td>
-
-					<td>
-
-					</td>	
- 									
+						<a   th:text="${cliente.id}"> </a>
+					</td> 
+					<td >
+						<a   th:text="${cliente.nombre}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${cliente.apellido1}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${cliente.apellido2}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${cliente.telefono}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${cliente.email}"> </a>
+					</td> 
+					<td >
+						<a   th:text="${cliente.municipio}"> </a>
+					</td> 						
+					<td >
+						<a   th:text="${cliente.direccion}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${cliente.observaciones}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${cliente.id}"> </a>
+					</td> 		
+					<td >
+						<a   th:text="${cliente.id}"> </a>
+					</td> 									
               </tr>
 
             </tbody>
