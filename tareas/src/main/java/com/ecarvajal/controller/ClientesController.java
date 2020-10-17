@@ -23,7 +23,7 @@ public class ClientesController {
 	public String list(Model vista) {
 		System.out.println("Vista listado clientes");
 		 
-		//vista.addAttribute("clientes", list.getClientes());// recuperamos los clientes seteados.
+		vista.addAttribute("clientes", list.getClientes());// recuperamos los clientes seteados.
 		
 		return "clientes/list";
 	}	
