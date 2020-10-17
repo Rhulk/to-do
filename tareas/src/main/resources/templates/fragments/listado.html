@@ -386,6 +386,73 @@
           </table>
 </div> <!--  Fin fracmento listado clientes -->
 
+
+<div th:fragment="productos">
+          <table id="fresh-table" class="table table-varios">
+            <thead>
+			  <th data-sortable="true">Cod Producto</th>
+			  <th data-sortable="true">Nombre</th>
+              <th data-sortable="true">Categoria</th>
+		      <th data-sortable="true">Sub Categoria</th>
+			  <th data-sortable="true">Precio</th>
+			  <th >Stock</th>
+			  <th data-sortable="true">publicado</th>
+
+			  <th >Editar</th>
+			  <th >Borrar</th>
+			  
+            </thead>
+            <tbody>
+				<tr th:each="producto : ${productos}" >
+					<td >
+						<a   th:text="${producto.codProducto}"> </a>
+					</td> 
+					<td >
+						<a   th:text="${producto.nombre}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${producto.categoria}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${producto.subCategoria}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${producto.precio}"> </a>
+					</td> 	
+					<td >
+						<a class="change" th:href="@{/stockIncremento/{id} (id=${producto.id}) }" >
+						<i class="fas fa-chevron-up"> </i>  </a>
+						<a th:text="${producto.stock}"> </a>
+						<a class="change" th:href="@{/stockDecremento/{id} (id=${producto.id}) }" >
+						<i class="fas fa-chevron-down"></i>		</a>					
+					</td>
+					<td >	
+						<div th:if="${producto.publicado}">
+							<a class="change" th:href="@{/web/{id} (id=${producto.id}) }" >
+   								<i class="fas fa-cloud-upload-alt fa-2x"></i>
+   							</a>
+						</div>	
+						<!-- ELSE -->
+						<div th:unless="${producto.publicado}">
+							<a class="change" th:href="@{/web/{id} (id=${producto.id}) }" >
+								<i class="fas fa-toggle-off fa-2x"></i>
+							</a>
+						</div>						
+					</td> 						
+	
+					<td >
+						<a   th:text="${producto.id}"> </a>
+					</td> 		
+					<td >
+						<a   th:text="${producto.id}"> </a>
+					</td> 									
+              </tr>
+
+            </tbody>
+          </table>
+</div> 
+<!--  Fin fracmento listado productos -->
+
 <div th:fragment="activosDemos">
           <table id="fresh-table" class="table table-varios">
             <thead>
