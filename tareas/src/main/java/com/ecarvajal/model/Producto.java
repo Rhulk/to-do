@@ -7,16 +7,20 @@ public class Producto {
 	public String nombre;
 	public String categoria;
 	public String subCategoria;
+	public String marca;
+	public String modelo;
 	public double precio;
+	public double pvp;
+
+	public int descuento;
 	public boolean publicado;
 	public int stock;
 	
-	
 	@Override
 	public String toString() {
-		return "Producto [id=" + id + ", codProducto=" + codProducto + ", nombre=" + nombre + ", Categoria=" + categoria
-				+ ", SubCategoria=" + subCategoria + ", precio=" + precio + ", publicado=" + publicado + ", stock="
-				+ stock + "]";
+		return "Producto [id=" + id + ", codProducto=" + codProducto + ", nombre=" + nombre + ", categoria=" + categoria
+				+ ", subCategoria=" + subCategoria + ", marca=" + marca + ", modelo=" + modelo + ", precio=" + precio
+				+ ", pvp=" + pvp + ", publicado=" + publicado + ", stock=" + stock + "]";
 	}
 	
 	public int getId() {
@@ -66,6 +70,37 @@ public class Producto {
 	}
 	public void setStock(int stock) {
 		this.stock = stock;
+	}
+	public double getPvp() {
+		return pvp;
+	}
+
+	public void setPvp(double pvp) {
+		this.pvp = pvp;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public String getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
+
+	public int getDescuento() {
+		return descuento;
+	}
+
+	public void setDescuento(int descuento) {
+		this.descuento = descuento;
 	}
 
 }
