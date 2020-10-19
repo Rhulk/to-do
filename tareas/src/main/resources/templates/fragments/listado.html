@@ -453,6 +453,62 @@
 </div> 
 <!--  Fin fracmento listado productos -->
 
+
+<div th:fragment="venta">
+          <table id="fresh-table" class="table table-varios">
+            <thead>
+			  <th data-sortable="true">Cod Producto</th>
+			  <th data-sortable="true">Nombre</th>
+              <th data-sortable="true">Cantidad</th>
+		      <th data-sortable="true">Descuento</th>
+			  <th data-sortable="true">Precio</th>
+			  <th data-sortable="true">Total</th>
+			  <th >Editar</th>
+			  <th >Borrar</th>
+			  
+            </thead>
+            <tbody>
+				<tr th:each="producto : ${carrito}" >
+					<td >
+						<a   th:text="${producto.codProducto}"> </a>
+					</td> 
+					<td >
+						<a   th:text="${producto.nombre}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${producto.cantidad}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${producto.descuento}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${producto.pvp}"> </a>
+					</td>
+					<td >
+						<a  > 120 </a>
+					</td> 
+					<td >
+						<a class="change" th:href="@{/stockIncremento/{id} (id=${producto.id}) }" >
+						<i class="fas fa-chevron-up"> </i>  </a>
+						<a th:text="${producto.stock}"> </a>
+						<a class="change" th:href="@{/stockDecremento/{id} (id=${producto.id}) }" >
+						<i class="fas fa-chevron-down"></i>		</a>					
+					</td> 						
+	
+					<td >
+						<a   th:text="${producto.id}"> </a>
+					</td> 		
+					<td >
+						<a   th:text="${producto.id}"> </a>
+					</td> 									
+              </tr>
+
+            </tbody>
+          </table>
+</div> 
+<!--  Fin fracmento listado productos -->
+
+
 <div th:fragment="activosDemos">
           <table id="fresh-table" class="table table-varios">
             <thead>

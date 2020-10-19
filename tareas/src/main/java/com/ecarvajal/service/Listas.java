@@ -95,30 +95,36 @@ public class Listas {
 			producto1.setCodProducto("135.1956");
 			producto1.setNombre("A2 MIPS 2019 LTD ADIDAS TEAM NAVY / LIGH");
 			producto1.setPrecio(153.30);
+			producto1.setPvp(143.50);
 			producto1.setCategoria("Equipamiento");
 			producto1.setSubCategoria("Casco");
 			producto1.setStock(4);
 			producto1.setPublicado(false);
+			producto1.setDescuento(10);
 			
 			Producto producto2 = new Producto();
 			producto2.setId(2);
 			producto2.setCodProducto("135.1954");
 			producto2.setNombre("RODILLERA FOX LAUNCH PRO D30 2020 NEGRO");
 			producto2.setPrecio(130.30);
+			producto2.setPvp(150.1);
 			producto2.setCategoria("Equipamiento");
 			producto2.setSubCategoria("Rodillera");
 			producto2.setStock(4);
 			producto2.setPublicado(true);
+			producto2.setDescuento(12);
 			
 			Producto producto3 = new Producto();
 			producto3.setId(3);
 			producto3.setCodProducto("135.1952");
 			producto3.setNombre("GUANTE TROY LEE AIR GLOVE 2019 RED L");
 			producto3.setPrecio(24.50);
+			producto3.setPvp(30);
 			producto3.setCategoria("Equipamiento");
 			producto3.setSubCategoria("Guantes");
 			producto3.setStock(5);
 			producto3.setPublicado(true);
+			producto3.setDescuento(15);
 		
 			lista.add(producto1);
 			lista.add(producto2);
