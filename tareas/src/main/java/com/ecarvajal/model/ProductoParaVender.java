@@ -4,7 +4,7 @@ public class ProductoParaVender extends Producto {
 	
 	public int cantidad;
 
-
+	public Float total;
 	
 	public int getCantidad() {
 		return cantidad;

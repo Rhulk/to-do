@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<div th:insert="fragments/header :: header-css"> </div>
+	<div th:insert="fragments/menu :: menu"> </div>
+
+<title>Venta</title>
+</head>
+<body>	
+	<h1> Caja </h1>
+	
+	        <form th:object="${producto}" th:action="@{/agregar}" method="post">
+            <div class="form-group">
+                <label for="codigo">Código de barras</label>
+                <input autofocus autocomplete="off" th:field="*{codProducto}" id="codigo"
+                       placeholder="Escanea el código o escríbelo y presiona Enter"
+                       type="text"
+                       class="form-control" >
+                
+
+            </div>
+        </form>
+</body>
+</html>
