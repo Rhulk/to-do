@@ -6,6 +6,10 @@ public class ProductoParaVender extends Producto {
 
 	public Float total;
 	
+	public void setTotal(Float total) {
+		this.total = total;
+	}
+
 	public int getCantidad() {
 		return cantidad;
 	}
@@ -19,9 +23,9 @@ public class ProductoParaVender extends Producto {
     }
 
 
-    // pendiente aplicar descuento.
+    
     public Float getTotal() {
-        return (float) (this.getPvp() * this.cantidad);
+        return (float) (this.getPvp() - ( ( (this.getDescuento()  / this.getPvp()) )* 100) * this.cantidad ) ;
     }
 
 }

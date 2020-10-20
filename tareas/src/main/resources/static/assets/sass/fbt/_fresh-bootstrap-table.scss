@@ -8,11 +8,11 @@
     }
 
     a{
-        color: $default-color;
+        color: #333;
 
         &:hover,
         &:focus{
-            color: $default-states-color;
+            color: #333;
         }
     }
 

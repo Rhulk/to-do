@@ -485,7 +485,7 @@
 						<a   th:text="${producto.pvp}"> </a>
 					</td>
 					<td >
-						<a  > 120 </a>
+						<a  th:text="${producto.total}">  </a>
 					</td> 
 					<td >
 						<a class="change" th:href="@{/stockIncremento/{id} (id=${producto.id}) }" >

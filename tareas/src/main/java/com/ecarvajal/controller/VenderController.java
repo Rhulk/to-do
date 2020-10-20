@@ -50,6 +50,7 @@ public class VenderController {
 				addProducto.setCodProducto(productos.get(i).getCodProducto());
 				addProducto.setPvp(productos.get(i).getPvp());
 				addProducto.setDescuento(productos.get(i).getDescuento());
+				addProducto.setTotal(addProducto.getTotal());
 				venta.add(addProducto);
 				System.out.println("Add producto al carrito: "+producto.getCodProducto());
 			}

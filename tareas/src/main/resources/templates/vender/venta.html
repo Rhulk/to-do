@@ -5,7 +5,7 @@
 	<div th:insert="fragments/header :: header-css"> </div>
 	<div th:insert="fragments/menu :: menu"> </div>
 	  <!--   Creative Tim Branding   -->
-  <a href="http://localhost:8080/orange">
+  <a href="http://localhost:8080/vender">
     <div class="logo-container">
       <div class="logo">
         <img src="assets/img/new_logo.png">
@@ -31,19 +31,9 @@
         </div>
 
         <div class="fresh-table full-color-orange">
-        <div class="fresh-table full-color-orange margin_5"> Listado compra</div>
+        <div class="fresh-table full-color-orange margin_5"> Busqueda de articulos</div>
         <!--  formulario para añadir productos -->
-		<div class="add-producto">
-        	<form th:object="${producto}" th:action="@{/agregar}" method="post">
-            <div class="form-group">
-                <label for="codigo">Código de barras</label>
-                <input autofocus autocomplete="off" th:field="*{codProducto}" id="codigo"
-                       placeholder="Escanea el código o escríbelo y presiona Enter"
-                       type="text"
-                       class="form-control" >
-            </div>
-        	</form>
-		</div>
+		<div th:insert="fragments/form :: caja"> </div>
         <!--
           Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
           Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange

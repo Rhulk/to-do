@@ -685,4 +685,9 @@ option:hover { color: black; background-color: transparent; }
 .add-producto{
 	margin-top: 8px;
 	color: white;
+	margin-left: 10px;
+}
+.btn-caja{
+	padding-bottom: 22px;
+	margin-left: 10px;
 }
