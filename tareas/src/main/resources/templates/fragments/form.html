@@ -17,14 +17,14 @@
         	</form>
         	
         	<div class="btn-caja form-group form-inline">
-        		Total:<i class="fas fa-euro-sign"></i><div class="marging_30">
+        		<h1 th:text="${'Total: ' + total}"></h1> <i class="fas fa-euro-sign"></i>
+        		<div class="marging_30">
         		<div class="btn-caja form-group form-inline">
  					<form  th:action="@{/tramitarVenta}" method="post">
-	            	<button type="submit" name="action"  class="btn btn-primary mb-3 "><i class="fas fa-shopping-cart fa-2x"></i> Tramitar Compra</button>
+	            	<button type="submit" name="action" value="tramitar"   class="btn btn-primary mb-3 "><i class="fas fa-shopping-cart fa-2x"></i> Tramitar Compra</button>
+	            	<button type="submit" name="action" value="limpiar"  class="btn btn-primary mb-3"><i class="fas fa-times-circle fa-2x"></i> Limpiar caja</button>
     	        	</form>
-    	        	<form  th:action="@{/limpiarVenta}" method="post">
-    	        	<button type="submit" name="action"  class="btn btn-primary mb-3"><i class="fas fa-times-circle fa-2x"></i> Limpiar caja</button>
-    	        	</form>
+
     	        </div>
     	        </div>       		
         	</div>

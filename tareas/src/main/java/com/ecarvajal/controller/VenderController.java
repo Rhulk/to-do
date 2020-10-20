@@ -9,9 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ecarvajal.model.Producto;
 import com.ecarvajal.model.ProductoParaVender;
+import com.ecarvajal.model.Tarea;
 import com.ecarvajal.service.Listas;
 
 @Controller
@@ -19,6 +22,8 @@ public class VenderController {
 	
 	@Autowired
 	Listas list = new Listas();
+	
+	public float total=0;
 	
 	List<Producto> productos = new LinkedList<Producto>();
 	List<ProductoParaVender> venta = new LinkedList<ProductoParaVender>(); // nueva venta.
@@ -32,7 +37,9 @@ public class VenderController {
 		System.out.println("-- Listado Venta -- Size :"+venta.size());
 		for(int i=0;i<venta.size();i++) {
 			System.out.println(" >>> Objeto añadido: "+venta.get(i).toString());
+			
 		}
+		vista.addAttribute("total", total);
 		return "vender/venta";
 	}
 	
@@ -52,6 +59,7 @@ public class VenderController {
 				addProducto.setDescuento(productos.get(i).getDescuento());
 				addProducto.setTotal(addProducto.getTotal());
 				venta.add(addProducto);
+				total += venta.get(i).getTotal();
 				System.out.println("Add producto al carrito: "+producto.getCodProducto());
 			}
 		}
@@ -62,5 +70,25 @@ public class VenderController {
 		
 		return "redirect:/"+"vender";
 	}
+	
+	@RequestMapping(value="/tramitarVenta")
+	public String buscar( @RequestParam String action) {
+		
+		
+
+		if (action.equals("tramitar"))	{  
+			System.out.println(" --- Tramitada la venta.");
+			venta.clear();
+			total=0;
+		}else {
+			System.out.println(" --- Se limpia la caja...");
+			venta.clear();
+			total=0;
+		}
+		
+		return "redirect:/"+"vender";
+	}
+	
+
 
 }

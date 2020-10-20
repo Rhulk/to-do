@@ -686,8 +686,9 @@ option:hover { color: black; background-color: transparent; }
 	margin-top: 8px;
 	color: white;
 	margin-left: 10px;
+	margin-right: 5px;
 }
 .btn-caja{
-	padding-bottom: 22px;
-	margin-left: 10px;
+	padding-bottom: 1px;
+	margin-left: 83px;
 }
