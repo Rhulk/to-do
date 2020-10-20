@@ -2,11 +2,13 @@ package com.ecarvajal.model;
 
 public class ProductoParaVender extends Producto {
 	
+	
+	
 	public int cantidad;
 
-	public Float total;
+	public double total;
 	
-	public void setTotal(Float total) {
+	public void setTotal(double total) {
 		this.total = total;
 	}
 
@@ -21,11 +23,16 @@ public class ProductoParaVender extends Producto {
     public void aumentarCantidad() {
         this.cantidad++;
     }
+    public double getTotal() {
+        return total;
+    }
 
-
-    
-    public Float getTotal() {
-        return (float) (this.getPvp() - ( ( (this.getDescuento()  / this.getPvp()) )* 100) * this.cantidad ) ;
+    // %/100*precio
+    // Calcula asigna y debuelve el total
+    public double calTotal() {
+    	double porcentaje = (descuento * pvp) / 100;
+    	this.total = (pvp - porcentaje) * cantidad;
+        return total;
     }
 
 }

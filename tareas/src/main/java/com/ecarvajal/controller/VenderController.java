@@ -57,9 +57,9 @@ public class VenderController {
 				addProducto.setCodProducto(productos.get(i).getCodProducto());
 				addProducto.setPvp(productos.get(i).getPvp());
 				addProducto.setDescuento(productos.get(i).getDescuento());
-				addProducto.setTotal(addProducto.getTotal());
+				addProducto.setTotal(addProducto.calTotal());
 				venta.add(addProducto);
-				total += venta.get(i).getTotal();
+				total += addProducto.getTotal();
 				System.out.println("Add producto al carrito: "+producto.getCodProducto());
 			}
 		}
