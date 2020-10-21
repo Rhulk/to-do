@@ -74,16 +74,26 @@ public class VenderController {
 	@RequestMapping(value="/tramitarVenta")
 	public String buscar( @RequestParam String action) {
 		
-		
-
-		if (action.equals("tramitar"))	{  
-			System.out.println(" --- Tramitada la venta.");
-			venta.clear();
-			total=0;
-		}else {
-			System.out.println(" --- Se limpia la caja...");
-			venta.clear();
-			total=0;
+		switch(action) {
+		  case "tramitar":
+				System.out.println(" --- Tramitada la venta.");
+				// reducir stock en BBDD
+				venta.clear();
+				total=0;	    
+		    break;
+		  case "limpiar":
+				System.out.println(" --- Se limpia la caja...");
+				venta.clear();
+				total=0;
+		    break;
+		  case "ticket":
+			  System.out.println(" --- Venta con ticket...");
+				// reducir stock en BBDD
+				venta.clear();
+				total=0;			  
+			 break;
+		  default:
+		    System.out.println(" -- ");
 		}
 		
 		return "redirect:/"+"vender";
