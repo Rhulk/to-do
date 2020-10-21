@@ -16,12 +16,16 @@ import com.ecarvajal.model.Producto;
 import com.ecarvajal.model.ProductoParaVender;
 import com.ecarvajal.model.Tarea;
 import com.ecarvajal.service.Listas;
+import com.ecarvajal.xdoc.ODTProjectWithVelocity;
 
 @Controller
 public class VenderController {
 	
 	@Autowired
 	Listas list = new Listas();
+	
+	
+	ODTProjectWithVelocity xxx = new ODTProjectWithVelocity();
 	
 	public float total=0;
 	
@@ -72,14 +76,16 @@ public class VenderController {
 	}
 	
 	@RequestMapping(value="/tramitarVenta")
-	public String buscar( @RequestParam String action) {
+	public String finalizarVenta
+	( @RequestParam String action) {
 		
 		switch(action) {
 		  case "tramitar":
 				System.out.println(" --- Tramitada la venta.");
 				// reducir stock en BBDD
 				venta.clear();
-				total=0;	    
+				total=0;
+				xxx.xdox();
 		    break;
 		  case "limpiar":
 				System.out.println(" --- Se limpia la caja...");
