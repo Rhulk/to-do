@@ -76,7 +76,7 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-		<dependency>
+<!-- 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -88,15 +88,74 @@
 			</exclusions>
 		</dependency>
 
-
+ -->
 		<!-- https://mvnrepository.com/artifact/org.jopendocument/jOpenDocument -->
 		<dependency>
 		    <groupId>org.jopendocument</groupId>
 		    <artifactId>jOpenDocument</artifactId>
 		    <version>1.3b1</version>
 		</dependency>
+<!--  word -->
 
-		
+        <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>fr.opensagres.xdocreport.core</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>fr.opensagres.xdocreport.document</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+        <!-- Dependencia para poder leer documento de tipo Docx -->
+        <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>fr.opensagres.xdocreport.document.docx</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+        <!-- Dependencia para poder leer documento de tipo Odt -->
+        <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>fr.opensagres.xdocreport.document.odt</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>fr.opensagres.xdocreport.converter</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+        <!-- Dependencia necesaria para convertir los ficheros odt a PDF -->
+        <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>fr.opensagres.xdocreport.converter.odt.odfdom</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+        <!-- Dependencia necesaria para convertir los ficheros Docx a PDF -->
+        <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>fr.opensagres.xdocreport.converter.docx.xwpf</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>fr.opensagres.xdocreport.template.freemarker</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+
+<!-- https://mvnrepository.com/artifact/junit/junit -->
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <scope>test</scope>
+</dependency>
+
+	<dependency>
+	            <groupId>fr.opensagres.xdocreport</groupId>
+	            <artifactId>xdocreport</artifactId>
+	            <version>1.0.4</version>
+	            <scope>compile</scope>
+	</dependency>
+
 
 	</dependencies>
 

@@ -16,12 +16,16 @@ import com.ecarvajal.model.Producto;
 import com.ecarvajal.model.ProductoParaVender;
 import com.ecarvajal.model.Tarea;
 import com.ecarvajal.service.Listas;
+import com.ecarvajal.xdoc.ODTProjectWithVelocity;
 
 @Controller
 public class VenderController {
 	
 	@Autowired
 	Listas list = new Listas();
+	
+	
+	ODTProjectWithVelocity xxx = new ODTProjectWithVelocity();
 	
 	public float total=0;
 	
@@ -78,6 +82,7 @@ public class VenderController {
 
 		if (action.equals("tramitar"))	{  
 			System.out.println(" --- Tramitada la venta.");
+			xxx.xdox();
 			venta.clear();
 			total=0;
 		}else {
