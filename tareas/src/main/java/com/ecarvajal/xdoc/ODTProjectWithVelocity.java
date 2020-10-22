@@ -23,7 +23,7 @@ public class ODTProjectWithVelocity {
     try {
       // 1) Load ODT file by filling Velocity template engine and cache it to the registry
       InputStream in = ODTProjectWithVelocity.class.getResourceAsStream("ODT.odt");
-      IXDocReport report = XDocReportRegistry.getRegistry().loadReport(in,TemplateEngineKind.Velocity);
+      IXDocReport report = XDocReportRegistry.getRegistry().loadReport(in,TemplateEngineKind.Freemarker);
 
       // 2) Create context Java model
       IContext context = report.createContext();
