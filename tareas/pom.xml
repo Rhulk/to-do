@@ -142,28 +142,7 @@
             <artifactId>fr.opensagres.xdocreport.template.freemarker</artifactId>
             <version>2.0.2</version>
         </dependency>
- 	<dependency>
-		  <groupId>org.apache.velocity</groupId>
-		  <artifactId>velocity-engine-core</artifactId>
-		  <version>2.2</version>
-		</dependency>
-<dependency>
-  <groupId>org.apache.velocity.tools</groupId>
-  <artifactId>velocity-tools-generic</artifactId>
-  <version>3.0</version>
-</dependency>
 
-<dependency>
-  <groupId>org.apache.velocity.tools</groupId>
-  <artifactId>velocity-tools-view</artifactId>
-  <version>3.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.apache.velocity.tools</groupId>
-  <artifactId>velocity-tools-view-jsp</artifactId>
-  <version>3.0</version>
-</dependency>		
 		
 		<dependency>
 			<groupId>fr.opensagres.xdocreport</groupId>
@@ -171,6 +150,11 @@
 	        <version>1.0.4</version>
             <scope>compile</scope>
 		</dependency>  
+		
+		<!-- velocity -->
+		
+
+		
 <!-- fin odt -->
 
 	</dependencies>
