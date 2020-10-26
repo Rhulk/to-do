@@ -21,6 +21,7 @@ import com.ecarvajal.model.Producto;
 import com.ecarvajal.model.ProductoParaVender;
 import com.ecarvajal.model.Tarea;
 import com.ecarvajal.service.Listas;
+import com.ecarvajal.ticketExcel.Ticket;
 import com.ecarvajal.xdoc.ODTProjectWithVelocity;
 import com.ecarvajal.xdoc.Project;
 import com.ecarvajal.xdoc.samples.freemarker.ODTNativeLineBreakAndTabWithFreemarker;
@@ -42,10 +43,14 @@ public class VenderController {
 	ODTNativeLineBreakAndTabWithFreemarker simple = new ODTNativeLineBreakAndTabWithFreemarker();
 	
 	public float total=0;
-	public int postProductoTicke=12;
+	public int postProductoTicke=13;
+	public boolean nueva=true;
 	
 	List<Producto> productos = new LinkedList<Producto>();
 	List<ProductoParaVender> venta = new LinkedList<ProductoParaVender>(); // nueva venta.
+	
+	
+	Ticket ticket = new Ticket();
 	
 	@GetMapping("/vender")
 	public String inicarVenta(Model vista) {
@@ -79,6 +84,13 @@ public class VenderController {
 				addProducto.setTotal(addProducto.calTotal());
 				venta.add(addProducto);
 				total += addProducto.getTotal();
+				
+				ticket.generar(productos.get(i).getCodProducto(), 
+						productos.get(i).getNombre(), "1", productos.get(i).getDescuento(),
+						productos.get(i).getPrecio(), postProductoTicke,nueva);
+				postProductoTicke++;
+				nueva = false;
+				
 				System.out.println("Add producto al carrito: "+producto.getCodProducto());
 			}
 		}
@@ -92,7 +104,8 @@ public class VenderController {
 	
 	@RequestMapping(value="/tramitarVenta")
 	public String buscar( @RequestParam String action) {
-		
+		postProductoTicke=13;
+		nueva=true;
 		
 
 		if (action.equals("tramitar"))	{  

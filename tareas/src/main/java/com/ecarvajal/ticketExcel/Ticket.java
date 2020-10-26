@@ -14,20 +14,24 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class Ticket {
 
-	public static void generar(String codProducto, String nombre, String cantidad, String descuento, String precio, int posicion) {
-        String excelFilePath = "src/main/resources/static/doc/Ticket-de-compra.xlsx";
+	public void generar(String codProducto, String nombre, String cantidad, int descuento, double precio
+			, int posicion, boolean nueva) {
+		String excelFilePath;
+		if (nueva) {
+			excelFilePath = "src/main/resources/static/doc/Ticket-de-compra.xls";
+		}else {
+			excelFilePath = "src/main/resources/static/doc/Ticket.xls";
+		}
         try {
-            FileInputStream inputStream = new FileInputStream(new File(excelFilePath));
-          //  Workbook workbook = WorkbookFactory.create(inputStream);
-            Workbook libro= WorkbookFactory.create(inputStream);
-           // XSSFWorkbook libro= new XSSFWorkbook();
-            
-            
-            
-            Sheet sheet = libro.getSheetAt(0);
-	 
-            
-            
+        	
+        	FileInputStream inputStream = new FileInputStream(new File(excelFilePath));
+        	
+        		//  Workbook workbook = WorkbookFactory.create(inputStream);
+        	Workbook libro= WorkbookFactory.create(inputStream);
+        		// XSSFWorkbook libro= new XSSFWorkbook();
+        	Sheet sheet = libro.getSheetAt(0);
+        	
+        	
             Object[][] bookData = {{codProducto, nombre, cantidad, descuento, precio},};
  
             //int rowCount = sheet.getLastRowNum();
@@ -36,7 +40,7 @@ public class Ticket {
             for (Object[] aBook : bookData) {
                 Row row = sheet.createRow(++rowCount);
  
-                int columnCount = 1;
+                int columnCount = 0;
 	                 
                 Cell cell = row.createCell(columnCount);
                 cell.setCellValue(rowCount);
@@ -52,7 +56,7 @@ public class Ticket {
             }
             inputStream.close();
             
-            FileOutputStream outputStream = new FileOutputStream("src/main/resources/static/doc/Ticket.xlsx");
+            FileOutputStream outputStream = new FileOutputStream("src/main/resources/static/doc/Ticket.xls");
             
 
             libro.write(outputStream);
