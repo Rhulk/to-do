@@ -23,6 +23,7 @@ import com.ecarvajal.model.Tarea;
 import com.ecarvajal.service.Listas;
 import com.ecarvajal.xdoc.ODTProjectWithVelocity;
 import com.ecarvajal.xdoc.Project;
+import com.ecarvajal.xdoc.samples.freemarker.ODTNativeLineBreakAndTabWithFreemarker;
 
 import fr.opensagres.xdocreport.core.XDocReportException;
 import fr.opensagres.xdocreport.document.IXDocReport;
@@ -38,8 +39,10 @@ public class VenderController {
 	
 	
 	ODTProjectWithVelocity xxx = new ODTProjectWithVelocity();
+	ODTNativeLineBreakAndTabWithFreemarker simple = new ODTNativeLineBreakAndTabWithFreemarker();
 	
 	public float total=0;
+	public int postProductoTicke=12;
 	
 	List<Producto> productos = new LinkedList<Producto>();
 	List<ProductoParaVender> venta = new LinkedList<ProductoParaVender>(); // nueva venta.
@@ -97,6 +100,7 @@ public class VenderController {
 			xxx.xdox();
 			venta.clear();
 			total=0;
+			simple.main(null);
 		}else {
 			System.out.println(" --- Se limpia la caja...");
 			venta.clear();
