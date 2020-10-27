@@ -1,10 +1,7 @@
 package com.ecarvajal.controller;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,18 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ecarvajal.model.Producto;
 import com.ecarvajal.model.ProductoParaVender;
-import com.ecarvajal.model.Tarea;
+
 import com.ecarvajal.service.Listas;
 import com.ecarvajal.ticketExcel.Ticket;
 import com.ecarvajal.xdoc.ODTProjectWithVelocity;
-import com.ecarvajal.xdoc.Project;
+
 import com.ecarvajal.xdoc.samples.freemarker.ODTNativeLineBreakAndTabWithFreemarker;
 
-import fr.opensagres.xdocreport.core.XDocReportException;
-import fr.opensagres.xdocreport.document.IXDocReport;
-import fr.opensagres.xdocreport.document.registry.XDocReportRegistry;
-import fr.opensagres.xdocreport.template.IContext;
-import fr.opensagres.xdocreport.template.TemplateEngineKind;
+
 
 @Controller
 public class VenderController {
@@ -45,6 +38,7 @@ public class VenderController {
 	public float total=0;
 	public int postProductoTicke=13;
 	public boolean nueva=true;
+	public int codCompra=1; // proximamente se recuperar de la tabla ventas.
 	
 	List<Producto> productos = new LinkedList<Producto>();
 	List<ProductoParaVender> venta = new LinkedList<ProductoParaVender>(); // nueva venta.
@@ -103,56 +97,33 @@ public class VenderController {
 	}
 	
 	@RequestMapping(value="/tramitarVenta")
-	public String buscar( @RequestParam String action) {
+	public String finalizarVenta( @RequestParam String action) {
 		postProductoTicke=13;
 		nueva=true;
+		
 		
 
 		if (action.equals("tramitar"))	{  
 			System.out.println(" --- Tramitada la venta.");
-			xxx.xdox();
+			//xxx.xdox();
 			venta.clear();
 			total=0;
-			simple.main(null);
+			//simple.main(null);
+			ticket.tramita(""+codCompra);
+			codCompra++;
+			ticket.limpiar();
 		}else {
 			System.out.println(" --- Se limpia la caja...");
 			venta.clear();
 			total=0;
-			generarODT();
 	          File outFile = new File("ODTProjectWithVelocity_Outh.odt");
 	          System.out.println("-- Ruta del fichero: |"+outFile.getAbsolutePath()+"|");
 	          System.out.println(" --- Se limpia la caja...");
+	          ticket.limpiar();
 		}
 		
 		return "redirect:/"+"vender";
 	}
-	
-	public void generarODT() {
-	    try {
-	        System.out.println("Generamos reporte");
-	          // 1) Load ODT file by filling Velocity template engine and cache it to the registry
-	          InputStream in = ODTProjectWithVelocity.class.getResourceAsStream("ticket.odt");
-	          IXDocReport report = XDocReportRegistry.getRegistry().loadReport(in,TemplateEngineKind.Velocity);
-	          System.out.println(" --- Tramitada la venta.");
-	          // 2) Create context Java model
-	          IContext context = report.createContext();
-	          Project project = new Project("XDocReport");
-	          context.put("project", project);
-
-	          // 3) Generate report by merging Java model with the ODT
-	          File outFile = new File("ODTProjectWithVelocity_Outh.odt");
-	          System.out.println("-- Ruta del fichero: |"+outFile.getAbsolutePath()+"|");
-	          OutputStream out = new FileOutputStream(outFile);
-	          report.process(context, out);
-	          System.out.println("Creado ticket");
-	        } catch (IOException e) {
-	          e.printStackTrace();
-	        } catch (XDocReportException e) {
-	          e.printStackTrace();
-	        }
-	      }
-	
-	
 
 
 }
