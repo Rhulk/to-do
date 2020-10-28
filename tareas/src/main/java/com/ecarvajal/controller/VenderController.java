@@ -65,25 +65,44 @@ public class VenderController {
 	public String agregarAlCarrito(@ModelAttribute Producto producto) {
 		productos = list.getProductos(); // listado productos ficticio
 		ProductoParaVender addProducto = new ProductoParaVender();
+		boolean add=true;
 		// buscarlo en la lista de venta
 		
 		//buscamos el produccto en BBDD :)
 		for(int i=0; i< productos.size(); i++) {
 			if (producto.getCodProducto().equals(productos.get(i).getCodProducto())) { // econtrado
-				addProducto.setCantidad(1);
-				addProducto.setNombre(productos.get(i).getNombre());
-				addProducto.setCodProducto(productos.get(i).getCodProducto());
-				addProducto.setPvp(productos.get(i).getPvp());
-				addProducto.setDescuento(productos.get(i).getDescuento());
-				addProducto.setTotal(addProducto.calTotal());
-				venta.add(addProducto);
-				total += addProducto.getTotal();
+				// buscamos el producto en la lista de venta.
+				for (int x=0; x < venta.size(); x++) {
+					if(producto.getCodProducto().equals(venta.get(x).getCodProducto())) {// aumetamos la cantidad
+						venta.get(x).setCantidad(venta.get(x).getCantidad()+1);
+						total = (float) (total + (	(productos.get(i).getPvp() - (productos.get(i).getDescuento() * productos.get(i).getPvp()) / 100)	))	; // añadimos el precio del articulo añadido.
+						venta.get(x).setTotal(venta.get(x).calTotal());
+
+						x=venta.size();
+						i=productos.size();
+						add=false;
+					}
+				}
+				if(add) {
+					addProducto.setCantidad(1);
+					addProducto.setNombre(productos.get(i).getNombre());
+					addProducto.setCodProducto(productos.get(i).getCodProducto());
+					addProducto.setPvp(productos.get(i).getPvp());
+					addProducto.setDescuento(productos.get(i).getDescuento());
+					addProducto.setTotal(addProducto.calTotal());
+					venta.add(addProducto);
+					total += addProducto.getTotal(); // total de la venta	
+					ticket.generar(productos.get(i).getCodProducto(), 
+							productos.get(i).getNombre(), "1", productos.get(i).getDescuento(),
+							productos.get(i).getPrecio(), postProductoTicke,nueva);
+					postProductoTicke++;
+					nueva = false;
+					
+				}
+
 				
-				ticket.generar(productos.get(i).getCodProducto(), 
-						productos.get(i).getNombre(), "1", productos.get(i).getDescuento(),
-						productos.get(i).getPrecio(), postProductoTicke,nueva);
-				postProductoTicke++;
-				nueva = false;
+
+
 				
 				System.out.println("Add producto al carrito: "+producto.getCodProducto());
 			}
