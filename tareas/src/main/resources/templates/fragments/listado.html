@@ -21,23 +21,40 @@
 	            </thead>
 	            <tbody>
 	              <tr  th:each="tarea : ${tareasEnEpera}">
-					<td th:text="${tarea.id}">1</td>
-					<td th:text="${tarea.tarea}">Soporte</td>
-
-					<td th:text="${tarea.prioridad}">Alta</td>
-					<td th:text="${tarea.cliente}">Oficina </td>
-					<td >27/07/20 15:00 </th>
-					<td >27/07/20 15:00 </td>
-					<td th:text="${tarea.descripcion}"></td>
-					
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.id}"> </a>
+					</td>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.tarea}"> </a>
+					</td>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.prioridad}"> </a>
+					</td>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.cliente}"> </a>
+					</td>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${#calendars.format(tarea.fAlta,' dd-MM-yyyy')}"> </a>
+					</th>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${#calendars.format(tarea.fAlert,' dd-MM-yyyy')}"> </a>
+						
+					</th>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.descripcion}"> </a>
+					</td>
 					<td>
-						 <a class="change" th:href="@{/changeStatus/{id} (id=${tarea.id}) }">
+						   <a class="change" th:href="@{/changeStatus/{id} (id=${tarea.id}) }">
 						 	<i class="fas fa-stopwatch fa-2x" aria-hidden="false"></i>
+						 </a> 
+						<!--   <a class="change" th:attr="data-target='#ventanaModalChange'+${tarea.id}" href="#" data-toggle="modal" data-target="#ventanaModalChange" data-whatever="@mdo">
+						 	<i class="fas fa-stopwatch fa-2x" aria-hidden="true"></i> 
 						 </a>
+						 -->
 					 </td>
 
 					<td>
-						<nav class="navbar navbar-expand-lg navbar-dark ">
+	 			 <!-- 		<nav class="navbar navbar-expand-lg navbar-dark ">
 						  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
 						    <span class="navbar-toggler-icon"></span>
 						  </button>
@@ -47,15 +64,15 @@
 								<li class="nav-item dropdown">
 									<a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown"> Opciones </a>
 								    <ul class="dropdown-menu dropdown-menu">
-									  <div class="p-1 "><li><a class="opciones" th:attr="data-target='#ventanaModalChange'+${tarea.id}" href="#" data-toggle="modal" data-target="#ventanaModalChange" data-whatever="@mdo"><i class="fas fa-keyboard" aria-hidden="true"></i> Registro</a></li></div>
+									  <div ><li><a class="change" th:attr="data-target='#ventanaModalChange'+${tarea.id}" href="#" data-toggle="modal" data-target="#ventanaModalChange" data-whatever="@mdo"><i class="fas fa-keyboard" aria-hidden="true"></i> Registro</a></li></div>
 									  
-							    	  <div class="p-1 "><li><a class="opciones" th:attr="data-target='#ventaModaledite'+${tarea.id}" href="#" data-toggle="modal" data-target="#ventaModaledite" data-whatever="@mdo"><i class="far fa-edit" aria-hidden="true"></i> Editar</a></li></div>
-							          <div class="p-1 "><li><a class="opciones" th:href="@{/resolverTarea/{id} (id=${tarea.id}) }" ><i class="far fa-check-circle" aria-hidden="true"></i> Resolver</a></li></div>
+							    	  <div ><li><a class="change" th:attr="data-target='#ventaModaledite'+${tarea.id}" href="#" data-toggle="modal" data-target="#ventaModaledite" data-whatever="@mdo"><i class="far fa-edit" aria-hidden="true"></i> Editar</a></li></div>
+							          <div ><li><a class="change" th:href="@{/resolverTarea/{id} (id=${tarea.id}) }" ><i class="far fa-check-circle" aria-hidden="true"></i> Resolver</a></li></div>
 								    </ul>
 								</li>
 							</ul>
 						  </div> <!-- navbar-collapse.// -->
-						</nav>
+						</nav>  -->
 					</td>	
 					<td> 
 						<a class="change" th:href="@{/deleteTarea/{id} (id=${tarea.id}) }">
@@ -66,10 +83,10 @@
 								<!--  ventana modal edit -->
 								<div class="modal fade" th:id="ventaModaledite+${tarea.id}"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
 								  <div class="modal-dialog">
-								    <div class="modal-content">
-								      <div class="modal-header">
-								        <h5 class="modal-title colorNegro" id="exampleModalLabel" >Modificar la tarea tarea</h5>
-								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								    <div class="modal-content-change">
+								      <div class="modal-header-change">
+								        <h5 class="modal-title " id="exampleModalLabel" >Modificar la tarea tarea</h5>
+								        <button type="button" class="close-change" data-dismiss="modal" aria-label="Close">
 								          <span aria-hidden="true">&times;</span>
 								        </button>
 								      </div>
@@ -124,19 +141,19 @@
 								  
 								<div class="modal fade" th:id="ventanaModalChange+${tarea.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								  <div class="modal-dialog">
-								    <div class="modal-content">
-								      <div class="modal-header">
-								        <h5 class="modal-title colorNegro" id="exampleModalLabel">Iniciar registro de la tarea</h5>
-								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								    <div class="modal-content-change">
+								      <div class="modal-header-change">
+								        <h5 class="modal-title-change" id="exampleModalLabel">Iniciar registro de la tarea</h5>
+								        <button type="button" class="close-change" data-dismiss="modal" aria-label="Close">
 								          <span aria-hidden="true">&times;</span>
 								        </button>
 								      </div>
-								      <div class="modal-body">
+								      <div class="modal-body-change">
 										<form  th:action="@{/changeStatus/{id} (id=${tarea.id}) }" method="get" th:object="${registro}">	
 
 											<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" th:value="${registro.descripcion}"  th:field="*{descripcion}">
 											<br>
-								            <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3"> Acceptar</button>
+								            <button type="submit" name="action" value="en espera" class="btn btn-primary btn-modal-change"> Acceptar</button>
 										</form>
 								      </div>
 								    </div>
@@ -169,21 +186,37 @@
             </thead>
             <tbody>
 				<tr  th:each="activa : ${tareasActivas}">
-					<td th:text="${activa.id}">1</td>
-					<td th:text="${activa.tarea}">Soporte</td>
-
-					<td th:text="${activa.prioridad}">Alta</td>
-					<td th:text="${activa.cliente}">Oficina </td>
-					<td th:text="${activa.fAlta}">27/07/20 11:20 </th>
-					<td >27/07/20 15:00 </td>
-					<td th:text="${activa.descripcion}">Bidon de agua nn</td>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.id}"> </a>
+					</td>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.tarea}"> </a>
+					</td>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.prioridad}"> </a>
+					</td>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.cliente}"> </a>
+					</td>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${#calendars.format(activa.fAlta,' dd-MM-yyyy')}"> </a>
+					</th>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${#calendars.format(activa.fAlert,' dd-MM-yyyy')}"> </a>
+					</th>
 					<td>
-					 <a class="change" th:href="@{/changeStatus/{id} (id=${activa.id}) }">
-					 	<i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
-					 </a>
+						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.descripcion}"> </a>
 					</td>
 					<td>
-						<nav class="navbar navbar-expand-lg navbar-dark ">
+					<!--   <a class="change" th:href="@{/changeStatus/{id} (id=${activa.id}) }">
+					 	<i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+					 </a> -->
+						 <a class="change" th:attr="data-target='#ventanaModalChange'+${activa.id}" href="#" data-toggle="modal" data-target="#ventanaModalChange" data-whatever="@mdo">
+						 	<i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i> 
+						 </a>
+					</td>
+					<td>
+	<!--  					<nav class="navbar navbar-expand-lg navbar-dark ">
 						  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
 						    <span class="navbar-toggler-icon"></span>
 						  </button>
@@ -201,7 +234,7 @@
 								</li>
 							</ul>
 						  </div> <!-- navbar-collapse.// -->
-						</nav>
+						</nav>  -->
 					</td>
 					<td>
 						<a class="change" th:href="@{/deleteTarea/{id} (id=${activa.id}) }">
@@ -211,14 +244,14 @@
 								<!--  ventana modal edit -->
 								<div class="modal fade" th:id="ventaModaledite+${activa.id}"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
 								  <div class="modal-dialog">
-								    <div class="modal-content">
-								      <div class="modal-header">
-								        <h5 class="modal-title colorNegro" id="exampleModalLabel" >Modificar la tarea tarea</h5>
-								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								    <div class="modal-content-change">
+								      <div class="modal-header-change">
+								        <h5 class="modal-title-change" id="exampleModalLabel" >Modificar la tarea tarea</h5>
+								        <button type="button" class="close-change" data-dismiss="modal" aria-label="Close">
 								          <span aria-hidden="true">&times;</span>
 								        </button>
 								      </div>
-								      <div class="modal-body">
+								      <div class="modal-body-change">
 										<form  th:action="@{/editarTarea/{id} (id=${activa.id}) }" method="get" th:object="${edit}">	
 											<div class="form-group form-inline">
 												<select class="styled-select space" placeholder="tarea" th:field="*{tarea}">
@@ -269,19 +302,19 @@
 								  
 								<div class="modal fade" th:id="ventanaModalChange+${activa.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								  <div class="modal-dialog">
-								    <div class="modal-content">
-								      <div class="modal-header">
-								        <h5 class="modal-title colorNegro" id="exampleModalLabel">Iniciar registro de la tarea</h5>
-								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								    <div class="modal-content-change">
+								      <div class="modal-header-change">
+								        <h5 class="modal-title-change" id="exampleModalLabel">Iniciar registro de la tarea</h5>
+								        <button type="button" class="close-change" data-dismiss="modal" aria-label="Close">
 								          <span aria-hidden="true">&times;</span>
 								        </button>
 								      </div>
-								      <div class="modal-body">
+								      <div class="modal-body-change">
 										<form  th:action="@{/changeStatus/{id} (id=${activa.id}) }" method="get" th:object="${registro}">	
 
 											<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" th:value="${registro.descripcion}"  th:field="*{descripcion}">
 											<br>
-								            <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3"> Acceptar</button>
+								            <button type="submit" name="action" value="en espera" class="btn btn-primary btn-modal-change"> Acceptar</button>
 										</form>
 								      </div>
 								    </div>
@@ -294,6 +327,187 @@
             </tbody>
           </table>
 </div> <!--  Fin fracmento listado activo -->
+
+
+<div th:fragment="clientes">
+          <table id="fresh-table" class="table table-varios">
+            <thead>
+			  <th data-sortable="true">ID</th>
+			  <th data-sortable="true">Nombre</th>
+              <th data-sortable="true">Apellido 1</th>
+		      <th data-sortable="true">Apellido 2</th>
+			  <th data-sortable="true">Teléfono</th>
+			  <th data-sortable="true">Correo</th>
+			  <th data-sortable="true">Municipio</th>
+			  <th data-sortable="true">Dirección</th>
+			  <th data-sortable="true">Observaciones</th>
+			  <th >Editar</th>
+			  <th >Borrar</th>
+			  
+            </thead>
+            <tbody>
+				<tr th:each="cliente : ${clientes}" >
+					<td >
+						<a   th:text="${cliente.id}"> </a>
+					</td> 
+					<td >
+						<a   th:text="${cliente.nombre}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${cliente.apellido1}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${cliente.apellido2}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${cliente.telefono}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${cliente.email}"> </a>
+					</td> 
+					<td >
+						<a   th:text="${cliente.municipio}"> </a>
+					</td> 						
+					<td >
+						<a   th:text="${cliente.direccion}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${cliente.observaciones}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${cliente.id}"> </a>
+					</td> 		
+					<td >
+						<a   th:text="${cliente.id}"> </a>
+					</td> 									
+              </tr>
+
+            </tbody>
+          </table>
+</div> <!--  Fin fracmento listado clientes -->
+
+
+<div th:fragment="productos">
+          <table id="fresh-table" class="table table-varios">
+            <thead>
+			  <th data-sortable="true">Cod Producto</th>
+			  <th data-sortable="true">Nombre</th>
+              <th data-sortable="true">Categoria</th>
+		      <th data-sortable="true">Sub Categoria</th>
+			  <th data-sortable="true">Precio</th>
+			  <th >Stock</th>
+			  <th data-sortable="true">publicado</th>
+
+			  <th >Editar</th>
+			  <th >Borrar</th>
+			  
+            </thead>
+            <tbody>
+				<tr th:each="producto : ${productos}" >
+					<td >
+						<a   th:text="${producto.codProducto}"> </a>
+					</td> 
+					<td >
+						<a   th:text="${producto.nombre}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${producto.categoria}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${producto.subCategoria}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${producto.precio}"> </a>
+					</td> 	
+					<td >
+						<a class="change" th:href="@{/stockIncremento/{id} (id=${producto.id}) }" >
+						<i class="fas fa-chevron-up"> </i>  </a>
+						<a th:text="${producto.stock}"> </a>
+						<a class="change" th:href="@{/stockDecremento/{id} (id=${producto.id}) }" >
+						<i class="fas fa-chevron-down"></i>		</a>					
+					</td>
+					<td >	
+						<div th:if="${producto.publicado}">
+							<a class="change" th:href="@{/web/{id} (id=${producto.id}) }" >
+   								<i class="fas fa-cloud-upload-alt fa-2x"></i>
+   							</a>
+						</div>	
+						<!-- ELSE -->
+						<div th:unless="${producto.publicado}">
+							<a class="change" th:href="@{/web/{id} (id=${producto.id}) }" >
+								<i class="fas fa-toggle-off fa-2x"></i>
+							</a>
+						</div>						
+					</td> 						
+	
+					<td >
+						<a   th:text="${producto.id}"> </a>
+					</td> 		
+					<td >
+						<a   th:text="${producto.id}"> </a>
+					</td> 									
+              </tr>
+
+            </tbody>
+          </table>
+</div> 
+<!--  Fin fracmento listado productos -->
+
+
+<div th:fragment="venta">
+          <table id="fresh-table" class="table table-varios">
+            <thead>
+			  <th data-sortable="true">Cod Producto</th>
+			  <th data-sortable="true">Nombre</th>
+              <th data-sortable="true">Cantidad</th>
+		      <th data-sortable="true">Descuento</th>
+			  <th data-sortable="true">Precio</th>
+			  <th data-sortable="true">Total</th>
+			  <th >Editar</th>
+			  <th >Borrar</th>
+			  
+            </thead>
+            <tbody>
+				<tr th:each="producto : ${carrito}" >
+					<td >
+						<a   th:text="${producto.codProducto}"> </a>
+					</td> 
+					<td >
+						<a   th:text="${producto.nombre}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${producto.cantidad}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${producto.descuento}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${producto.pvp}"> </a>
+					</td>
+					<td >
+						<a  th:text="${producto.total}">  </a>
+					</td> 
+					<td >
+						<a class="change" th:href="@{/stockIncremento/{id} (id=${producto.id}) }" >
+						<i class="fas fa-chevron-up"> </i>  </a>
+						<a th:text="${producto.stock}"> </a>
+						<a class="change" th:href="@{/stockDecremento/{id} (id=${producto.id}) }" >
+						<i class="fas fa-chevron-down"></i>		</a>					
+					</td> 						
+	
+					<td >
+						<a   th:text="${producto.id}"> </a>
+					</td> 		
+					<td >
+						<a   th:text="${producto.id}"> </a>
+					</td> 									
+              </tr>
+
+            </tbody>
+          </table>
+</div> 
+<!--  Fin fracmento listado productos -->
+
 
 <div th:fragment="activosDemos">
           <table id="fresh-table" class="table table-varios">
@@ -347,10 +561,10 @@
 								<!--  ventana modal edit -->
 								<div class="modal fade" th:id="ventaModaledite+${activa.id}"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
 								  <div class="modal-dialog">
-								    <div class="modal-content">
-								      <div class="modal-header ">
+								    <div class="modal-content-change">
+								      <div class="modal-header-change ">
 								        <h5 class="modal-title colorNegro" id="exampleModalLabel" >Modificar la tarea tarea</h5>
-								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								        <button type="button" class="close-change" data-dismiss="modal" aria-label="Close">
 								          <span aria-hidden="true">&times;</span>
 								        </button>
 								      </div>
@@ -405,19 +619,19 @@
 								  
 								<div class="modal fade" th:id="ventanaModalChange+${activa.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								  <div class="modal-dialog">
-								    <div class="modal-content">
-								      <div class="modal-header">
-								        <h5 class="modal-title colorNegro" id="exampleModalLabel">Iniciar registro de la tarea</h5>
-								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								    <div class="modal-content-change">
+								      <div class="modal-header-change">
+								        <h5 class="modal-title-change" id="exampleModalLabel">Iniciar registro de la tarea</h5>
+								        <button type="button" class="close-change" data-dismiss="modal" aria-label="Close">
 								          <span aria-hidden="true">&times;</span>
 								        </button>
 								      </div>
-								      <div class="modal-body">
+								      <div class="modal-body-change">
 										<form  th:action="@{/changeStatus/{id} (id=${activa.id}) }" method="get" th:object="${registro}">	
 
 											<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" th:value="${registro.descripcion}"  th:field="*{descripcion}">
 											<br>
-								            <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3"> Acceptar</button>
+								            <button type="submit" name="action" value="en espera" class="btn btn-primary btn-modal-change"> Acceptar</button>
 										</form>
 								      </div>
 								    </div>

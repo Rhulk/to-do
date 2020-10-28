@@ -3,14 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<div th:insert="fragments/header :: header-css"> </div>
-
-
-</head>
-<body>
-
-
-<div class="wrapper">
-  <!--   Creative Tim Branding   -->
+	<div th:insert="fragments/menu :: menu"> </div>
+	  <!--   Creative Tim Branding   -->
   <a href="http://localhost:8080/orange">
     <div class="logo-container">
       <div class="logo">
@@ -19,15 +13,21 @@
       <div class="brand">
         Creative Kike
       </div>
-
+	 
     </div>
   </a>
+</head>
+<body>
+
+
+<div class="wrapper">
+
 
   <div class="container-full">
     <div class="row">
       <div class="">  <!--  original classs col-md-8 col-md-offset-2 -->
         <div class="description ">
-          <h2>Listado Tareas</h2>
+         <h2>Listado Tareas</h2>
         </div>
           <div class="fresh-table full-color-orange ">
           	  <div class="fresh-table full-color-orange margin_5"> Tareas Activas</div>
@@ -106,12 +106,12 @@
         classes: 'table table-hover table-striped',
         toolbar: '.toolbar',
 		
-        search: true,
+        search: false,
         showRefresh: false,
-        showToggle: true,
-        showColumns: true,
-        pagination: true,
-        striped: true,
+        showToggle: false,
+        showColumns: false,
+        pagination: false,
+        striped: false,
         sortable: true,
         pageSize: 8,
         pageList: [8, 10, 25, 50, 100],
@@ -132,8 +132,8 @@
 		
         search: true,
         showRefresh: false,
-        showToggle: true,
-        showColumns: true,
+        showToggle: false,
+        showColumns: false,
         pagination: true,
         striped: true,
         sortable: true,

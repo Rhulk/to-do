@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<div th:insert="fragments/header :: header-css"> </div>
 	
 	
+   
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <link th:href="@{/css/styles.css}" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/1d7d370a25.js" crossorigin="anonymous"></script>
+    	
 	
 
 </head>
@@ -68,7 +74,7 @@
         showToggle: true,
         showColumns: true,
         pagination: true,
-        striped: true,
+        striped: false,
         sortable: true,
         pageSize: 8,
         pageList: [8, 10, 25, 50, 100],

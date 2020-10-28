@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
+<div th:fragment=caja>
+		<div class="add-producto">
+        	<form th:object="${producto}" th:action="@{/agregar}" method="post">
+            <div class="form-group">
+                <label for="codigo">Código de barras</label>
+                <input autofocus autocomplete="off" th:field="*{codProducto}" id="codigo"
+                       placeholder="Escanea el código o escríbelo y presiona Enter"
+                       type="text"
+                       class="form-control" >
+            </div>
+        	</form>
+        	
+        	<div class="btn-caja form-group form-inline">
+        		<h1 th:text="${'Total: ' + total}"></h1> <i class="fas fa-euro-sign"></i>
+        		<div class="marging_30">
+        		<div class="btn-caja form-group form-inline">
+ 					<form  th:action="@{/tramitarVenta}" method="post">
+	            	<button type="submit" name="action" value="tramitar"   class="btn btn-primary mb-3 "><i class="fas fa-shopping-cart fa-2x"></i> Tramitar Compra</button>
+	            	<button type="submit" name="action" value="limpiar"  class="btn btn-primary mb-3"><i class="fas fa-times-circle fa-2x"></i> Limpiar caja</button>
+    	        	</form>
+
+    	        </div>
+    	        </div>       		
+        	</div>
+		</div>
+</div>
+
+</body>
+</html>

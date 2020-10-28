@@ -34,6 +34,7 @@ import com.ecarvajal.model.Tarea;
 //import com.ecarvajal.model.Task;
 import com.ecarvajal.service.CrearFicherosExcel;
 import com.ecarvajal.service.HomeService;
+import com.ecarvajal.service.Listas;
 
 
 
@@ -41,23 +42,28 @@ import com.ecarvajal.service.HomeService;
 @Controller
 public class HomeController {
 	SimpleDateFormat formatear = new SimpleDateFormat("dd-mm-yyyy");
-	
+
+		
 	List<Tarea> listaActiva = new LinkedList<Tarea>();
 	List<Tarea> listaActivaB = new LinkedList<Tarea>();
 	List<Tarea> listaEspera = new LinkedList<Tarea>();
 	List<Tarea> listaEsperaB = new LinkedList<Tarea>();
 	
+	List<Listas> clientes = new LinkedList<Listas>();
+	
 	List<Registro> registros = new LinkedList<Registro>();
+//	List<Registro> rHistorico = new LinkedList<Registro>();
 	
 	boolean carga_inicial=true;
 	boolean busqueda=false;
 	int id_registro=0;
+	int id_=0;
 	
 	String ruta="src/main/resources/static/doc/Registro.xlsx";
 	String vistaIndex="orange";
 
-	
-
+	@Autowired
+	Listas list = new Listas();	
 	
 	@Autowired
 	HomeService hService = new HomeService();
@@ -65,8 +71,9 @@ public class HomeController {
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
-		System.out.println(" --- InitBinder ---");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+		//System.out.println(" --- InitBinder ---");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
+        //SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         dateFormat.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor( dateFormat,false));
 		
@@ -80,14 +87,19 @@ public class HomeController {
 	@ModelAttribute
 	public void setGenericos(Model model) {
 
-		System.out.println("  IMPORTANTE  *******  Cargando datos a la vista --->> ");
+	//	System.out.println("  IMPORTANTE  *******  Cargando datos a la vista --->> ");
 		model.addAttribute("search",new Tarea());
 		model.addAttribute("alta", new Tarea());
 		model.addAttribute("edit", new Tarea());
+		model.addAttribute("view", new Tarea());
 		model.addAttribute("registro", new Registro());
+	//	model.addAttribute("clientes", list.getClientes());// recuperamos los clientes seteados. desde ClientesController
 	//	model.addAttribute("reqTask", new Task());
-		System.out.println(" -- setGenericos -- Se declaran variables para la vista");
+	//	System.out.println(" -- setGenericos -- Se declaran variables para la vista");
 	}
+	
+	
+
 
 	@GetMapping("/")
 	public String home(Model vista) {
@@ -111,13 +123,31 @@ public class HomeController {
 		return "home";
 	}
 
-	// pendiente el id del detalle a cargar
-	@GetMapping("/detalle")
-	public String detail() {
+	@GetMapping("/detalle/{id}")
+	public String detail(@PathVariable("id") int id, Model vista) {
+		id_=id;
 
-		return "detalle";
+		return "redirect:/"+"detalle";
 	}
-	
+	@GetMapping("/detalle")
+	public String detalle(Model vista) {
+		int id=id_;
+		for(int i=0; i< listaEspera.size() ;i++) {
+			if (listaEspera.get(i).getId() == id) {
+				vista.addAttribute("hReg", getRegistrosByTarea(id));
+				vista.addAttribute("view", listaEspera.get(i));
+				return "detalle";
+			}
+		}
+		for(int i=0; i< listaActiva.size() ;i++) {
+			if (listaActiva.get(i).getId() == id) {
+				vista.addAttribute("hReg", getRegistrosByTarea(id));
+				vista.addAttribute("view", listaActiva.get(i));
+				return "detalle";
+			}
+		}
+		return "detalle";
+	}	
 	
 	@GetMapping("/orange")
 	public String orange(Model vista) {
@@ -238,16 +268,23 @@ public class HomeController {
 	@RequestMapping(value="/alta")
 	public String alta(@ModelAttribute("alta") Tarea tarea //, @ModelAttribute("registro") Registro registro  // no hace falta.
 			, @RequestParam String action ) {
+
 		
 		tarea.setId(proximoId());
+		tarea.setfAlta(new Date());
 		if (action.equals("en espera"))	{  
+		
+			System.out.println("-- Alta de tarea en espera: "+tarea.toString());
 			listaEspera.add(tarea);
+			
+			
 
 		}else {
 			listaActiva.add(tarea);
+			System.out.println("-- Alta de tarea Activa: "+tarea.toString());
 		}
-		registros.add(altaRegistro(tarea.getId()));// para recuperar el registro uso el id de la tarea y unico registro activo.
-		System.out.println(" - | lista de registros | - "+registros.toString());
+		registros.add(altaRegistro(tarea.getId(),tarea.getDescripcion()+" _Incion Tarea_"));// para recuperar el registro uso el id de la tarea y unico registro activo.
+		//System.out.println(" - | lista de registros | - "+registros.toString());
 		
 		return "redirect:/"+vistaIndex;
 	}
@@ -285,11 +322,13 @@ public class HomeController {
 						if(registros.get(x).getId_todo() == id && registros.get(x).isActivo()) {
 							Tarea tarea = new Tarea();
 							tarea = listaEspera.get(i);
-							saveFinRegistro(x,listaEspera.get(i), registro); // Guardamos el registro y le quitamos el activo(predeterminado) Y en el excel
+							registro.setDescripcion("Iniciamos Registro");
+							// el paso de activar tarea no lo registro en el excel
+							//saveFinRegistro(x,listaEspera.get(i), registro); // Guardamos el registro y le quitamos el activo(predeterminado) Y en el excel
 						}
 					}
-					
-					registros.add(altaRegistro(listaEspera.get(i).getId()));// add fuera del buble para que no crezce infinitamente.
+					// falta la descripción
+					registros.add(altaRegistro(listaEspera.get(i).getId(),"Fin registro en espera"));// add fuera del buble para que no crezce infinitamente.
 					listaEspera.remove(i); // borro la tarea despues de crear el nuevo registro para no perder la referencia.
 
 					System.out.println(" - | lista de registros | - "+registros.toString());				
@@ -316,7 +355,7 @@ public class HomeController {
 						}
 						
 					}
-					registros.add(altaRegistro(listaActiva.get(i).getId()));
+					registros.add(altaRegistro(listaActiva.get(i).getId(), registro.getDescripcion()));
 					listaActiva.remove(i);// borro la tarea despues de crear el nuevo registro para no perder la referencia.
 					
 					System.out.println(" - | lista de registros | - "+registros.toString());
@@ -568,6 +607,17 @@ public class HomeController {
 			return null;
 		}
 	}
+	private List<Registro> getRegistrosByTarea(int id_tarea){
+		List<Registro> rHistorico = new LinkedList<Registro>();
+		for (int x=0; x< registros.size(); x++) {
+			System.out.println(" ------- registro > "+registros.get(x).toString());
+			if(registros.get(x).getId_todo() == id_tarea ) {
+				rHistorico.add(registros.get(x));
+			}
+		}
+		
+		return rHistorico;
+	}
 	
 	private List<Tarea> getLista(int id){
 		System.out.println(" GetLista Status");
@@ -633,12 +683,13 @@ public class HomeController {
 		}
 		return id+=1;
 	}
-	public Registro altaRegistro(int id_tarea) {
+	public Registro altaRegistro(int id_tarea, String descripcion) {
 		Registro registro = new Registro();
 		registro.setId(id_registro+=1);
 		registro.setId_todo(id_tarea);
 		registro.setF_inicio(new Date());
 		registro.setActivo(true);
+		registro.setDescripcion(descripcion);
 		
 		return registro;
 	}
@@ -671,11 +722,11 @@ public class HomeController {
 			outputStream.close();
 			
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			return false;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			return false;
 		} catch (EmptyFileException e) {

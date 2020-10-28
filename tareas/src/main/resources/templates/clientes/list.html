@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<div th:insert="fragments/header :: header-css"> </div>
+	<div th:insert="fragments/menu :: menu"> </div>
+	  <!--   Creative Tim Branding   -->
+  <a href="http://localhost:8080/orange">
+    <div class="logo-container">
+      <div class="logo">
+        <img src="assets/img/new_logo.png">
+      </div>
+      <div class="brand">
+        Creative Kike
+      </div>
+	 
+    </div>
+  </a>
+</head>
+<body>
+
+
+<div class="wrapper">
+
+
+  <div class="container-full">
+    <div class="row">
+      <div class="">  <!--  original classs col-md-8 col-md-offset-2 -->
+        <div class="description ">
+         <h2>Listado Clientes</h2>
+        </div>
+          <div class="fresh-table full-color-orange ">
+          	  <div class="fresh-table full-color-orange margin_5"> Clientes</div>
+          	  <div th:insert="fragments/listado :: clientes"> </div> 
+
+          </div>
+        
+
+
+
+        <div class="description description-footer">
+
+          <p>Copyright &copy; 2022  by kike </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  Boton Ajustes -->
+<div class="fixed-plugin posicion-ajustes" >
+  <div class="dropdown ">
+    <a href="#" data-toggle="dropdown">
+    <i class="fa fa-cog fa-2x"> </i></a><samp>  Busqueda </samp>
+    <ul class="dropdown-menu"> <!-- dropdown-menu  header-title adjustments-line clearfix  dropdown fixed-plugin -->
+    
+      <li class="header-title">Busqueda Avanzada:</li>
+      <li class=" margin_li">
+      <!-- falta include 
+		<div th:insert="fragments/ventana :: busqueda"> </div>
+		-->
+      </li>
+      <li >
+
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="fixed-plugin posicion-alta " >
+  <div class="dropdown ">
+    <a href="#" data-toggle="dropdown">    <i class="fa fa-cog fa-2x"> </i>    </a>
+	<samp> Alta </samp>
+    <ul class="dropdown-menu"> <!-- dropdown-menu  header-title adjustments-line clearfix  dropdown fixed-plugin -->
+    
+      <li class="header-title">Registro del cliente:</li>
+      <li class="margin_li ">
+			<!-- falta include 
+			<div th:insert="fragments/ventana :: alta"> </div> 
+			-->
+      </li>
+      <li >
+
+      </li>
+    </ul>
+  </div>
+</div>
+
+</body>
+
+  <script type="text/javascript">
+    var $table = $('#fresh-table')
+    var $tableEspera = $('#fresh-table_espera')
+    var $alertBtn = $('#alertBtn')
+
+
+
+    $(function () {
+      $table.bootstrapTable({
+        classes: 'table table-hover table-striped',
+        toolbar: '.toolbar',
+		
+        search: true,
+        showRefresh: false,
+        showToggle: false,
+        showColumns: false,
+        pagination: true,
+        striped: false,
+        sortable: true,
+        pageSize: 8,
+        pageList: [8, 10, 25, 50, 100],
+
+        formatShowingRows: function (pageFrom, pageTo, totalRows) {
+          return ''
+        },
+        formatRecordsPerPage: function (pageNumber) {
+          return pageNumber + ' rows visible'
+        }
+      })
+    })
+    
+
+
+
+
+
+
+  </script>
+
+
+</html>
