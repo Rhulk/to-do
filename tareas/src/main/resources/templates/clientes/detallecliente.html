@@ -34,11 +34,11 @@
           Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
         -->
 
-		<div class="fresh-table full-color-orange margin_5" th:object="${view}">Detalle</div>
+		<div class="fresh-table full-color-orange margin_5" th:object="${cliente}">Detalle</div>
           <table id="fresh-table_detalle" class="table">
           	
           	<tr>
- 				<th th:text="'id: '+ ${view.id}"> </th>
+ 				<th th:text="'id: '+ ${cliente.id}"> </th>
  				<th ></th>
  				<th>Fecha Alta</th>
  				<th>Fecha Fin</th>         	    	
@@ -46,14 +46,14 @@
           	
           	<tr>
           		<th >Cliente</th>
-          		<td th:text="${view.cliente}">Lorca</td>
-          		<td><span th:text="${view.fAlta}">Sebastian</span></td> 
-          		<td><span th:text="${view.fAlert}">Sebastian</span>1/10/2020</td>
+          		<td th:text="${cliente.nombre}">Lorca</td>
+          		<td><span th:text="${cliente.apellido1}">Sebastian</span></td> 
+          		<td><span th:text="${cliente.apellido2}">Sebastian</span>1/10/2020</td>
           	</tr>
           	
           	<tr>
           		<th>Descripcion</th>
-          		<td colspan="3" th:text="${view.descripcion}">El mobile no funciona</td>
+          		<td colspan="3" th:text="${cliente.observaciones}">El mobile no funciona</td>
 
           	</tr>
 
