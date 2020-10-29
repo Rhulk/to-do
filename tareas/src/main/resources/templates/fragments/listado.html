@@ -348,7 +348,7 @@
             <tbody>
 				<tr th:each="cliente : ${clientes}" >
 					<td >
-						<a   th:text="${cliente.id}"> </a>
+						<a th:href="@{/detallecliente/{id} (id=${cliente.id}) }"   th:text="${cliente.id}"> </a>
 					</td> 
 					<td >
 						<a   th:text="${cliente.nombre}"> </a>
