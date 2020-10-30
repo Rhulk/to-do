@@ -70,8 +70,13 @@
               <th data-sortable="true">Tipo</th>
             </thead>
             <tbody>
-              <tr >  
-
+              <tr th:each="reg : ${hReg}">  
+                <td th:text="${reg.id}"> - </td>
+                <td th:text="${reg.activo}"> - </td>
+                <td th:text="${reg.descripcion}"> - </td>
+                <td th:text="${reg.f_inicio}"> - </td>
+                <td th:text="${reg.f_fin}"> - </td>
+                <td th:text="${reg.tipo_registro}"> - </td>
               </tr>
 
             </tbody>
