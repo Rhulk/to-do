@@ -1,17 +1,80 @@
 package com.ecarvajal.service;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import com.ecarvajal.model.Cliente;
+import com.ecarvajal.model.Mantenimiento;
 import com.ecarvajal.model.Producto;
 
 
 @Service
 public class Listas {
+	
+	
+	public List<Mantenimiento> getMantenimientos(int id_cliente){
+		System.out.println(" -- Get Lista Mantenimientos -- ");
+		SimpleDateFormat formatear = new SimpleDateFormat("dd-mm-yyyy");
+		List<Mantenimiento> lista = new LinkedList<Mantenimiento>();
+		
+		try {
+			Mantenimiento mant1 = new Mantenimiento();
+			mant1.setId(1);
+			mant1.setId_client(1);
+			mant1.setDescripcion("Cadena");
+			mant1.setFalta(formatear.parse("31-07-2020"));
+			mant1.setFalerta(formatear.parse("30-10-2020"));
+			
+			Mantenimiento mant2 = new Mantenimiento();
+			mant2.setId(2);
+			mant2.setId_client(1);
+			mant2.setDescripcion("Rueda delantera");
+			mant2.setFalta(formatear.parse("31-07-2020"));
+			mant2.setFalerta(formatear.parse("30-11-2020"));
+			
+			
+			Mantenimiento mant3 = new Mantenimiento();
+			mant3.setId(3);
+			mant3.setId_client(1);
+			mant3.setDescripcion("Rueda trasera");
+			mant3.setFalta(formatear.parse("31-07-2020"));
+			mant3.setFalerta(formatear.parse("3-12-2020"));
+			
+			
+			Mantenimiento mant4 = new Mantenimiento();
+			mant4.setId(4);
+			mant4.setId_client(1);
+			mant4.setDescripcion("Rodamientos pedalier");
+			mant4.setFalta(formatear.parse("31-07-2020"));
+			mant4.setFalerta(formatear.parse("3-1-2021"));
+			
+			Mantenimiento mant5 = new Mantenimiento();
+			mant5.setId(5);
+			mant5.setId_client(2);
+			mant5.setDescripcion("Cadena");
+			mant5.setFalta(formatear.parse("31-07-2020"));
+			mant5.setFalerta(formatear.parse("3-11-2020"));
+			
+			if (mant1.getId_client() == id_cliente) lista.add(mant1);
+			if (mant2.getId_client() == id_cliente) lista.add(mant2);
+			if (mant3.getId_client() == id_cliente) lista.add(mant3);
+			if (mant4.getId_client() == id_cliente) lista.add(mant4);
+			if (mant5.getId_client() == id_cliente) lista.add(mant5);
+			
+
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return lista;
+	}
 	
 	/*
 	 * Lista ficticia auto generada ficticia temporal.
