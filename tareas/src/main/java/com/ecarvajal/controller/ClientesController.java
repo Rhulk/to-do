@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ecarvajal.model.Cliente;
 import com.ecarvajal.model.Mantenimiento;
+import com.ecarvajal.service.EmailSenderService;
 import com.ecarvajal.service.Listas;
 
 @Controller
@@ -19,10 +20,14 @@ public class ClientesController {
 
 	@Autowired
 	Listas list = new Listas();
+	EmailSenderService email = new EmailSenderService();
+	
 	public int id_detalle;
 	
 	List<Cliente> clientes = new LinkedList<Cliente>();
 	List<Mantenimiento> mant = new LinkedList<Mantenimiento>();
+	
+	
 	
 	@GetMapping("/listclientes")
 	public String list(Model vista) {
@@ -48,6 +53,7 @@ public class ClientesController {
 			if(clientes.get(i).getId() == id) {
 				vista.addAttribute("cliente", clientes.get(i) );
 				vista.addAttribute("mante", list.getMantenimientos(id_detalle));
+				email.sendEmail(); // enviamos email
 			}
 		}
 		return "clientes/detallecliente";
