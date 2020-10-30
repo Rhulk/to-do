@@ -63,20 +63,17 @@
           <table id="fresh-table" class="table">
             <thead>
               <th >ID</th>
-              <th  data-sortable="true">Status</th>
               <th  data-sortable="true">Descripción</th>
-              <th  data-sortable="true">F. Inicio</th>
-              <th  data-sortable="true">F. Fin</th>
-              <th data-sortable="true">Tipo</th>
+              <th  data-sortable="true">F. Alta</th>
+              <th  data-sortable="true">F. Alerta</th>
             </thead>
             <tbody>
-              <tr th:each="reg : ${hReg}">  
-                <td th:text="${reg.id}"> - </td>
-                <td th:text="${reg.activo}"> - </td>
-                <td th:text="${reg.descripcion}"> - </td>
-                <td th:text="${reg.f_inicio}"> - </td>
-                <td th:text="${reg.f_fin}"> - </td>
-                <td th:text="${reg.tipo_registro}"> - </td>
+              <tr th:each="man : ${mante}">  
+                <td th:text="${man.id}"> - </td>
+                <td th:text="${man.descripcion}"> - </td>
+                <td th:text="${man.falta}"> - </td>
+                <td th:text="${man.falerta}"> - </td>
+
               </tr>
 
             </tbody>
