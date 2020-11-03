@@ -3,6 +3,8 @@ package com.ecarvajal.controller;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ecarvajal.model.Cliente;
 import com.ecarvajal.model.Mantenimiento;
 import com.ecarvajal.service.EmailSenderService;
+import com.ecarvajal.service.Emails;
 import com.ecarvajal.service.Listas;
 
 @Controller
@@ -54,6 +57,14 @@ public class ClientesController {
 				vista.addAttribute("cliente", clientes.get(i) );
 				vista.addAttribute("mante", list.getMantenimientos(id_detalle));
 				email.sendEmail(); // enviamos email
+				
+		/*		Emails e = new Emails();
+				try {
+					e.enviar("quique1904@gmail.com", "Hola Mundo! Soy un mensaje!", "ejemplo de email enviado con Jakarta Mail");
+				} catch (MessagingException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}*/
 			}
 		}
 		return "clientes/detallecliente";
