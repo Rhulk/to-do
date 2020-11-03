@@ -351,34 +351,36 @@
 						<a th:href="@{/detallecliente/{id} (id=${cliente.id}) }"   th:text="${cliente.id}"> </a>
 					</td> 
 					<td >
-						<a   th:text="${cliente.nombre}"> </a>
+						<a th:href="@{/detallecliente/{id} (id=${cliente.id}) }"  th:text="${cliente.nombre}"> </a>
 					</td> 	
 					<td >
-						<a   th:text="${cliente.apellido1}"> </a>
+						<a th:href="@{/detallecliente/{id} (id=${cliente.id}) }"  th:text="${cliente.apellido1}"> </a>
 					</td> 	
 					<td >
-						<a   th:text="${cliente.apellido2}"> </a>
+						<a th:href="@{/detallecliente/{id} (id=${cliente.id}) }"  th:text="${cliente.apellido2}"> </a>
 					</td> 	
 					<td >
-						<a   th:text="${cliente.telefono}"> </a>
+						<a th:href="@{/detallecliente/{id} (id=${cliente.id}) }"  th:text="${cliente.telefono}"> </a>
 					</td> 	
 					<td >
-						<a   th:text="${cliente.email}"> </a>
+						<a th:href="@{/detallecliente/{id} (id=${cliente.id}) }"  th:text="${cliente.email}"> </a>
 					</td> 
 					<td >
-						<a   th:text="${cliente.municipio}"> </a>
+						<a th:href="@{/detallecliente/{id} (id=${cliente.id}) }"  th:text="${cliente.municipio}"> </a>
 					</td> 						
 					<td >
-						<a   th:text="${cliente.direccion}"> </a>
+						<a th:href="@{/detallecliente/{id} (id=${cliente.id}) }"  th:text="${cliente.direccion}"> </a>
 					</td> 	
 					<td >
-						<a   th:text="${cliente.observaciones}"> </a>
+						<a th:href="@{/detallecliente/{id} (id=${cliente.id}) }"  th:text="${cliente.observaciones}"> </a>
 					</td> 	
 					<td >
-						<a   th:text="${cliente.id}"> </a>
+						<a th:href="@{/detallecliente/{id} (id=${cliente.id}) }"  th:text="${cliente.id}"> </a>
 					</td> 		
 					<td >
-						<a   th:text="${cliente.id}"> </a>
+						<a class="change" th:href="@{/deleteCliente/{id} (id=${cliente.id}) }">
+							<i class="far fa-trash-alt delete fa-2x" aria-hidden="true"></i>
+						</a>
 					</td> 									
               </tr>
 

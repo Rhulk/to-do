@@ -57,6 +57,7 @@ public class ProductosController {
 	public String alta(@ModelAttribute("alta_producto") Producto producto) {
 		System.out.println(" -- Alta Producto -- Controller --");
 		producto.setId(proximoId());
+		producto.setPublicado(true);
 		productos.add(producto);
 		return "redirect:/"+"listproductos";
 	}
