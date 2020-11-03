@@ -446,7 +446,9 @@
 						<a   th:text="${producto.id}"> </a>
 					</td> 		
 					<td >
-						<a   th:text="${producto.id}"> </a>
+						<a class="change" th:href="@{/deleteProducto/{id} (id=${producto.id}) }">
+							<i class="far fa-trash-alt delete fa-2x" aria-hidden="true"></i>
+						</a>
 					</td> 									
               </tr>
 
@@ -502,6 +504,7 @@
 					</td> 		
 					<td >
 						<a   th:text="${producto.id}"> </a>
+
 					</td> 									
               </tr>
 

@@ -35,7 +35,7 @@ public class ProductosController {
 			System.out.println("Lista vacia de productos se inicializa ...");
 			//Carga inicial de datos.
 			productos = list.getProductos();
-			cargaInicial=true;
+			cargaInicial=false;
 		}
 		
 		if (busqueda) {
@@ -60,6 +60,16 @@ public class ProductosController {
 		producto.setPublicado(true);
 		productos.add(producto);
 		return "redirect:/"+"listproductos";
+	}
+	@GetMapping("/deleteProducto/{id}")
+	String deleteProducto(@PathVariable("id") int id) {
+		System.out.println("-- Eliminado producto id"+id);
+		for (int i=0;i<productos.size();i++) {
+			if (productos.get(i).getId() == id) {
+				productos.remove(i);
+			}
+		}
+		return "redirect:/"+"listproductos";		
 	}
 	
 	@GetMapping("/stockIncremento/{id}")
