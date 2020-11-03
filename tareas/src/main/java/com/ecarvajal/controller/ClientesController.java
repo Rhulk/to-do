@@ -48,7 +48,7 @@ public class ClientesController {
 	@RequestMapping(value="/alta_cliente")
 	public String alta(@ModelAttribute("alta_cliente") Cliente cliente) {
 		System.out.println(" -- Alta cliente -- Controller --");
-		
+		cliente.setId(proximoId());
 		clientes.add(cliente);
 		return "redirect:/"+"listclientes";
 	}
@@ -108,5 +108,15 @@ public class ClientesController {
 		return "clientes/detallecliente";
 	}
 	
+	
+	public int proximoId() {
+		int id =0;
+		
+		for(int i=0; i< clientes.size() ;i++) {
+			if (clientes.get(i).getId() > id) id =clientes.get(i).getId();
+		}
+
+		return id+=1;
+	}
 
 }
