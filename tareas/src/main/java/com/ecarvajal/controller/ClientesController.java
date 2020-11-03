@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ecarvajal.model.Cliente;
@@ -26,17 +28,53 @@ public class ClientesController {
 	EmailSenderService email = new EmailSenderService();
 	
 	public int id_detalle;
+	public boolean carga_inicial=true;
+	public boolean busqueda=false;
 	
 	List<Cliente> clientes = new LinkedList<Cliente>();
 	List<Mantenimiento> mant = new LinkedList<Mantenimiento>();
 	
+	/*
+	 * IMPORTANTE Aqui le estoy pasando el modelo a la vista para tener declarada la variable search en el form de la vista para la busqueda
+	 * 
+	 * 	
+	 */
+	@ModelAttribute
+	public void setGenericos(Model model) {
+		model.addAttribute("search_cliente",new Cliente());
+		model.addAttribute("alta_cliente", new Cliente());
+	}
 	
+	@RequestMapping(value="/alta_cliente")
+	public String alta(@ModelAttribute("alta_cliente") Cliente cliente) {
+		System.out.println(" -- Alta cliente -- Controller --");
+		
+		clientes.add(cliente);
+		return "redirect:/"+"listclientes";
+	}
 	
 	@GetMapping("/listclientes")
 	public String list(Model vista) {
 		System.out.println("Vista listado clientes");
-		clientes = list.getClientes();
-		vista.addAttribute("clientes", list.getClientes());// recuperamos los clientes seteados.
+		
+		if (clientes.isEmpty()  && carga_inicial) {
+			System.out.println("Lista vacia de clientes se inicializa ...");
+			//Carga inicial de datos.
+			clientes = list.getClientes();
+		}
+		
+		if (busqueda) {
+			busqueda=false;
+			//vista.addAttribute("tareasEnEpera", listaEsperaB);
+			//vista.addAttribute("tareasActivas", listaActivaB);
+			
+		}else {
+			//vista.addAttribute("tareasEnEpera", listaEspera);
+			//vista.addAttribute("tareasActivas", listaActiva);
+		}		
+		
+
+		vista.addAttribute("clientes", clientes);// recuperamos los clientes seteados.
 		
 		return "clientes/list";
 	}

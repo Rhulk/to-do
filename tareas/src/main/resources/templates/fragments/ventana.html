@@ -104,6 +104,40 @@
           </div>
 </div>
 
+
+<div th:fragment="alta_cliente">
+          <div class="fresh-table full-color-orange padding_10 ">
+          <form th:action="@{/alta_cliente}" method="get" th:object="${alta_cliente}">
+          <br><!--  ventana.html -->
+				<div class="form-group form-inline ">	
+					<input type="text" class="form-control space" name="nombre" placeholder="nombre" >
+					<input type="text" class="form-control space" name="apellido1" placeholder="apellido 1" >
+					<input type="text" class="form-control space" name="apellido2" placeholder="apellido 2" >
+					<input type="text" class="form-control space" name="telefono" placeholder="telefono" >
+					<input type="text" class="form-control space" name="email" placeholder="correo" >
+					<input class="form-control space" list="municipios" name="municipio" type="text" placeholder="Elige un municipio" >
+					<datalist id="municipios">
+						<option th:value="Lorca"></option>
+						<option th:value="Bullas"></option>
+						<option th:value="'Santa Cruz'"></option>
+						<option th:value="Cieza"></option>
+						<option th:value="'A Coruña'"></option>
+						<option th:value="Durango"></option>
+						<option th:value="Torrelavega"></option>
+					</datalist>
+					<input type="text" class="form-control space" name="direccion" placeholder="dirección" >
+				</div>
+
+                
+				<input type="text" class="form-control space" name="observaciones" placeholder="notas" >
+				<div class="marging_30">
+    	        	<button type="submit" name="action"  class="btn btn-primary mb-3">Guardar</button>
+    	        </div>
+			</form>
+			<br> <!--  Jugar con el padin -->	
+          </div>
+</div>
+
 <!--  pendiente  -->
 <div th:fragment="edit">
           <div class="fresh-table full-color-orange padding_10 ">
