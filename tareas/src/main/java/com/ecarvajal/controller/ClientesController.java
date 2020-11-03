@@ -29,6 +29,7 @@ public class ClientesController {
 	
 	public int id_detalle;
 	public boolean carga_inicial=true;
+	public boolean mtn_inicial=true;
 	public boolean busqueda=false;
 	
 	List<Cliente> clientes = new LinkedList<Cliente>();
@@ -43,6 +44,7 @@ public class ClientesController {
 	public void setGenericos(Model model) {
 		model.addAttribute("search_cliente",new Cliente());
 		model.addAttribute("alta_cliente", new Cliente());
+		model.addAttribute("alta_mtn", new Mantenimiento());
 	}
 	
 	@RequestMapping(value="/alta_cliente")
@@ -51,6 +53,14 @@ public class ClientesController {
 		cliente.setId(proximoId());
 		clientes.add(cliente);
 		return "redirect:/"+"listclientes";
+	}
+	
+	@RequestMapping(value="/alta_mtn")
+	public String altaMtn(@ModelAttribute("alta_mtn") Mantenimiento mtn) {
+		System.out.println(" -- Alta Mantenimiento -- Controller --");
+		mtn.setId(proximoIdMtn());
+		mant.add(mtn);
+		return "redirect:/"+"detallecliente";
 	}
 	
 	@GetMapping("/deleteCliente/{id}")
@@ -100,11 +110,16 @@ public class ClientesController {
 	@GetMapping("/detallecliente")
 	public String detail(Model vista) {
 		int id=id_detalle;
+		// carga inicial por cliente
+		if (mtn_inicial) {
+			mant = list.getMantenimientos(id_detalle);
+			mtn_inicial=false;
+		}
 		// buscamos al cliente
 		for (int i=0; i < clientes.size() ; i++ ) {
 			if(clientes.get(i).getId() == id) {
 				vista.addAttribute("cliente", clientes.get(i) );
-				vista.addAttribute("mante", list.getMantenimientos(id_detalle));
+				vista.addAttribute("mante", mant);
 				email.sendEmail(); // enviamos email
 				
 		/*		Emails e = new Emails();
@@ -125,6 +140,15 @@ public class ClientesController {
 		
 		for(int i=0; i< clientes.size() ;i++) {
 			if (clientes.get(i).getId() > id) id =clientes.get(i).getId();
+		}
+
+		return id+=1;
+	}
+	public int proximoIdMtn() {
+		int id =0;
+		
+		for(int i=0; i< mant.size() ;i++) {
+			if (mant.get(i).getId() > id) id =mant.get(i).getId();
 		}
 
 		return id+=1;
