@@ -9,7 +9,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.activation.*;
  
-public class EmailSenderService {
+public class EmailSenderService extends Thread{
 	private final Properties properties = new Properties();
 	
 	
@@ -30,7 +30,7 @@ public class EmailSenderService {
 		session = Session.getDefaultInstance(properties);
 	}
  
-	public void sendEmail(){
+	public void run(){
  
 		init();
 		try{

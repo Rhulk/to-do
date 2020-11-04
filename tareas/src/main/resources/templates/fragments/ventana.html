@@ -137,6 +137,23 @@
 			<br> <!--  Jugar con el padin -->	
           </div>
 </div>
+<div th:fragment="alta_mantenimiento">
+          <div class="fresh-table full-color-orange padding_10 ">
+          <form th:action="@{/alta_mtn}" method="get" th:object="${alta_mtn}">
+          <br><!--  ventana.html -->
+				<div class="form-group form-inline ">	
+					<input type="text" class="form-control space" name="descripcion" placeholder="Descripcion mantenimiento" >
+				</div>
+				<div class="input-group date radius_30">
+					<input type="date" class="form-control radius_30" id="fecha" placeholder="Fecha Alert" th:field="*{falerta}" >
+				</div> 				
+				<div class="marging_30">
+    	        	<button type="submit" name="action"  class="btn btn-primary mb-3">Guardar Mantenimiento</button>
+    	        </div>
+			</form>
+			<br> <!--  Jugar con el padin -->	
+          </div>
+</div>
 
 <div th:fragment="alta_producto">
           <div class="fresh-table full-color-orange padding_10 ">

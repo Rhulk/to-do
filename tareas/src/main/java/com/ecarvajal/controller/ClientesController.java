@@ -1,14 +1,20 @@
 package com.ecarvajal.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +31,7 @@ public class ClientesController {
 
 	@Autowired
 	Listas list = new Listas();
-	EmailSenderService email = new EmailSenderService();
+	EmailSenderService email;
 	
 	public int id_detalle;
 	public boolean carga_inicial=true;
@@ -34,6 +40,17 @@ public class ClientesController {
 	
 	List<Cliente> clientes = new LinkedList<Cliente>();
 	List<Mantenimiento> mant = new LinkedList<Mantenimiento>();
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
+		//System.out.println(" --- InitBinder ---");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
+        //SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        dateFormat.setLenient(false);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor( dateFormat,false));
+		
+	}
 	
 	/*
 	 * IMPORTANTE Aqui le estoy pasando el modelo a la vista para tener declarada la variable search en el form de la vista para la busqueda
@@ -59,6 +76,7 @@ public class ClientesController {
 	public String altaMtn(@ModelAttribute("alta_mtn") Mantenimiento mtn) {
 		System.out.println(" -- Alta Mantenimiento -- Controller --");
 		mtn.setId(proximoIdMtn());
+		mtn.setFalta(new Date());
 		mant.add(mtn);
 		return "redirect:/"+"detallecliente";
 	}
@@ -120,7 +138,8 @@ public class ClientesController {
 			if(clientes.get(i).getId() == id) {
 				vista.addAttribute("cliente", clientes.get(i) );
 				vista.addAttribute("mante", mant);
-				email.sendEmail(); // enviamos email
+				email = new EmailSenderService();
+				email.start(); // enviamos email con un hilo aparte para no paralizar la aplicación.
 				
 		/*		Emails e = new Emails();
 				try {
