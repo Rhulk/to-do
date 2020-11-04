@@ -66,6 +66,7 @@
               <th  data-sortable="true">Descripción</th>
               <th  data-sortable="true">F. Alta</th>
               <th  data-sortable="true">F. Alerta</th>
+              <th  > Eliminar</th>
             </thead>
             <tbody>
               <tr th:each="man : ${mante}">  
@@ -73,7 +74,11 @@
                 <td th:text="${man.descripcion}"> - </td>
                 <td th:text="${man.falta}"> - </td>
                 <td th:text="${man.falerta}"> - </td>
-
+				<td>
+						<a class="change" th:href="@{/deleteMtn/{id} (id=${man.id}) }">
+							<i class="far fa-trash-alt delete fa-2x" aria-hidden="true"></i>
+						</a>
+				</td>
               </tr>
 
             </tbody>
@@ -117,7 +122,7 @@
       <li class="header-title">Registro nueva tarea:</li>
       <li class="margin_li ">
 			<!-- falta include -->
-			<div th:insert="fragments/ventana :: alta_mantenimiento"> </div>
+		<!--	<div th:insert="fragments/ventana :: alta"> </div>-->
       </li>
       <li >
 

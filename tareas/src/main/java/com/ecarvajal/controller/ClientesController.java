@@ -92,6 +92,17 @@ public class ClientesController {
 		return "redirect:/"+"listclientes";
 	}
 	
+	@GetMapping("/deleteMtn/{id}")
+	String deleteMantenimiento(@PathVariable("id") int id) {
+		System.out.println(" -- Eliminado Mantenimiento -- "+id);
+		for (int i=0; i< mant.size(); i++) {
+			if (mant.get(i).getId() == id) {
+				mant.remove(i);
+			}
+		}
+		return "redirect:/"+"detallecliente";
+	}
+	
 	@GetMapping("/listclientes")
 	public String list(Model vista) {
 		System.out.println("Vista listado clientes");
