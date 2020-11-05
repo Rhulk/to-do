@@ -13,6 +13,7 @@ body{
     margin-top: 45px;
     box-shadow: -15px 27px 69px rgba(0,0,0,.30);
     margin-bottom: 50px;
+    margin-left: 100px;
 }
 .fresh-table.full-screen-table{
     margin-top: 0;
@@ -20,8 +21,16 @@ body{
 
 .description{
 	margin-top: 8px;
-    margin-bottom: -38px;
+   margin-bottom: -80px;
     text-align: -webkit-right;
+    padding-bottom: 30px;
+}
+.sin-description{
+	margin-top: 8px;
+   margin-bottom: -16px;
+  
+    text-align: -webkit-right;
+    padding-bottom: 30px;
 }
 .description-footer{
     margin-bottom: 20px;
