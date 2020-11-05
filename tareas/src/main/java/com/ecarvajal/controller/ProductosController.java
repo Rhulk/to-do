@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ecarvajal.model.Cliente;
+import com.ecarvajal.model.Mantenimiento;
 import com.ecarvajal.model.Producto;
 import com.ecarvajal.service.Listas;
 
@@ -26,6 +27,20 @@ public class ProductosController {
 	public boolean busqueda=false;
 	
 	List<Producto> productos = new LinkedList<Producto>();
+	
+
+	
+	/*
+	 * IMPORTANTE Aqui le estoy pasando el modelo a la vista para tener declarada la variable search en el form de la vista para la busqueda
+	 * 
+	 * 	
+	 */
+	@ModelAttribute
+	public void setGenericos(Model model) {
+		model.addAttribute("search_producto",new Producto());
+
+	}
+	
 	
 	@GetMapping("/listproductos")
 	public String list(Model vista) {
@@ -70,6 +85,12 @@ public class ProductosController {
 			}
 		}
 		return "redirect:/"+"listproductos";		
+	}
+	@GetMapping("/search_producto")
+	public String searchProducto(@ModelAttribute("search_producto") Producto producto ) {
+		System.out.println(" -- Search Producto --");
+		
+		return "redirect:/"+"listproductos";
 	}
 	
 	@GetMapping("/stockIncremento/{id}")
