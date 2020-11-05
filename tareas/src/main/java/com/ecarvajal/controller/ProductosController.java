@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,7 @@ public class ProductosController {
 	public boolean busqueda=false;
 	
 	List<Producto> productos = new LinkedList<Producto>();
+	List<Producto> productosB = new LinkedList<Producto>();
 	
 
 	
@@ -46,24 +48,24 @@ public class ProductosController {
 	public String list(Model vista) {
 		System.out.println("Vista listado Productos");
 
-		if (productos.isEmpty()  && cargaInicial) {
+		if (productos.isEmpty()  && cargaInicial ) {
 			System.out.println("Lista vacia de productos se inicializa ...");
 			//Carga inicial de datos.
 			productos = list.getProductos();
 			cargaInicial=false;
+			vista.addAttribute("productos", productos);
 		}
 		
 		if (busqueda) {
 			busqueda=false;
-			//vista.addAttribute("tareasEnEpera", listaEsperaB);
-			//vista.addAttribute("tareasActivas", listaActivaB);
+			vista.addAttribute("productos", productosB);
 			
 		}else {
-			//vista.addAttribute("tareasEnEpera", listaEspera);
-			//vista.addAttribute("tareasActivas", listaActiva);
+
+			vista.addAttribute("productos", productos);
 		}		
 		
-		vista.addAttribute("productos", productos);
+		
 		
 		return "productos/list";
 	}
@@ -87,8 +89,39 @@ public class ProductosController {
 		return "redirect:/"+"listproductos";		
 	}
 	@GetMapping("/search_producto")
-	public String searchProducto(@ModelAttribute("search_producto") Producto producto ) {
+	public String searchProducto(@ModelAttribute("search_producto") Producto producto  , BindingResult result, Model vista) {
+		productosB.clear();
+		if(result.hasErrors()) {
+			// fuerzo llegar al controlador aunque tenga campos del producto vacios.
+			System.out.println(" -- Hay errores --");
+		}
 		System.out.println(" -- Search Producto --");
+		
+		for (int i=0 ;i < productos.size(); i++) {
+			if(producto.codProducto.equals(productos.get(i).codProducto ) || producto.codProducto.isEmpty() ) {
+				if (producto.nombre.equals(productos.get(i).nombre) || producto.nombre.isEmpty() ) {
+					if (producto.precio == productos.get(i).precio || producto.precio == 0.0 ){
+						if ( producto.descuento == productos.get(i).descuento || producto.descuento == 0 ) {
+							if ( producto.marca.equals(productos.get(i).marca ) || producto.marca.isEmpty() ) {
+								if ( producto.modelo.equals(productos.get(i).modelo ) || producto.modelo.isEmpty() ) {
+									if ( producto.categoria.equals(productos.get(i).categoria ) || producto.categoria.isEmpty() ) {
+										if ( producto.subCategoria.equals(productos.get(i).subCategoria ) || producto.subCategoria.isEmpty() ) {
+											if ( producto.stock == productos.get(i).stock  || producto.stock == 0 ) {
+												productosB.add(productos.get(i));
+											}
+										}										
+									}									
+								}								
+							}
+						}
+						
+					}
+					
+				}
+				
+			}
+		}
+		busqueda=true;
 		
 		return "redirect:/"+"listproductos";
 	}
