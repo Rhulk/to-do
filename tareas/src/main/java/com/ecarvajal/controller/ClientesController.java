@@ -62,6 +62,7 @@ public class ClientesController {
 		model.addAttribute("search_cliente",new Cliente());
 		model.addAttribute("alta_cliente", new Cliente());
 		model.addAttribute("alta_mtn", new Mantenimiento());
+		model.addAttribute("search_mtn", new Mantenimiento());
 	}
 	
 	@RequestMapping(value="/alta_cliente")
@@ -78,6 +79,19 @@ public class ClientesController {
 		mtn.setId(proximoIdMtn());
 		mtn.setFalta(new Date());
 		mant.add(mtn);
+		return "redirect:/"+"detallecliente";
+	}
+	
+	@RequestMapping("/searchClientes")
+	public String buscarCliente(@ModelAttribute("search_cliente") Cliente cliente) {
+		System.out.println(" -- Search Clientes --");
+		
+		return "redirect:/"+"listclientes";
+	}
+	@RequestMapping("/searchMantenimientos")
+	public String buscarMantenimientos(@ModelAttribute("search_mantenimiento") Mantenimiento mantenimiento) {
+		System.out.println(" -- Search Mantenimientos --");
+		
 		return "redirect:/"+"detallecliente";
 	}
 	

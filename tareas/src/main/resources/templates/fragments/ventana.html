@@ -137,9 +137,62 @@
 			<br> <!--  Jugar con el padin -->	
           </div>
 </div>
+
+<div th:fragment="busqueda_clientes">
+          <div class="fresh-table full-color-orange padding_10 ">
+          <form th:action="@{/searchClientes}" method="get" th:object="${searchClientes}">
+          <br><!--  ventana.html -->
+				<div class="form-group form-inline ">	
+					<input type="text" class="form-control space" name="nombre" placeholder="nombre" >
+					<input type="text" class="form-control space" name="apellido1" placeholder="apellido 1" >
+					<input type="text" class="form-control space" name="apellido2" placeholder="apellido 2" >
+					<input type="text" class="form-control space" name="telefono" placeholder="telefono" >
+					<input type="text" class="form-control space" name="email" placeholder="correo" >
+					<input class="form-control space" list="municipios" name="municipio" type="text" placeholder="Elige un municipio" >
+					<datalist id="municipios">
+						<option th:value="Lorca"></option>
+						<option th:value="Bullas"></option>
+						<option th:value="'Santa Cruz'"></option>
+						<option th:value="Cieza"></option>
+						<option th:value="'A Coruña'"></option>
+						<option th:value="Durango"></option>
+						<option th:value="Torrelavega"></option>
+					</datalist>
+					<input type="text" class="form-control space" name="direccion" placeholder="dirección" >
+				</div>
+
+                
+				<input type="text" class="form-control space" name="observaciones" placeholder="notas" >
+				<div class="marging_30">
+    	        	<button type="submit" name="action"  class="btn btn-primary mb-3">Buscar</button>
+    	        </div>
+			</form>
+			<br> <!--  Jugar con el padin -->	
+          </div>
+</div>
+
+
 <div th:fragment="alta_mantenimiento">
           <div class="fresh-table full-color-orange padding_10 ">
           <form th:action="@{/alta_mtn}" method="get" th:object="${alta_mtn}">
+          <br><!--  ventana.html -->
+				<div class="form-group form-inline ">	
+					<input type="text" class="form-control space" name="descripcion" placeholder="Descripcion mantenimiento" >
+				</div>
+				<div class="input-group date radius_30">
+					<input type="date" class="form-control radius_30" id="fecha" placeholder="Fecha Alert" th:field="*{falerta}" >
+				</div> 				
+				<div class="marging_30">
+    	        	<button type="submit" name="action"  class="btn btn-primary mb-3">Guardar Mantenimiento</button>
+    	        </div>
+			</form>
+			<br> <!--  Jugar con el padin -->	
+          </div>
+</div>
+
+<div th:fragment="busqueda_mantenimientos">
+          <div class="fresh-table full-color-orange padding_10 ">
+          <form th:action="@{/searchMantenimientos}" method="get" th:object="${search_mtn}">
           <br><!--  ventana.html -->
 				<div class="form-group form-inline ">	
 					<input type="text" class="form-control space" name="descripcion" placeholder="Descripcion mantenimiento" >
