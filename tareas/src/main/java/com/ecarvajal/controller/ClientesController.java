@@ -12,6 +12,7 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -37,19 +38,20 @@ public class ClientesController {
 	public boolean carga_inicial=true;
 	public boolean mtn_inicial=true;
 	public boolean busqueda=false;
+	public boolean busq_mant=false;
 	
 	List<Cliente> clientes = new LinkedList<Cliente>();
+	List<Cliente> clientesB = new LinkedList<Cliente>();
 	List<Mantenimiento> mant = new LinkedList<Mantenimiento>();
+	List<Mantenimiento> mantB = new LinkedList<Mantenimiento>();
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
-		//System.out.println(" --- InitBinder ---");
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
         //SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         dateFormat.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor( dateFormat,false));
-		
 	}
 	
 	/*
@@ -83,15 +85,46 @@ public class ClientesController {
 	}
 	
 	@RequestMapping("/searchClientes")
-	public String buscarCliente(@ModelAttribute("search_cliente") Cliente cliente) {
+	public String buscarCliente(@ModelAttribute("search_cliente") Cliente cliente, BindingResult result) {
 		System.out.println(" -- Search Clientes --");
-		
+		if(result.hasErrors()) {
+			// fuerzo llegar al controlador aunque tenga campos del producto vacios.
+			System.out.println(" -- Hay errores --");
+		}	
+		clientesB.clear();
+		for(int index=0; index < clientes.size(); index++ ) {
+			if(cliente.getNombre().equals(clientes.get(index).getNombre()) || cliente.getNombre().isEmpty() ) {
+				if(cliente.getApellido1().equals(clientes.get(index).getApellido1()) || cliente.getApellido1().isEmpty() ) {
+					if(cliente.getApellido2().equals(clientes.get(index).getApellido2()) || cliente.getApellido2().isEmpty() ) {
+						if(cliente.getEmail().equals(clientes.get(index).getEmail()) || cliente.getEmail().isEmpty() ) {
+							if(cliente.getMunicipio().equals(clientes.get(index).getMunicipio()) || cliente.getMunicipio().isEmpty() ) {
+								if(cliente.getDireccion().equals(clientes.get(index).getDireccion()) || cliente.getDireccion().isEmpty() ) {
+									if(cliente.getObservaciones().equals(clientes.get(index).getObservaciones()) || cliente.getObservaciones().isEmpty() ) {
+										if(cliente.getTelefono() == clientes.get(index).getTelefono() || cliente.getTelefono() == 0 ) {
+											clientesB.add(clientes.get(index));
+										}											
+									}										
+								}									
+							}							
+						}			
+					}						
+				}				
+			}
+		}
+		busqueda=true;
 		return "redirect:/"+"listclientes";
 	}
 	@RequestMapping("/searchMantenimientos")
-	public String buscarMantenimientos(@ModelAttribute("search_mantenimiento") Mantenimiento mantenimiento) {
+	public String buscarMantenimientos(@ModelAttribute("search_mantenimiento") Mantenimiento mantenimiento, BindingResult result) {
 		System.out.println(" -- Search Mantenimientos --");
+		if(result.hasErrors()) {
+			// fuerzo llegar al controlador aunque tenga campos del producto vacios.
+			System.out.println(" -- Hay errores --");
+		}
+		// generamos la list B con las coincidencias de la busqueda.
 		
+		
+		busq_mant=true;
 		return "redirect:/"+"detallecliente";
 	}
 	
@@ -125,20 +158,19 @@ public class ClientesController {
 			System.out.println("Lista vacia de clientes se inicializa ...");
 			//Carga inicial de datos.
 			clientes = list.getClientes();
+			vista.addAttribute("clientes", clientes);// recuperamos los clientes seteados.
 		}
 		
 		if (busqueda) {
 			busqueda=false;
-			//vista.addAttribute("tareasEnEpera", listaEsperaB);
-			//vista.addAttribute("tareasActivas", listaActivaB);
+			vista.addAttribute("clientes", clientesB);
 			
 		}else {
-			//vista.addAttribute("tareasEnEpera", listaEspera);
-			//vista.addAttribute("tareasActivas", listaActiva);
+			vista.addAttribute("clientes", clientes);// recuperamos los clientes seteados.
 		}		
 		
 
-		vista.addAttribute("clientes", clientes);// recuperamos los clientes seteados.
+		
 		
 		return "clientes/list";
 	}
