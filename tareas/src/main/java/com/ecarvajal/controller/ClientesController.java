@@ -117,12 +117,20 @@ public class ClientesController {
 	@RequestMapping("/searchMantenimientos")
 	public String buscarMantenimientos(@ModelAttribute("search_mantenimiento") Mantenimiento mantenimiento, BindingResult result) {
 		System.out.println(" -- Search Mantenimientos --");
+		mantB.clear();
 		if(result.hasErrors()) {
 			// fuerzo llegar al controlador aunque tenga campos del producto vacios.
 			System.out.println(" -- Hay errores --");
 		}
 		// generamos la list B con las coincidencias de la busqueda.
-		
+		for(int index=0; index < mant.size(); index ++) {
+			if(mantenimiento.getDescripcion().equals(mant.get(index).getDescripcion()) || mantenimiento.getDescripcion().isEmpty() ) {
+				if(mantenimiento.getFalerta().equals(mant.get(index).getFalerta()) || mantenimiento.getFalerta().getDate() == 0 ) {
+					mantB.add(mant.get(index));
+				}				
+			}
+			
+		}
 		
 		busq_mant=true;
 		return "redirect:/"+"detallecliente";
@@ -194,7 +202,11 @@ public class ClientesController {
 		for (int i=0; i < clientes.size() ; i++ ) {
 			if(clientes.get(i).getId() == id) {
 				vista.addAttribute("cliente", clientes.get(i) );
+				
+				// implementear busqueda mantenimiento.
 				vista.addAttribute("mante", mant);
+				
+				
 				email = new EmailSenderService();
 				email.start(); // enviamos email con un hilo aparte para no paralizar la aplicación.
 				
