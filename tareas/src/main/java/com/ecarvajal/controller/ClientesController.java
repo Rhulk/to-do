@@ -1,5 +1,6 @@
 package com.ecarvajal.controller;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
@@ -44,6 +45,8 @@ public class ClientesController {
 	List<Cliente> clientesB = new LinkedList<Cliente>();
 	List<Mantenimiento> mant = new LinkedList<Mantenimiento>();
 	List<Mantenimiento> mantB = new LinkedList<Mantenimiento>();
+	
+	SimpleDateFormat formatear = new SimpleDateFormat("dd-mm-yyyy");
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -125,21 +128,22 @@ public class ClientesController {
 		// generamos la list B con las coincidencias de la busqueda.
 		System.out.println("-- mant.size :"+mant.size());
 		for(int index=0; index < mant.size(); index ++) {
-			System.out.println("-- mant.size"+mant.size());
-			
-			if (mantenimiento.getDescripcion() == "") {
-				System.out.println(" vacio");
-				
-			}
-
 			if(mantenimiento.getDescripcion() == null) {
-				System.out.println(" Descp: Null");
+				mantenimiento.setDescripcion("");
+			}
+			if(mantenimiento.getFalerta() == null) {
+				try {
+					mantenimiento.setFalerta(formatear.parse("02-02-9999"));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 				
 			System.out.println(" Descripcion: "+mantenimiento.getDescripcion()+"| ");
 
-			if(mantenimiento.descripcion.equals(mant.get(index).descripcion) || mantenimiento.getDescripcion() == null ) {
-				if(mantenimiento.falerta.equals(mant.get(index).falerta) || mantenimiento.getFalerta().getDate() == 0 ) {
+			if(mantenimiento.descripcion.equals(mant.get(index).descripcion) || mantenimiento.getDescripcion().isEmpty() ) {
+				if(mantenimiento.falerta.equals(mant.get(index).falerta) || mantenimiento.getFalerta().equals("02-02-9999")) {
 					mantB.add(mant.get(index));
 				}				
 			}
