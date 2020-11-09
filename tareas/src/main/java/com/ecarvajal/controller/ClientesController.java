@@ -123,9 +123,23 @@ public class ClientesController {
 			System.out.println(" -- Hay errores --");
 		}
 		// generamos la list B con las coincidencias de la busqueda.
+		System.out.println("-- mant.size :"+mant.size());
 		for(int index=0; index < mant.size(); index ++) {
-			if(mantenimiento.getDescripcion().equals(mant.get(index).getDescripcion()) || mantenimiento.getDescripcion().isEmpty() ) {
-				if(mantenimiento.getFalerta().equals(mant.get(index).getFalerta()) || mantenimiento.getFalerta().getDate() == 0 ) {
+			System.out.println("-- mant.size"+mant.size());
+			
+			if (mantenimiento.getDescripcion() == "") {
+				System.out.println(" vacio");
+				
+			}
+
+			if(mantenimiento.getDescripcion() == null) {
+				System.out.println(" Descp: Null");
+			}
+				
+			System.out.println(" Descripcion: "+mantenimiento.getDescripcion()+"| ");
+
+			if(mantenimiento.descripcion.equals(mant.get(index).descripcion) || mantenimiento.getDescripcion() == null ) {
+				if(mantenimiento.falerta.equals(mant.get(index).falerta) || mantenimiento.getFalerta().getDate() == 0 ) {
 					mantB.add(mant.get(index));
 				}				
 			}
@@ -195,6 +209,7 @@ public class ClientesController {
 		int id=id_detalle;
 		// carga inicial por cliente
 		if (mtn_inicial) {
+			System.out.println(" -- Carga mantenimientos para el cliente --");
 			mant = list.getMantenimientos(id_detalle);
 			mtn_inicial=false;
 		}
@@ -204,7 +219,13 @@ public class ClientesController {
 				vista.addAttribute("cliente", clientes.get(i) );
 				
 				// implementear busqueda mantenimiento.
-				vista.addAttribute("mante", mant);
+				if (busq_mant) {
+					vista.addAttribute("mante", mantB);
+					busq_mant= false;
+				}else {
+					vista.addAttribute("mante", mant);
+				}
+				
 				
 				
 				email = new EmailSenderService();
