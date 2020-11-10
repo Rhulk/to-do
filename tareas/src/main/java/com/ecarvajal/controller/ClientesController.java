@@ -96,7 +96,7 @@ public class ClientesController {
 		}	
 		clientesB.clear();
 		for(int index=0; index < clientes.size(); index++ ) {
-			if(cliente.getNombre().equals(clientes.get(index).getNombre()) || cliente.getNombre().isEmpty() ) {
+			if(cliente.nombre.equals(clientes.get(index).getNombre()) || cliente.getNombre().isEmpty() ) {
 				if(cliente.getApellido1().equals(clientes.get(index).getApellido1()) || cliente.getApellido1().isEmpty() ) {
 					if(cliente.getApellido2().equals(clientes.get(index).getApellido2()) || cliente.getApellido2().isEmpty() ) {
 						if(cliente.getEmail().equals(clientes.get(index).getEmail()) || cliente.getEmail().isEmpty() ) {
@@ -144,8 +144,9 @@ public class ClientesController {
 			}
 				
 			System.out.println(" Descripcion: "+mantenimiento.getDescripcion()+"| ");
+			
 
-			if(mantenimiento.descripcion.equals(mant.get(index).descripcion) || mantenimiento.getDescripcion().isEmpty() ) {
+			if(mantenimiento.descripcion.contains(mant.get(index).descripcion) || mantenimiento.getDescripcion().isEmpty() ) {
 				if(mantenimiento.getFalerta() == null) {
 					mantB.add(mant.get(index));
 				}else {

@@ -98,14 +98,14 @@ public class ProductosController {
 		System.out.println(" -- Search Producto --");
 		
 		for (int i=0 ;i < productos.size(); i++) {
-			if(producto.codProducto.equals(productos.get(i).codProducto ) || producto.codProducto.isEmpty() ) {
-				if (producto.nombre.equals(productos.get(i).nombre) || producto.nombre.isEmpty() ) {
+			if(producto.codProducto.contains(productos.get(i).codProducto ) || producto.codProducto.isEmpty() ) {
+				if (producto.nombre.contains(productos.get(i).nombre) || producto.nombre.isEmpty() ) {
 					if (producto.precio == productos.get(i).precio || producto.precio == 0.0 ){
 						if ( producto.descuento == productos.get(i).descuento || producto.descuento == 0 ) {
-							if ( producto.marca.equals(productos.get(i).marca ) || producto.marca.isEmpty() ) {
-								if ( producto.modelo.equals(productos.get(i).modelo ) || producto.modelo.isEmpty() ) {
-									if ( producto.categoria.equals(productos.get(i).categoria ) || producto.categoria.isEmpty() ) {
-										if ( producto.subCategoria.equals(productos.get(i).subCategoria ) || producto.subCategoria.isEmpty() ) {
+							if ( producto.marca.contains(productos.get(i).marca ) || producto.marca.isEmpty() ) {
+								if ( producto.modelo.contains(productos.get(i).modelo ) || producto.modelo.isEmpty() ) {
+									if ( producto.categoria.contains(productos.get(i).categoria ) || producto.categoria.isEmpty() ) {
+										if ( producto.subCategoria.contains(productos.get(i).subCategoria ) || producto.subCategoria.isEmpty() ) {
 											if ( producto.stock == productos.get(i).stock  || producto.stock == 0 ) {
 												productosB.add(productos.get(i));
 											}

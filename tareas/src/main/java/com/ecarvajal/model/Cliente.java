@@ -2,13 +2,13 @@ package com.ecarvajal.model;
 
 public class Cliente {
 	
-	private int id;
-	private String nombre;
-	private String apellido1;
-	private String apellido2;
-	private String municipio;
-	private String direccion;
-	private int telefono;
+	public int id;
+	public String nombre;
+	public String apellido1;
+	public String apellido2;
+	public String municipio;
+	public String direccion;
+	public int telefono;
 	
 	public String getMunicipio() {
 		return municipio;
@@ -16,8 +16,8 @@ public class Cliente {
 	public void setMunicipio(String municipio) {
 		this.municipio = municipio;
 	}
-	private String email;
-	private String observaciones;
+	public String email;
+	public String observaciones;
 	public int getId() {
 		return id;
 	}
