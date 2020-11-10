@@ -133,8 +133,10 @@ public class ClientesController {
 			}
 			System.out.println(" Fecha busqueda: "+mantenimiento.getFalerta());
 			System.out.println(" Fecha encontrada: "+mant.get(index).falerta);
+			//borrar la hora y minutos
 			mant.get(index).getFalerta().setHours(0);
 			mant.get(index).getFalerta().setMinutes(0);
+			// end
 			if(mantenimiento.getFalerta() == null) {
 				try {
 					mantenimiento.setFalerta(formatear.parse("02-02-9999"));
