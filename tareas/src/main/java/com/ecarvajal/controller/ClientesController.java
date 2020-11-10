@@ -136,22 +136,24 @@ public class ClientesController {
 			//borrar la hora y minutos
 			mant.get(index).getFalerta().setHours(0);
 			mant.get(index).getFalerta().setMinutes(0);
-			// end
-			if(mantenimiento.getFalerta() == null) {
-				try {
-					mantenimiento.setFalerta(formatear.parse("02-02-9999"));
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			
+			// para que no interfieran las horas y minutos en la busqueda mientras doy con el origen de estas horas y minutos.
+			if (mantenimiento.falerta != null) {
+				mantenimiento.getFalerta().setHours(0);
+				mantenimiento.getFalerta().setMinutes(0);
 			}
 				
 			System.out.println(" Descripcion: "+mantenimiento.getDescripcion()+"| ");
 
 			if(mantenimiento.descripcion.equals(mant.get(index).descripcion) || mantenimiento.getDescripcion().isEmpty() ) {
-				if(mantenimiento.falerta.equals(mant.get(index).falerta) || mantenimiento.getFalerta().equals("02-02-9999")) {
+				if(mantenimiento.getFalerta() == null) {
 					mantB.add(mant.get(index));
-				}				
+				}else {
+					if(mantenimiento.falerta.equals(mant.get(index).falerta)) {
+						mantB.add(mant.get(index));
+					}						
+				}
+			
 			}
 			
 		}
