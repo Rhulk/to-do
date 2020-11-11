@@ -38,22 +38,44 @@
           <table id="fresh-table_detalle" class="table">
           	
           	<tr>
- 				<th th:text="'id: '+ ${cliente.id}"> </th>
- 				<th ></th>
- 				<th>Fecha Alta</th>
- 				<th>Fecha Fin</th>         	    	
+ 				<th th:text="'Id Cliente: '+ ${cliente.id}"> </th>
+ 				<th > </th>
+ 				<th > </th>
+ 				<th > </th>
+ 				<th > </th>
+ 				<th > </th>
+ 				<th > </th>
+ 				<th > </th>
+ 				<th > </th>
+ 				<th > </th>
+ 				<th > </th>
+ 				<th > </th>
+ 				<th > </th>
+ 				<th > </th>
+ 				<th > </th>
+         	    	
           	</tr>
           	
           	<tr>
           		<th >Cliente</th>
-          		<td th:text="${cliente.nombre}">Lorca</td>
-          		<td><span th:text="${cliente.apellido1}">Sebastian</span></td> 
-          		<td><span th:text="${cliente.apellido2}">Sebastian</span>1/10/2020</td>
+          		<td th:text="${cliente.nombre}"></td>
+          		<td><span th:text="${cliente.apellido1}"></span></td> 
+          		<td><span th:text="${cliente.apellido2}"></span></td>
+          		<th >Telefono</th>
+          		<td th:text="${cliente.telefono}"></td>
+          		<th >Email</th>
+          		<td th:text="${cliente.email}"></td>
+          	</tr>
+          	<tr>
+            	<th >Municipio</th>
+          		<td th:text="${cliente.municipio}"></td>
+          		<th >Dirección</th>
+          		<td th:text="${cliente.direccion}"></td>      	
           	</tr>
           	
           	<tr>
           		<th>Descripcion</th>
-          		<td colspan="3" th:text="${cliente.observaciones}">El mobile no funciona</td>
+          		<td colspan="3" th:text="${cliente.observaciones}"></td>
 
           	</tr>
 
@@ -72,8 +94,8 @@
               <tr th:each="man : ${mante}">  
                 <td th:text="${man.id}"> - </td>
                 <td th:text="${man.descripcion}"> - </td>
-                <td th:text="${man.falta}"> - </td>
-                <td th:text="${man.falerta}"> - </td>
+                <td th:text="${#calendars.format(man.falta,' dd-MM-yyyy')}"> </td>
+                <td th:text="${#calendars.format(man.falerta,' dd-MM-yyyy')}"> </td>
 				<td>
 						<a class="change" th:href="@{/deleteMtn/{id} (id=${man.id}) }">
 							<i class="far fa-trash-alt delete fa-2x" aria-hidden="true"></i>
