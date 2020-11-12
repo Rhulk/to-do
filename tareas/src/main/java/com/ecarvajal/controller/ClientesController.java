@@ -40,6 +40,7 @@ public class ClientesController {
 	public boolean mtn_inicial=true;
 	public boolean busqueda=false;
 	public boolean busq_mant=false;
+	public String detallecliente="detalleclienteInicial";
 	
 	List<Cliente> clientes = new LinkedList<Cliente>();
 	List<Cliente> clientesB = new LinkedList<Cliente>();
@@ -214,8 +215,34 @@ public class ClientesController {
 	public String detalle(@PathVariable("id") int id) {
 		System.out.println(" -- Detalle cliente vista id:"+ id);
 		id_detalle=id;
+		detallecliente="detalleclienteInicial";
 		return "redirect:/"+"detallecliente";
 	}
+	
+	@GetMapping("/detalleOcultoTarea/{id}")
+	public String detalleOcultoTarea(@PathVariable("id") int id) {
+		System.out.println(" -- Detalle cliente Taller id:"+ id);
+		id_detalle=id;
+		detallecliente="detalleOcultoTarea";
+		return "redirect:/"+"detallecliente";
+	}
+	
+	@GetMapping("/detalleOcultoMtn/{id}")
+	public String detalleOcultoMtn(@PathVariable("id") int id) {
+		System.out.println(" -- Detalle cliente Mantenimiento id:"+ id);
+		id_detalle=id;
+		detallecliente="detalleOcultoMtn";
+		return "redirect:/"+"detallecliente";
+	}
+	
+	@GetMapping("/detalleOcultoVenta/{id}")
+	public String detalleOcultoVenta(@PathVariable("id") int id) {
+		System.out.println(" -- Detalle cliente Venta id:"+ id);
+		id_detalle=id;
+		detallecliente="detalleOcultoVenta";
+		return "redirect:/"+"detallecliente";
+	}
+	
 	
 	@GetMapping("/detallecliente")
 	public String detail(Model vista) {
@@ -253,8 +280,11 @@ public class ClientesController {
 				}*/
 			}
 		}
-		return "clientes/detallecliente";
+		return "clientes/"+detallecliente;
 	}
+	
+
+	
 	
 	
 	public int proximoId() {
