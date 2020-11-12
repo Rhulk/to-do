@@ -512,7 +512,31 @@
           </table>
 </div> 
 <!--  Fin fracmento listado venta -->
+<div th:fragment="taller">
+          <table id="fresh-table" class="table">  
+            <thead>
+              <th >ID</th>
+              <th  data-sortable="true">Descripción</th>
+              <th  data-sortable="true">F. Alta</th>
+              <th  data-sortable="true">F. Alerta</th>
+              <th  > Eliminar</th>
+            </thead>
+            <tbody>
+              <tr th:each="man : ${mante}">  
+                <td th:text="${man.id}"> - </td>
+                <td th:text="${man.descripcion}"> - </td>
+                <td th:text="${#calendars.format(man.falta,' dd-MM-yyyy')}"> </td>
+                <td th:text="${#calendars.format(man.falerta,' dd-MM-yyyy')}"> </td>
+				<td>
+						<a class="change" th:href="@{/deleteMtn/{id} (id=${man.id}) }">
+							<i class="far fa-trash-alt delete fa-2x" aria-hidden="true"></i>
+						</a>
+				</td>
+              </tr>
 
+            </tbody>
+          </table>
+</div>
 
 <div th:fragment="activosDemos">
           <table id="fresh-table" class="table table-varios">

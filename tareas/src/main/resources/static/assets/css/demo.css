@@ -110,8 +110,12 @@ option:hover { color: black; background-color: transparent; }
 	
 	margin-left: 9px;
 }
+.change-refres-inicial{
+	    margin-left: 750px;
+	    color: black;
+}
 .change-refres{
-	    margin-left: 456px;
+	    margin-left: 45px;
 }
 .opciones{
 	position: relative;
