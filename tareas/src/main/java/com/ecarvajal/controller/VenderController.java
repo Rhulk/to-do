@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ecarvajal.model.Cliente;
 import com.ecarvajal.model.Producto;
 import com.ecarvajal.model.ProductoParaVender;
 
@@ -32,16 +33,20 @@ public class VenderController {
 	Listas list = new Listas();
 	
 	
+	
+	
 	ODTProjectWithVelocity xxx = new ODTProjectWithVelocity();
 	ODTNativeLineBreakAndTabWithFreemarker simple = new ODTNativeLineBreakAndTabWithFreemarker();
 	
 	public float total=0;
 	public int postProductoTicke=13;
 	public boolean nueva=true;
+	public boolean clienteSelect=false;
 	public int codCompra=1; // proximamente se recuperar de la tabla ventas.
 	
 	List<Producto> productos = new LinkedList<Producto>();
 	List<ProductoParaVender> venta = new LinkedList<ProductoParaVender>(); // nueva venta.
+	List<Cliente> cliente = new LinkedList<Cliente>();
 	
 	
 	Ticket ticket = new Ticket();
