@@ -93,7 +93,7 @@ public class HomeController {
 		model.addAttribute("edit", new Tarea());
 		model.addAttribute("view", new Tarea());
 		model.addAttribute("registro", new Registro());
-	//	model.addAttribute("clientes", list.getClientes());// recuperamos los clientes seteados. desde ClientesController
+		model.addAttribute("clientes", list.getClientes());
 	//	model.addAttribute("reqTask", new Task());
 	//	System.out.println(" -- setGenericos -- Se declaran variables para la vista");
 	}
