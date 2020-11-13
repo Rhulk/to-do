@@ -38,6 +38,31 @@
 						<option th:value="Durango"></option>
 						<option th:value="Torrelavega"></option>
 					</datalist>
+			<input type="text" name="textbox" list="textbox" value="Test" />
+					<datalist id="textbox">
+						<option th:value="Lorca"></option>
+						<option th:value="Bullas"></option>
+						<option th:value="'Santa Cruz'"></option>
+						<option th:value="Cieza"></option>
+						<option th:value="'A Coruña'"></option>
+						<option th:value="Durango"></option>
+						<option th:value="Torrelavega"></option>
+					</datalist>
+    <script>
+    $(document).ready(function(){
+	var autoselect = document.getElementById('textbox');
+	autoselect.select();
+      
+    });
+    </script>					
+					
+					<input class="form-control space" list="clientesDDBB" name="clienteDDBB" type="text" placeholder="Elige un cliente de DDBB" onfocus="this.select()" >
+					<datalist id="clientesDDBB" >
+						
+						<option th:each="cliente : ${clientes}"  th:text="${cliente.nombre}+' '+${cliente.apellido1}+' '+${cliente.apellido2}"  th:value="${cliente.telefono}"></option>
+
+					</datalist>
+					
 					<div class="input-group date radius_30">
 						<input type="date" class="form-control radius_30" id="fecha" placeholder="Fecha Alert" >
 					</div> 
@@ -306,4 +331,5 @@
           </div>
 </div>
 </body>
+
 </html>
