@@ -7,15 +7,45 @@
 <div th:fragment=caja>
 		<div class="add-producto">
         	<form th:object="${producto}" th:action="@{/agregar}" method="post">
-            <div class="form-group">
-                <label for="codigo">Código de barras</label>
-                <input autofocus autocomplete="off" th:field="*{codProducto}" id="codigo"
-                       placeholder="Escanea el código o escríbelo y presiona Enter"
-                       type="text"
-                       class="form-control" >
-            </div>
+	            <div class="form-group">
+	                <label for="codigo">Código de barras</label>
+	                <input autofocus autocomplete="off" list="clientesb" th:field="*{codProducto}" 
+	                       placeholder="Escanea el código o escríbelo y presiona Enter"
+	                       type="text"
+	                       class="form-control" >
+					<datalist id="clientesb" >					
+					<option 
+						th:each="cliente : ${clientes}" 
+						th:text="${cliente.nombre}+' '+${cliente.apellido1}+' '+${cliente.apellido2}"   
+						th:value="${cliente.telefono}" 
+						>
+					</option>
+				</datalist>
+	                    
+	            </div>
         	</form>
         	
+         	<form th:object="${cliente}" th:action="@{/agregarCliente}" method="post">
+	            <div class="form-group">
+	                <label for="codigo">Cliente</label>
+	                <input autofocus autocomplete="off" list="clientesb" th:field="*{nombre}" 
+	                       placeholder="Escribe el cliente"
+	                       type="text"
+	                       class="form-control" >
+					<datalist id="clientesb" >					
+					<option 
+						th:each="cliente : ${clientes}" 
+						th:text="${cliente.nombre}+' '+${cliente.apellido1}+' '+${cliente.apellido2}"   
+						th:value="${cliente.telefono}" 
+						>
+					</option>
+				</datalist>
+	                    
+	            </div>
+        	</form>       	
+        	
+        
+      	
         	<div class="btn-caja form-group form-inline">
         		<h1 th:text="${'Total: ' + total}"></h1> <i class="fas fa-euro-sign"></i>
         		<div class="marging_30">

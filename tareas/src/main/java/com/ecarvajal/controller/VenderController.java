@@ -46,15 +46,24 @@ public class VenderController {
 	
 	List<Producto> productos = new LinkedList<Producto>();
 	List<ProductoParaVender> venta = new LinkedList<ProductoParaVender>(); // nueva venta.
-	List<Cliente> cliente = new LinkedList<Cliente>();
+	List<Cliente> clientes = new LinkedList<Cliente>();
 	
+	Cliente cliente = new Cliente();
+	String idcliente;
 	
 	Ticket ticket = new Ticket();
 	
 	@GetMapping("/vender")
 	public String inicarVenta(Model vista) {
 		System.out.println("-- Vista de la venta --");
+		clientes = list.getClientes();
+		if (!clienteSelect) {
+			System.out.println(" -- Sin cliente Select --");
+			vista.addAttribute("clientes", clientes);
+			
+		}
 		vista.addAttribute("producto", new Producto());
+		vista.addAttribute("cliente", new Cliente());
 		vista.addAttribute("carrito", venta);
 		
 		System.out.println("-- Listado Venta -- Size :"+venta.size());
@@ -66,8 +75,25 @@ public class VenderController {
 		return "vender/venta";
 	}
 	
+	@PostMapping(value ="/agregarCliente")
+	public String agregarCliente(@ModelAttribute Cliente cliente) {
+		System.out.println(" -- Añadido Cliente --"+cliente.getNombre());// recupero el telenfono valor unico
+		
+		for( int index=0; index< clientes.size();index++) {
+			System.out.println(" -- telefono a buscar: "+Integer.parseInt(cliente.getNombre()));
+			if ( clientes.get(index).telefono == Integer.parseInt(cliente.getNombre()) ){
+				cliente = clientes.get(index);
+				clienteSelect= true;
+				System.out.println(" -- ADD --");
+			}
+		}
+		
+		return "redirect:/"+"vender";
+	}
+	
 	@PostMapping(value = "/agregar")
 	public String agregarAlCarrito(@ModelAttribute Producto producto) {
+		System.out.println(" -- Producto --"+producto.toString());
 		productos = list.getProductos(); // listado productos ficticio
 		ProductoParaVender addProducto = new ProductoParaVender();
 		boolean add=true;
