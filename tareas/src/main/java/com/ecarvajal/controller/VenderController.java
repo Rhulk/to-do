@@ -8,11 +8,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ecarvajal.model.Cliente;
 import com.ecarvajal.model.Producto;
@@ -91,7 +93,7 @@ public class VenderController {
 		
 		return "redirect:/"+"vender";
 	}
-	@PostMapping("/limbiarCliente")
+	@PostMapping("/limpiarCliente")
 	public String limpiarClietne() {
 		client = new Cliente();
 		clienteSelect= false;
@@ -99,16 +101,21 @@ public class VenderController {
 	}
 	
 	@PostMapping(value = "/agregar")
-	public String agregarAlCarrito(@ModelAttribute Producto producto) {
+	public String agregarAlCarrito(@ModelAttribute Producto producto, BindingResult result, RedirectAttributes redirectAttrs) {
 		System.out.println(" -- Producto --"+producto.toString());
+		if(result.hasErrors()) {		
+			System.out.println(" -- Hay errores de validación --");
+		}
 		productos = list.getProductos(); // listado productos ficticio
 		ProductoParaVender addProducto = new ProductoParaVender();
 		boolean add=true;
+		boolean encontrado=false;
 		// buscarlo en la lista de venta
 		
 		//buscamos el produccto en BBDD :)
 		for(int i=0; i< productos.size(); i++) {
-			if (producto.getCodProducto().equals(productos.get(i).getCodProducto())) { // econtrado
+			if (producto.getCodProducto().equals(productos.get(i).getCodProducto())) { // encontrado
+				encontrado = true;
 				// buscamos el producto en la lista de venta.
 				for (int x=0; x < venta.size(); x++) {
 					if(producto.getCodProducto().equals(venta.get(x).getCodProducto())) {// aumetamos la cantidad
@@ -143,11 +150,42 @@ public class VenderController {
 
 				
 				System.out.println("Add producto al carrito: "+producto.getCodProducto());
+				return "redirect:/"+"vender";
 			}
 		}
-		//Recuperamos datos del producto a vender
 		
-		//venta.add(producto);
+		if (producto.codProducto.indexOf("+") != -1) {
+			System.out.println(" Añadimos el objeto manualmente ");
+			String precio = producto.codProducto.substring(producto.codProducto.indexOf("+"), producto.codProducto.indexOf(" "));
+			String nombre = producto.codProducto.substring(producto.codProducto.indexOf(" "));
+			
+			
+			addProducto.setCantidad(1);
+			addProducto.setNombre(producto.codProducto.substring(producto.codProducto.indexOf(" ")));
+			addProducto.setCodProducto("Manual");
+			addProducto.setPvp(Integer.parseInt( producto.codProducto.substring(producto.codProducto.indexOf("+"), producto.codProducto.indexOf(" ")) ));
+			addProducto.setDescuento(0);
+			addProducto.setTotal(addProducto.calTotal());
+			venta.add(addProducto);
+			total += addProducto.getTotal(); // total de la venta	
+			ticket.generar(addProducto.codProducto, 
+					addProducto.nombre, "1", addProducto.descuento,
+					0, postProductoTicke,nueva);
+			postProductoTicke++;
+			nueva = false;
+			encontrado = true;
+			redirectAttrs
+			.addFlashAttribute("mensaje", "Añadido producto o servicio manualmente")
+		    .addFlashAttribute("clase", "warning");
+			return "redirect:/"+"vender";		
+		}
+		
+		if(!encontrado ) {
+			redirectAttrs
+			.addFlashAttribute("mensaje", "No existe ese producto en el inventario")
+		    .addFlashAttribute("clase", "warning");
+			return "redirect:/"+"vender";
+		}
 		
 		
 		return "redirect:/"+"vender";
@@ -157,8 +195,8 @@ public class VenderController {
 	public String finalizarVenta( @RequestParam String action) {
 		postProductoTicke=13;
 		nueva=true;
-		
-		
+		client = new Cliente();
+		clienteSelect= false;		
 
 		if (action.equals("tramitar"))	{  
 			System.out.println(" --- Tramitada la venta.");
