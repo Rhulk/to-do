@@ -704,6 +704,12 @@ option:hover { color: black; background-color: transparent; }
 	margin-left: 10px;
 	margin-right: 5px;
 }
+.add-cliente{
+	margin-top: 8px;
+    color: #a02424;
+    margin-left: 111px;
+    margin-right: 25px;
+}
 .btn-caja{
 	padding-bottom: 1px;
 	margin-left: 83px;

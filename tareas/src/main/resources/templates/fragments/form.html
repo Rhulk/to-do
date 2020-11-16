@@ -9,41 +9,40 @@
         	<form th:object="${producto}" th:action="@{/agregar}" method="post">
 	            <div class="form-group">
 	                <label for="codigo">Código de barras</label>
-	                <input autofocus autocomplete="off" list="clientesb" th:field="*{codProducto}" 
+	                <input autofocus autocomplete="off"  th:field="*{codProducto}" 
 	                       placeholder="Escanea el código o escríbelo y presiona Enter"
 	                       type="text"
-	                       class="form-control" >
-					<datalist id="clientesb" >					
-					<option 
-						th:each="cliente : ${clientes}" 
-						th:text="${cliente.nombre}+' '+${cliente.apellido1}+' '+${cliente.apellido2}"   
-						th:value="${cliente.telefono}" 
-						>
-					</option>
-				</datalist>
-	                    
+	                       class="form-control" >	                    
 	            </div>
         	</form>
+        	<div class=" btn-caja form-group form-inline"  th:if="${cliente.nombre} != null">
+        		<div class="add-cliente"  th:text="${cliente.nombre}+' '+${cliente.apellido1}+' '+${cliente.apellido1}+' '+${cliente.telefono} ?: 'Escribe el  cliente'">	</div>
+
+        			<form  th:action="@{/limbiarCliente}" method="post">
+    	            	<button type="submit" name="action" value="limpiarCliente"  class="btn btn-primary mb-3"><i class="fas fa-times-circle "></i> Limpiar cliente</button>
+    	        	</form>    	
+        	</div>
         	
-         	<form th:object="${cliente}" th:action="@{/agregarCliente}" method="post">
-	            <div class="form-group">
-	                <label for="codigo">Cliente</label>
-	                <input autofocus autocomplete="off" list="clientesb" th:field="*{nombre}" 
-	                       placeholder="Escribe el cliente"
-	                       type="text"
-	                       class="form-control" >
-					<datalist id="clientesb" >					
-					<option 
-						th:each="cliente : ${clientes}" 
-						th:text="${cliente.nombre}+' '+${cliente.apellido1}+' '+${cliente.apellido2}"   
-						th:value="${cliente.telefono}" 
-						>
-					</option>
-				</datalist>
-	                    
-	            </div>
-        	</form>       	
-        	
+        	<div th:if="${cliente.nombre} == null"> <!--  Controlar si ya tengo cliente -->
+	         	<form th:object="${cliente}" th:action="@{/agregarCliente}" method="post">
+		            <div class="form-group">
+		                <label for="codigo">Cliente</label>
+		                <input autofocus autocomplete="off" list="clientesb" th:field="*{nombre}" 
+		                       placeholder="Escribe el cliente"
+		                       type="text"
+		                       class="form-control" >
+						<datalist id="clientesb" >					
+						<option 
+							th:each="cliente : ${clientes}" 
+							th:text="${cliente.nombre}+' '+${cliente.apellido1}+' '+${cliente.apellido2}"   
+							th:value="${cliente.telefono}" 
+							>
+						</option>
+					</datalist>
+		                    
+		            </div>
+	        	</form>       	
+        	</div>
         
       	
         	<div class="btn-caja form-group form-inline">

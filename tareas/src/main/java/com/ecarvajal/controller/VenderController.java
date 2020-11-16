@@ -48,7 +48,7 @@ public class VenderController {
 	List<ProductoParaVender> venta = new LinkedList<ProductoParaVender>(); // nueva venta.
 	List<Cliente> clientes = new LinkedList<Cliente>();
 	
-	Cliente cliente = new Cliente();
+	Cliente client = new Cliente();
 	String idcliente;
 	
 	Ticket ticket = new Ticket();
@@ -60,10 +60,12 @@ public class VenderController {
 		if (!clienteSelect) {
 			System.out.println(" -- Sin cliente Select --");
 			vista.addAttribute("clientes", clientes);
-			
+			vista.addAttribute("cliente", new Cliente());
+		}else {
+			vista.addAttribute("cliente", client);
 		}
 		vista.addAttribute("producto", new Producto());
-		vista.addAttribute("cliente", new Cliente());
+		
 		vista.addAttribute("carrito", venta);
 		
 		System.out.println("-- Listado Venta -- Size :"+venta.size());
@@ -77,17 +79,22 @@ public class VenderController {
 	
 	@PostMapping(value ="/agregarCliente")
 	public String agregarCliente(@ModelAttribute Cliente cliente) {
-		System.out.println(" -- Añadido Cliente --"+cliente.getNombre());// recupero el telenfono valor unico
+		System.out.println(" -- Añadido Cliente --"+cliente.toString());// recupero el telenfono valor unico
 		
 		for( int index=0; index< clientes.size();index++) {
-			System.out.println(" -- telefono a buscar: "+Integer.parseInt(cliente.getNombre()));
 			if ( clientes.get(index).telefono == Integer.parseInt(cliente.getNombre()) ){
-				cliente = clientes.get(index);
+				client = clientes.get(index);
 				clienteSelect= true;
-				System.out.println(" -- ADD --");
+				index=clientes.size();
 			}
 		}
 		
+		return "redirect:/"+"vender";
+	}
+	@PostMapping("/limbiarCliente")
+	public String limpiarClietne() {
+		client = new Cliente();
+		clienteSelect= false;
 		return "redirect:/"+"vender";
 	}
 	
