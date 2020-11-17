@@ -6,9 +6,9 @@
 <body>
 <div th:fragment=caja>
 		<div class="add-producto">
-        <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
+        <div th:classappend="'alert-ok-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
              th:text="${mensaje}"
-             class="alert">
+             >
         </div>
         	<form th:object="${producto}" th:action="@{/agregar}" method="post">
 	            <div class="form-group">
@@ -20,7 +20,7 @@
 	            </div>
 	            <div class="alert-danger" th:if="${#fields.hasErrors('codProducto')}" th:errors="*{codProducto}">Name Error</div>
         	</form>
-        	<div class=" btn-caja form-group form-inline"  th:if="${cliente.nombre} != null">
+        	<div class=" btn-caja-top form-group form-inline"  th:if="${cliente.nombre} != null">
         		<div class="add-cliente"  th:text="${cliente.nombre}+' '+${cliente.apellido1}+' '+${cliente.apellido1}+' '+${cliente.telefono} ?: 'Escribe el  cliente'">	</div>
 
         			<form  th:action="@{/limpiarCliente}" method="post">

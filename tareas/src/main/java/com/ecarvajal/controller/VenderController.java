@@ -178,9 +178,10 @@ public class VenderController {
 			postProductoTicke++;
 			nueva = false;
 			encontrado = true;
+			
+			// notificaciones
 			redirectAttrs
-			.addFlashAttribute("mensaje", "Añadido producto o servicio manualmente")
-		    .addFlashAttribute("clase", "warning");
+			.addFlashAttribute("mensaje", "Añadido producto o servicio manualmente").addFlashAttribute("clase", "warning");
 			return "redirect:/"+"vender";		
 		}
 		
