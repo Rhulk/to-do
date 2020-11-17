@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -68,13 +69,12 @@ public class VenderController {
 		}
 		vista.addAttribute("producto", new Producto());
 		
-		vista.addAttribute("carrito", venta);
-		
 		System.out.println("-- Listado Venta -- Size :"+venta.size());
 		for(int i=0;i<venta.size();i++) {
-			System.out.println(" >>> Objeto añadido: "+venta.get(i).toString());
-			
+			venta.get(i).setId(i);
+			System.out.println(" >>> Objeto añadido: "+venta.get(i).toString());	
 		}
+		vista.addAttribute("carrito", venta);
 		vista.addAttribute("total", total);
 		return "vender/venta";
 	}
@@ -145,10 +145,6 @@ public class VenderController {
 					
 				}
 
-				
-
-
-				
 				System.out.println("Add producto al carrito: "+producto.getCodProducto());
 				return "redirect:/"+"vender";
 			}
@@ -223,6 +219,13 @@ public class VenderController {
 		}
 		
 		return "redirect:/"+"vender";
+	}
+	
+	@GetMapping("/quitarPoducto/{id}")
+	String quitarProducto(@PathVariable("id") int id) {
+		System.out.println(" -- Eliminado producto de la venta --");
+		venta.remove(id);
+		return "redirect:/"+"vender";		
 	}
 
 
