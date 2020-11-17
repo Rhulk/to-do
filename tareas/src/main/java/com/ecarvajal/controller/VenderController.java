@@ -156,14 +156,18 @@ public class VenderController {
 		
 		if (producto.codProducto.indexOf("+") != -1) {
 			System.out.println(" Añadimos el objeto manualmente ");
-			String precio = producto.codProducto.substring(producto.codProducto.indexOf("+"), producto.codProducto.indexOf(" "));
-			String nombre = producto.codProducto.substring(producto.codProducto.indexOf(" "));
+			System.out.println(" -- posición blanco "+producto.codProducto.indexOf(" "));
+			int postBlanc;
 			
-			
+			if (producto.codProducto.indexOf(" ") == -1) {
+				postBlanc = producto.codProducto.length();
+			}else {
+				postBlanc = producto.codProducto.indexOf(" ");
+			}
 			addProducto.setCantidad(1);
-			addProducto.setNombre(producto.codProducto.substring(producto.codProducto.indexOf(" ")));
+			addProducto.setNombre(producto.codProducto.substring(postBlanc));
 			addProducto.setCodProducto("Manual");
-			addProducto.setPvp(Integer.parseInt( producto.codProducto.substring(producto.codProducto.indexOf("+"), producto.codProducto.indexOf(" ")) ));
+			addProducto.setPvp(Integer.parseInt( producto.codProducto.substring(producto.codProducto.indexOf("+"), postBlanc ) ));
 			addProducto.setDescuento(0);
 			addProducto.setTotal(addProducto.calTotal());
 			venta.add(addProducto);
