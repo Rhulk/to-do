@@ -223,10 +223,27 @@ public class VenderController {
 	
 	@GetMapping("/quitarPoducto/{id}")
 	String quitarProducto(@PathVariable("id") int id) {
-		System.out.println(" -- Eliminado producto de la venta --");
+		System.out.println(" -- Eliminado producto de la venta --"+ venta.get(id).calTotal());
+		float descontar = (float) venta.get(id).calTotal();
+		System.out.println(" A descontar ... "+descontar);
+		System.out.println(" Total: "+total);
+		total = (float) (total - descontar);
+		System.out.println(" Total = "+total);
 		venta.remove(id);
 		return "redirect:/"+"vender";		
 	}
 
-
+	@GetMapping("/disminuir/{id}")
+	String disminuir(@PathVariable("id") int id) {
+		System.out.println("-- Dismunuir cantidad producto --");
+		
+		return "redirect:/"+"vender";
+	}
+	
+	@GetMapping("/aumentar/{id}")
+	String aumentar(@PathVariable("id") int id) {
+		System.out.println("-- Aumentar cantidad producto --");
+		
+		return "redirect:/"+"vender";
+	}
 }

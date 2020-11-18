@@ -467,7 +467,7 @@
 		      <th data-sortable="true">Descuento</th>
 			  <th data-sortable="true">Precio</th>
 			  <th data-sortable="true">Total</th>
-			  <th >Editar</th>
+			  <th >Change</th>
 			  <th >Borrar</th>
 			  
             </thead>
@@ -492,10 +492,10 @@
 						<a  th:text="${producto.total}">  </a>
 					</td> 
 					<td >
-						<a class="change" th:href="@{/stockIncremento/{id} (id=${producto.id}) }" >
+						<a class="change" th:href="@{/aumentar/{id} (id=${producto.id}) }" >
 						<i class="fas fa-chevron-up"> </i>  </a>
 						<a th:text="${producto.stock}"> </a>
-						<a class="change" th:href="@{/stockDecremento/{id} (id=${producto.id}) }" >
+						<a class="change" th:href="@{/disminuir/{id} (id=${producto.id}) }" >
 						<i class="fas fa-chevron-down"></i>		</a>					
 					</td> 						
 		
