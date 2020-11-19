@@ -468,6 +468,7 @@
 			  <th data-sortable="true">Precio</th>
 			  <th data-sortable="true">Total</th>
 			  <th >Change</th>
+			  <th >Stock</th>
 			  <th >Borrar</th>
 			  
             </thead>
@@ -494,11 +495,13 @@
 					<td >
 						<a class="change" th:href="@{/aumentar/{id} (id=${producto.id}) }" >
 						<i class="fas fa-chevron-up"> </i>  </a>
-						<a th:text="${producto.stock}"> </a>
+
 						<a class="change" th:href="@{/disminuir/{id} (id=${producto.id}) }" >
 						<i class="fas fa-chevron-down"></i>		</a>					
-					</td> 						
-		
+					</td> 	
+					<td>					
+						<a th:text="${producto.stock}"> </a> <!--  Calcular stock y poder hacer pedido -->
+					</td>
 					<td >
 						<a class="change" th:href="@{/quitarPoducto/{id} (id=${producto.id}) }">
 							<i class="far fa-trash-alt delete fa-2x" aria-hidden="true"></i>

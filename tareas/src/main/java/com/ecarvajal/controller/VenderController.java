@@ -72,8 +72,10 @@ public class VenderController {
 		System.out.println("-- Listado Venta -- Size :"+venta.size());
 		for(int i=0;i<venta.size();i++) {
 			venta.get(i).setId(i);
+			System.out.println(" -- Stock -- "+venta.get(i).getStock());
 			System.out.println(" >>> Objeto añadido: "+venta.get(i).toString());	
 		}
+		
 		vista.addAttribute("carrito", venta);
 		vista.addAttribute("total", total);
 		return "vender/venta";
@@ -118,30 +120,51 @@ public class VenderController {
 				encontrado = true;
 				// buscamos el producto en la lista de venta.
 				for (int x=0; x < venta.size(); x++) {
-					if(producto.getCodProducto().equals(venta.get(x).getCodProducto())) {// aumetamos la cantidad
-						venta.get(x).setCantidad(venta.get(x).getCantidad()+1);
-						total = (float) (total + (	(productos.get(i).getPvp() - (productos.get(i).getDescuento() * productos.get(i).getPvp()) / 100)	))	; // añadimos el precio del articulo añadido.
-						venta.get(x).setTotal(venta.get(x).calTotal());
-
-						x=venta.size();
-						i=productos.size();
-						add=false;
+					if(producto.getCodProducto().equals(venta.get(x).getCodProducto()) ) {// aumetamos la cantidad
+						if (venta.get(x).getStock() > 0) { // sobre la venta.
+							venta.get(x).setCantidad(venta.get(x).getCantidad()+1);
+							venta.get(x).setStock(venta.get(x).getStock()-1); // validar el stock
+							total = (float) (total + (	(productos.get(i).getPvp() - (productos.get(i).getDescuento() * productos.get(i).getPvp()) / 100)	))	; // añadimos el precio del articulo añadido.
+							venta.get(x).setTotal(venta.get(x).calTotal());
+	
+							x=venta.size();
+							i=productos.size();
+							add=false;
+						}else {
+							x=venta.size();
+							i=productos.size();
+							add=false;
+							
+							redirectAttrs
+							.addFlashAttribute("mensaje", "No stock suficiente.")
+						    .addFlashAttribute("clase", "warning");
+							return "redirect:/"+"vender";						
+						}
 					}
 				}
 				if(add) {
-					addProducto.setCantidad(1);
-					addProducto.setNombre(productos.get(i).getNombre());
-					addProducto.setCodProducto(productos.get(i).getCodProducto());
-					addProducto.setPvp(productos.get(i).getPvp());
-					addProducto.setDescuento(productos.get(i).getDescuento());
-					addProducto.setTotal(addProducto.calTotal());
-					venta.add(addProducto);
-					total += addProducto.getTotal(); // total de la venta	
-					ticket.generar(productos.get(i).getCodProducto(), 
-							productos.get(i).getNombre(), "1", productos.get(i).getDescuento(),
-							productos.get(i).getPrecio(), postProductoTicke,nueva);
-					postProductoTicke++;
-					nueva = false;
+
+					if (productos.get(i).getStock() > 0) {
+						addProducto.setCantidad(1);
+						addProducto.setNombre(productos.get(i).getNombre());
+						addProducto.setCodProducto(productos.get(i).getCodProducto());
+						addProducto.setPvp(productos.get(i).getPvp());
+						addProducto.setDescuento(productos.get(i).getDescuento());
+						addProducto.setTotal(addProducto.calTotal());
+						addProducto.setStock(productos.get(i).getStock()-1);
+						venta.add(addProducto);
+						total += addProducto.getTotal(); // total de la venta	
+						ticket.generar(productos.get(i).getCodProducto(), 
+								productos.get(i).getNombre(), "1", productos.get(i).getDescuento(),
+								productos.get(i).getPrecio(), postProductoTicke,nueva);
+						postProductoTicke++;
+						nueva = false;
+					}else {
+						redirectAttrs
+						.addFlashAttribute("mensaje", "No hay stock suficiente.")
+					    .addFlashAttribute("clase", "warning");
+						return "redirect:/"+"vender";	
+					}
 					
 				}
 
@@ -235,15 +258,41 @@ public class VenderController {
 
 	@GetMapping("/disminuir/{id}")
 	String disminuir(@PathVariable("id") int id) {
-		System.out.println("-- Dismunuir cantidad producto --");
-		
+    	float porcentaje = (float) ((venta.get(id).descuento * venta.get(id).pvp) / 100);
+    	float pvp =(float) venta.get(id).pvp;
+    	float descontar =pvp - porcentaje;
+    	total = (float) (total - (descontar)) ;
+    	venta.get(id).cantidad -= 1;
+    	venta.get(id).stock += 1;
+    	venta.get(id).calTotal();
+    	if (venta.get(id).cantidad == 0) {
+    		venta.remove(id);
+    	}
+    	
 		return "redirect:/"+"vender";
 	}
 	
 	@GetMapping("/aumentar/{id}")
-	String aumentar(@PathVariable("id") int id) {
-		System.out.println("-- Aumentar cantidad producto --");
-		
+	String aumentar(@PathVariable("id") int id, RedirectAttributes redirectAttrs) {
+		for (int x=0; x < venta.size(); x++) {
+	    	if (venta.get(x).id == id) {
+	    		if (venta.get(x).getStock()> 0 ) {
+		    		venta.get(x).stock -=1;
+		    	
+			    	double porcentaje = (venta.get(id).descuento * venta.get(id).pvp) / 100;
+			    	float pvp =(float) venta.get(id).pvp;
+			    	total = (float) (total + (pvp - porcentaje)) ;
+			    	venta.get(id).cantidad += 1;
+	    		}else {
+					redirectAttrs
+					.addFlashAttribute("mensaje", "No hay stock suficiente.")
+				    .addFlashAttribute("clase", "warning");
+					return "redirect:/"+"vender";	    			
+	    		}
+	    	}
+
+    	}
+    	venta.get(id).calTotal();
 		return "redirect:/"+"vender";
 	}
 }
