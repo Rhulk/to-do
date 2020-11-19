@@ -276,9 +276,10 @@ public class VenderController {
 	String aumentar(@PathVariable("id") int id, RedirectAttributes redirectAttrs) {
 		for (int x=0; x < venta.size(); x++) {
 	    	if (venta.get(x).id == id) {
-	    		if (venta.get(x).getStock()> 0 ) {
-		    		venta.get(x).stock -=1;
-		    	
+	    		if (venta.get(x).getStock()> 0 || venta.get(x).codProducto.equalsIgnoreCase("Manual")) {
+	    			if (!venta.get(x).codProducto.equalsIgnoreCase("Manual")) {
+	    				venta.get(x).stock -=1;
+	    			}
 			    	double porcentaje = (venta.get(id).descuento * venta.get(id).pvp) / 100;
 			    	float pvp =(float) venta.get(id).pvp;
 			    	total = (float) (total + (pvp - porcentaje)) ;
