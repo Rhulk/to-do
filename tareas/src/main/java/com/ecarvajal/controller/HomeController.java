@@ -34,6 +34,7 @@ import com.ecarvajal.model.Tarea;
 //import com.ecarvajal.model.Task;
 import com.ecarvajal.service.CrearFicherosExcel;
 import com.ecarvajal.service.HomeService;
+import com.ecarvajal.service.Intensidad;
 import com.ecarvajal.service.Listas;
 
 
@@ -148,6 +149,15 @@ public class HomeController {
 		}
 		return "detalle";
 	}	
+	
+	@GetMapping("/orange/entrenoTiempoIntensidad")
+	public String entrenoTiempoIntensidad() {
+		vistaIndex="orange";
+		Intensidad entreno = new Intensidad();
+		entreno.start(150);
+		
+		return "redirect:/"+vistaIndex;
+	}
 	
 	@GetMapping("/orange")
 	public String orange(Model vista) {
