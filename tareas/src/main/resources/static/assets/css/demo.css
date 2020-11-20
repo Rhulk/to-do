@@ -733,10 +733,10 @@ option:hover { color: black; background-color: transparent; }
     margin-right: 554px;
 }
 .alert-ok-warning {
-    color: #3dcc5b;
-    background-color: #fcf8e3;
+    color: #61340f;
+    background-color: #a79226;
     border-color: #faebcc;
-        padding: 9px;
+    padding: 9px;
     margin-bottom: 5px;
     border: 0px solid transparent;
     border-radius: 12px;
