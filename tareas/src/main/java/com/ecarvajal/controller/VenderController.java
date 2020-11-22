@@ -102,6 +102,11 @@ public class VenderController {
 		return "redirect:/"+"vender";
 	}
 	
+	@PostMapping("/limpiarNoti")
+	public String limpiarNoti() {
+		return "redirect:/"+"vender";
+	}
+	
 	@PostMapping(value = "/agregar")
 	public String agregarAlCarrito(@ModelAttribute Producto producto, BindingResult result, RedirectAttributes redirectAttrs) {
 		System.out.println(" -- Producto --"+producto.toString());
