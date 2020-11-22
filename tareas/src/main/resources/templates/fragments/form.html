@@ -6,12 +6,15 @@
 <body>
 <div th:fragment=caja>
 		<div class="add-producto">
-        <div th:classappend="'alert-ok-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}" th:text="${mensaje}">
+		<div class="form-group noti">
+        <div class="form-group noti-mensaje form-inline" th:classappend="'alert-ok-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}" th:text="${mensaje}">
         	<div> No sale </div>
-        </div><div th:classappend="'alert-ok-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}" >
+        </div>
+        <div class="noti-cerrar" th:classappend="'alert-ok-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}" >
         	<form  th:action="@{/limpiarCliente}" method="post">
     	    	<button type="submit" name="action" value="limpiarCliente"  class="btn btn-primary mb-3"><i class="fas fa-times-circle "></i> </button>
     	    </form>
+    	</div>
     	</div>
         	<form th:object="${producto}" th:action="@{/agregar}" method="post">
 	            <div class="form-group">

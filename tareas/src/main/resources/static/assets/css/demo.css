@@ -740,5 +740,19 @@ option:hover { color: black; background-color: transparent; }
     margin-bottom: 5px;
     border: 0px solid transparent;
     border-radius: 12px;
-    margin-right: 554px;
+  /*  margin-right: 554px;*/
+}
+.noti-mensaje{
+	padding-right: 33px;
+}
+.noti{
+	display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+   /* flex-flow: row wrap;*/
+    -ms-flex-align: center;
+  /*  align-items: center;*/
+}
+.noti-cerrar{
+	margin-left: -18px;
 }
