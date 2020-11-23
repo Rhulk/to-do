@@ -61,8 +61,6 @@ public class VenderController {
 	Cliente client = new Cliente();
 	Cliente pausa_client = new Cliente();
 	
-	String idcliente;
-	String pausa_idcliente;
 	
 	Ticket ticket = new Ticket();
 	Ticket pausa_ticket = new Ticket();
@@ -87,9 +85,65 @@ public class VenderController {
 			System.out.println(" >>> Objeto añadido: "+venta.get(i).toString());	
 		}
 		
+		
+		vista.addAttribute("pausaventa", pausa_venta);
 		vista.addAttribute("carrito", venta);
 		vista.addAttribute("total", total);
 		return "vender/venta";
+	}
+	
+	@RequestMapping(value="/pausarVenta")
+	public String pausarVenta() {
+		System.out.println("-- Pausada Venta --");
+		
+		if ( pausaVenta) {
+			client =pausa_client;
+			pausa_client = new Cliente();
+			clienteSelect = pausa_clienteSelect;
+			pausa_clienteSelect= false;
+			
+			nueva =pausa_nueva ;
+			pausa_nueva=true;
+			
+			postProductoTicke=pausa_postProductoTicke;
+			pausa_postProductoTicke=13;
+			
+			ticket=pausa_ticket ;
+			pausa_ticket.limpiar();
+			
+			total= pausa_total;
+			pausa_total =0;
+			
+			venta= pausa_venta ;
+			pausa_venta.clear();			
+			
+			pausaVenta=false;
+		}else {
+			
+			pausa_client= client;
+			client = new Cliente();
+			pausa_clienteSelect = clienteSelect;
+			clienteSelect= false;
+			
+			pausa_nueva = nueva;
+			nueva=true;
+			
+			pausa_postProductoTicke= postProductoTicke;
+			postProductoTicke=13;
+			
+			pausa_ticket= ticket;
+			ticket.limpiar();
+			
+			pausa_total= total;
+			total =0;
+			
+			pausa_venta = venta;
+			venta.clear();
+			pausaVenta=true;
+		}
+		
+		
+		return "redirect:/"+"vender";
 	}
 	
 	@PostMapping(value ="/agregarCliente")
@@ -231,15 +285,7 @@ public class VenderController {
 		return "redirect:/"+"vender";
 	}
 	
-	@RequestMapping(value="/pausarVenta")
-	public String pausarVenta() {
-		System.out.println("-- Pausada Venta --");
-		pausaVenta = true;
-		
-		
-		
-		return "redirect:/"+"vender";
-	}
+
 	
 	@RequestMapping(value="/tramitarVenta")
 	public String finalizarVenta( @RequestParam String action) {
