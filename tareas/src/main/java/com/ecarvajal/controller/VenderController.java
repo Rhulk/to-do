@@ -41,20 +41,31 @@ public class VenderController {
 	ODTProjectWithVelocity xxx = new ODTProjectWithVelocity();
 	ODTNativeLineBreakAndTabWithFreemarker simple = new ODTNativeLineBreakAndTabWithFreemarker();
 	
+	public boolean pausaVenta=false;
+	
 	public float total=0;
+	public float pausa_total=0;
 	public int postProductoTicke=13;
+	public int pausa_postProductoTicke=13;
 	public boolean nueva=true;
+	public boolean pausa_nueva=true;
 	public boolean clienteSelect=false;
+	public boolean pausa_clienteSelect=false;
 	public int codCompra=1; // proximamente se recuperar de la tabla ventas.
 	
 	List<Producto> productos = new LinkedList<Producto>();
 	List<ProductoParaVender> venta = new LinkedList<ProductoParaVender>(); // nueva venta.
+	List<ProductoParaVender> pausa_venta = new LinkedList<ProductoParaVender>(); // venta en espera
 	List<Cliente> clientes = new LinkedList<Cliente>();
 	
 	Cliente client = new Cliente();
+	Cliente pausa_client = new Cliente();
+	
 	String idcliente;
+	String pausa_idcliente;
 	
 	Ticket ticket = new Ticket();
+	Ticket pausa_ticket = new Ticket();
 	
 	@GetMapping("/vender")
 	public String inicarVenta(Model vista) {
@@ -141,7 +152,7 @@ public class VenderController {
 							add=false;
 							
 							redirectAttrs
-							.addFlashAttribute("mensaje", "No stock suficiente.")
+							.addFlashAttribute("mensaje", "No hay stock suficiente.")
 						    .addFlashAttribute("clase", "warning");
 							return "redirect:/"+"vender";						
 						}
@@ -215,6 +226,16 @@ public class VenderController {
 		    .addFlashAttribute("clase", "warning");
 			return "redirect:/"+"vender";
 		}
+		
+		
+		return "redirect:/"+"vender";
+	}
+	
+	@RequestMapping(value="/pausarVenta")
+	public String pausarVenta() {
+		System.out.println("-- Pausada Venta --");
+		pausaVenta = true;
+		
 		
 		
 		return "redirect:/"+"vender";
