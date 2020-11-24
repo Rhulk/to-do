@@ -85,8 +85,12 @@ public class VenderController {
 			System.out.println(" >>> Objeto añadido: "+venta.get(i).toString());	
 		}
 		
+		if (pausaVenta) {
+			vista.addAttribute("pausaventa", true);
+		}else {
+			vista.addAttribute("pausaventa", false);
+		}
 		
-		vista.addAttribute("pausaventa", pausa_venta);
 		vista.addAttribute("carrito", venta);
 		vista.addAttribute("total", total);
 		return "vender/venta";
@@ -115,33 +119,35 @@ public class VenderController {
 			pausa_total =0;
 			
 			venta= pausa_venta ;
-			pausa_venta.clear();			
+			pausa_venta  = new LinkedList<ProductoParaVender>();			
 			
 			pausaVenta=false;
 		}else {
-			
-			pausa_client= client;
-			client = new Cliente();
-			pausa_clienteSelect = clienteSelect;
-			clienteSelect= false;
-			
-			pausa_nueva = nueva;
-			nueva=true;
-			
-			pausa_postProductoTicke= postProductoTicke;
-			postProductoTicke=13;
-			
-			pausa_ticket= ticket;
-			ticket.limpiar();
-			
-			pausa_total= total;
-			total =0;
-			
-			pausa_venta = venta;
-			venta.clear();
-			pausaVenta=true;
+			if ( venta.size() > 0 || client.nombre != null ) {
+				System.out.println( " --- Pausamos venta ---"+ client.nombre+ " - "+venta.size());
+				pausa_client= client;
+				client = new Cliente();
+				pausa_clienteSelect = clienteSelect;
+				clienteSelect= false;
+				
+				pausa_nueva = nueva;
+				nueva=true;
+				
+				pausa_postProductoTicke= postProductoTicke;
+				postProductoTicke=13;
+				
+				pausa_ticket= ticket;
+				ticket.limpiar();
+				
+				pausa_total= total;
+				total =0;
+				
+				pausa_venta = venta;
+				venta = new LinkedList<ProductoParaVender>();
+				pausaVenta=true;
+			}
 		}
-		
+		System.out.println(" Cambio venta: "+pausaVenta);
 		
 		return "redirect:/"+"vender";
 	}
