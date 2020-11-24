@@ -32,8 +32,10 @@
 
         <div class="fresh-table full-color-orange">
         <div class="fresh-table full-color-orange margin_5"> Busqueda de articulos
-        	<a th:if="${cliente.nombre} != null" class="change-refres-inicial" th:href="@{/pausarVenta  }"><i class="fas fa-cash-register fa-2x" aria-hidden="true"> Pausar Venta</i>  </a>
-        	<a th:if="${cliente.nombre} == null" class="change-refres-inicial" th:href="@{/pausarVenta  }"><i class="fas fa-cash-register fa-2x" aria-hidden="true"> Recuperar Venta</i>  </a>
+        <div th:if="${carrito}">
+        	<a th:if="${pausaventa}"  class="change-refres-inicial" th:href="@{/pausarVenta  }"><i class="fas fa-cash-register fa-2x" aria-hidden="true"> Recuperar Venta</i>  </a>
+        	<a th:unless="${pausaventa}"  class="change-refres-inicial" th:href="@{/pausarVenta  }"><i class="fas fa-cash-register fa-2x" aria-hidden="true"> Pausar Venta</i>  </a>
+       	</div>
         </div>
         <!--  formulario para añadir productos -->
 		<div th:insert="fragments/form :: caja"> </div>
