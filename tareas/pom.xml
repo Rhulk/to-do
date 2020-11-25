@@ -28,8 +28,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
-
+		
+		
+<!-- DDBB -->
+         <dependency>
+             <groupId>org.liquibase</groupId>
+             <artifactId>liquibase-core</artifactId>
+         </dependency>
 	
 
 		<dependency>
