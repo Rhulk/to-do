@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ecarvajal.model.Cliente;
 import com.ecarvajal.model.Mantenimiento;
+import com.ecarvajal.service.ClienteService;
 import com.ecarvajal.service.EmailSenderService;
 import com.ecarvajal.service.Emails;
 import com.ecarvajal.service.Listas;
@@ -48,6 +49,8 @@ public class ClientesController {
 	List<Mantenimiento> mantB = new LinkedList<Mantenimiento>();
 	
 	SimpleDateFormat formatear = new SimpleDateFormat("dd-mm-yyyy");
+	
+	ClienteService clienteService = new ClienteService();
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -74,8 +77,10 @@ public class ClientesController {
 	@RequestMapping(value="/alta_cliente")
 	public String alta(@ModelAttribute("alta_cliente") Cliente cliente) {
 		System.out.println(" -- Alta cliente -- Controller --");
-		cliente.setId(proximoId());
+	//	cliente.setId(proximoId());
 		clientes.add(cliente);
+		System.out.println(" Cliente: "+cliente.toString());
+		clienteService.guardar(cliente);
 		return "redirect:/"+"listclientes";
 	}
 	
