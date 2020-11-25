@@ -43,7 +43,7 @@
      </changeSet>
           <changeSet author="eCarvajal" id="2">
          <insert tableName="cliente">
-             <column name="id" valueNumeric="1"/>
+             
              <column name="nombre" value="Tom"/>
              <column name="direccion" value="Lepanto 3"/>
              <column name="apellido1" value="Carvajal"/>
@@ -57,11 +57,11 @@
      
           <changeSet author="eCarvajal" id="3">
          <preConditions>
-             <dbms type="sql"/>
+             <dbms  type="mssql"/>
          </preConditions>
          <update tableName="cliente">
-             <column name="address" value="India"/>
-             <where>name = 'Tom'</where>
+             <column name="direccion" value="India"/>
+             <where>nombre = 'Tom'</where>
          </update>
      </changeSet>
      
