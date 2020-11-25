@@ -29,10 +29,9 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-<!--  		para que no me pida de la BBDD.
-=======
+
 	
->>>>>>> branch 'Pestaña' of https://github.com/Rhulk/to-do.git
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -43,8 +42,7 @@
 			<artifactId>mssql-jdbc</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-<<<<<<< HEAD
--->
+
 
 
 		
