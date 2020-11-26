@@ -22,6 +22,23 @@ public class Cliente {
 	public String direccion;
 	public int telefono;
 	
+	public int id_bike;
+	public int id_venta;
+	
+
+	
+	public int getId_bike() {
+		return id_bike;
+	}
+	public void setId_bike(int id_bike) {
+		this.id_bike = id_bike;
+	}
+	public int getId_venta() {
+		return id_venta;
+	}
+	public void setId_venta(int id_venta) {
+		this.id_venta = id_venta;
+	}
 	public String getMunicipio() {
 		return municipio;
 	}
