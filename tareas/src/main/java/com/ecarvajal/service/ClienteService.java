@@ -14,8 +14,13 @@ public class ClienteService implements IClienteService{
 	private ClienteRepository repoClient;
 	
 	@Override
-	public void guardar(Cliente cliente) {
-		repoClient.save(cliente);
+	public boolean  guardar(Cliente cliente) {
+        try {
+        	repoClient.save(cliente);
+            return true;
+       } catch (Exception e) {
+            return false;
+       }
 	}
 
 }

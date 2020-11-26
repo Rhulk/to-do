@@ -50,6 +50,7 @@ public class ClientesController {
 	
 	SimpleDateFormat formatear = new SimpleDateFormat("dd-mm-yyyy");
 	
+	@Autowired
 	ClienteService clienteService = new ClienteService();
 	
 	@InitBinder
@@ -78,9 +79,12 @@ public class ClientesController {
 	public String alta(@ModelAttribute("alta_cliente") Cliente cliente) {
 		System.out.println(" -- Alta cliente -- Controller --");
 	//	cliente.setId(proximoId());
-		clientes.add(cliente);
-		System.out.println(" Cliente: "+cliente.toString());
-		clienteService.guardar(cliente);
+		if(clienteService.guardar(cliente)) {
+			System.out.println(" Cliente Grabado en la BBDD");
+		}{
+			System.out.println(" No se grabo el cliente en la BBDD");
+		}
+		
 		return "redirect:/"+"listclientes";
 	}
 	
