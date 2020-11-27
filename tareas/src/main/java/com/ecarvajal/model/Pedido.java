@@ -2,7 +2,7 @@ package com.ecarvajal.model;
 
 import java.util.Date;
 
-public class Pedidos {
+public class Pedido {
 
 	public int id;
 	public int id_componente;
