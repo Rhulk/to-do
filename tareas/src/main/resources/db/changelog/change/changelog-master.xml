@@ -8,5 +8,6 @@
 
      <include file="/db/changelog/change/cliente-changelog-1.xml"/>
      <include file="/db/changelog/change/tarea-carga-basica.xml"/>
+     <include file="/db/changelog/change/producto-carga-basica.xml"/>
 
  </databaseChangeLog>

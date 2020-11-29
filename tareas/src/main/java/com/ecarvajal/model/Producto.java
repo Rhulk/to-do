@@ -1,12 +1,24 @@
 package com.ecarvajal.model;
 
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="producto")
 public class Producto {
 	
+    
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)	
 	public int id;
-	public String codProducto;
+	public String codproducto;
 	public String nombre;
 	public String categoria;
-	public String subCategoria;
+	public String subcategoria;
 	public String marca;
 	public String modelo;
 	public double precio;
@@ -18,8 +30,8 @@ public class Producto {
 	
 	@Override
 	public String toString() {
-		return "Producto [id=" + id + ", codProducto=" + codProducto + ", nombre=" + nombre + ", categoria=" + categoria
-				+ ", subCategoria=" + subCategoria + ", marca=" + marca + ", modelo=" + modelo + ", precio=" + precio
+		return "Producto [id=" + id + ", codProducto=" + codproducto + ", nombre=" + nombre + ", categoria=" + categoria
+				+ ", subcategoria=" + subcategoria + ", marca=" + marca + ", modelo=" + modelo + ", precio=" + precio
 				+ ", pvp=" + pvp + ", publicado=" + publicado + ", stock=" + stock + "]";
 	}
 	
@@ -30,10 +42,10 @@ public class Producto {
 		this.id = id;
 	}
 	public String getCodProducto() {
-		return codProducto;
+		return codproducto;
 	}
 	public void setCodProducto(String codProducto) {
-		this.codProducto = codProducto;
+		this.codproducto = codProducto;
 	}
 	public String getNombre() {
 		return nombre;
@@ -48,10 +60,10 @@ public class Producto {
 		this.categoria = categoria;
 	}
 	public String getSubCategoria() {
-		return subCategoria;
+		return subcategoria;
 	}
-	public void setSubCategoria(String subCategoria) {
-		this.subCategoria = subCategoria;
+	public void setSubCategoria(String subcategoria) {
+		this.subcategoria = subcategoria;
 	}
 	public double getPrecio() {
 		return precio;

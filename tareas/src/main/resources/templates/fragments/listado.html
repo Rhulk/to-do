@@ -33,13 +33,14 @@
 					<td >
 						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.cliente}"> </a>
 					</td>
+					  
 					<td >
 						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${#calendars.format(tarea.fAlta,' dd-MM-yyyy')}"> </a>
 					</th>
 					<td >
 						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${#calendars.format(tarea.fAlert,' dd-MM-yyyy')}"> </a>
-						
 					</th>
+					
 					<td >
 						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.descripcion}"> </a>
 					</td>
@@ -119,9 +120,11 @@
 													<option th:value="Durango"></option>
 													<option th:value="Torrelavega"></option>
 												</datalist>
+												 
 							 					<div class="input-group date">
 													<input type="text" class="form-control" id="fecha" th:placeholder="${tarea.fAlert}" th:field="*{fAlert}" th:text="${tarea.fAlert}">
-												</div>	 
+												</div>
+												 	 
 											</div>
 											<input type="text" class="form-control space" name="descripcion" th:placeholder="${tarea.descripcion}" th:value="${tarea.descripcion}" th:text="${tarea.descripcion}" th:field="*{descripcion}">
 											<br>
@@ -198,12 +201,14 @@
 					<td >
 						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.cliente}"> </a>
 					</td>
-					<td >
+	 				<td >
 						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${#calendars.format(activa.fAlta,' dd-MM-yyyy')}"> </a>
 					</th>
 					<td >
 						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${#calendars.format(activa.fAlert,' dd-MM-yyyy')}"> </a>
 					</th>
+					
+	
 					<td>
 						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.descripcion}"> </a>
 					</td>
@@ -280,9 +285,11 @@
 													<option th:value="Durango"></option>
 													<option th:value="Torrelavega"></option>
 												</datalist>
+											
 							 					<div class="input-group date">
 													<input type="text" class="form-control" id="fecha" th:placeholder="${activa.fAlert}" th:field="*{fAlert}" th:text="${activa.fAlert}">
 												</div>	 
+											  
 											</div>
 											<input type="text" class="form-control space" name="descripcion" th:placeholder="${activa.descripcion}" th:value="${activa.descripcion}" th:text="${activa.descripcion}" th:field="*{descripcion}">
 											<br>
@@ -628,9 +635,11 @@
 													<option th:value="Durango"></option>
 													<option th:value="Torrelavega"></option>
 												</datalist>
+												
 							 					<div class="input-group date">
 													<input type="text" class="form-control" id="fecha" th:placeholder="${activa.fAlert}" th:field="*{fAlert}" th:text="${activa.fAlert}">
-												</div>	 
+												</div>	
+												 
 											</div>
 											<input type="text" class="form-control space" name="descripcion" th:placeholder="${activa.descripcion}" th:value="${activa.descripcion}" th:text="${activa.descripcion}" th:field="*{descripcion}">
 											<br>

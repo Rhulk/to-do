@@ -249,25 +249,25 @@ public class VenderController {
 			}
 		}
 		
-		if (producto.codProducto.indexOf("+") != -1) {
+		if (producto.codproducto.indexOf("+") != -1) {
 			System.out.println(" Añadimos el objeto manualmente ");
-			System.out.println(" -- posición blanco "+producto.codProducto.indexOf(" "));
+			System.out.println(" -- posición blanco "+producto.codproducto.indexOf(" "));
 			int postBlanc;
 			
-			if (producto.codProducto.indexOf(" ") == -1) {
-				postBlanc = producto.codProducto.length();
+			if (producto.codproducto.indexOf(" ") == -1) {
+				postBlanc = producto.codproducto.length();
 			}else {
-				postBlanc = producto.codProducto.indexOf(" ");
+				postBlanc = producto.codproducto.indexOf(" ");
 			}
 			addProducto.setCantidad(1);
-			addProducto.setNombre(producto.codProducto.substring(postBlanc));
+			addProducto.setNombre(producto.codproducto.substring(postBlanc));
 			addProducto.setCodProducto("Manual");
-			addProducto.setPvp(Integer.parseInt( producto.codProducto.substring(producto.codProducto.indexOf("+"), postBlanc ) ));
+			addProducto.setPvp(Integer.parseInt( producto.codproducto.substring(producto.codproducto.indexOf("+"), postBlanc ) ));
 			addProducto.setDescuento(0);
 			addProducto.setTotal(addProducto.calTotal());
 			venta.add(addProducto);
 			total += addProducto.getTotal(); // total de la venta	
-			ticket.generar(addProducto.codProducto, 
+			ticket.generar(addProducto.codproducto, 
 					addProducto.nombre, "1", addProducto.descuento,
 					0, postProductoTicke,nueva);
 			postProductoTicke++;
@@ -354,8 +354,8 @@ public class VenderController {
 	String aumentar(@PathVariable("id") int id, RedirectAttributes redirectAttrs) {
 		for (int x=0; x < venta.size(); x++) {
 	    	if (venta.get(x).id == id) {
-	    		if (venta.get(x).getStock()> 0 || venta.get(x).codProducto.equalsIgnoreCase("Manual")) {
-	    			if (!venta.get(x).codProducto.equalsIgnoreCase("Manual")) {
+	    		if (venta.get(x).getStock()> 0 || venta.get(x).codproducto.equalsIgnoreCase("Manual")) {
+	    			if (!venta.get(x).codproducto.equalsIgnoreCase("Manual")) {
 	    				venta.get(x).stock -=1;
 	    			}
 			    	double porcentaje = (venta.get(id).descuento * venta.get(id).pvp) / 100;

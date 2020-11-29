@@ -7,63 +7,66 @@
      http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
      <changeSet author="rhulk" id="1">
-         <createTable tableName="tarea">
+         <createTable tableName="producto">
              <column autoIncrement="true" name="id" type="INT">
                  <constraints primaryKey="true"/>
              </column>
-             <column name="tarea" type="VARCHAR(255)">
+             <column name="nombre" type="VARCHAR(255)">
                  <constraints nullable="false"/>
              </column>
-             <column name="prioridad" type="VARCHAR(255)">
+             <column name="categoria" type="VARCHAR(255)">
                  <constraints nullable="false"/>
              </column>
-             <column name="cliente" type="VARCHAR(255)">
+             <column name="subCategoria" type="VARCHAR(255)">
                  <constraints nullable="false"/>
              </column>
-             <column name="Descripcion" type="VARCHAR(255)">
+             <column name="codProducto" type="VARCHAR(255)">
                  <constraints nullable="false"/>
              </column>
-             <column name="status" type="VARCHAR(255)">
+             <column name="descuento" type="INT">
+                 <constraints nullable="false"/>
+             </column>
+             <column name="marca" type="VARCHAR(255)">
                  <constraints nullable="false"/>
              </column>             
-             <column name="municipio" type="VARCHAR(255)">
+             <column name="modelo" type="VARCHAR(255)">
                  <constraints nullable="false"/>
              </column>             
-              <column name="solucion" type="VARCHAR(255)">
+              <column name="publicado" type="INT">
                  <constraints nullable="false"/>
              </column>            
-             <column name="fAlta" type="date">
+             <column name="pvp" type="INT">
                  <constraints nullable="false"/>
              </column>
-             <column name="fAlert" type="date">
+             <column name="stock" type="INT">
+                 <constraints nullable="false"/>
+             </column>   
+             
+             <column name="precio" type="INT">
                  <constraints nullable="false"/>
              </column>                
              
          </createTable>
          <rollback>
-             <dropTable tableName="tarea"/>
+             <dropTable tableName="producto"/>
          </rollback>
      </changeSet>
-      <changeSet author="rhulk" id="3">
-         <insert tableName="tarea">
+      <changeSet author="rhulk" id="2">
+         <insert tableName="producto">
              
-             <column name="tarea" value="Tarea_1"/>
-             <column name="prioridad" value="Alta"/>
-             <column name="cliente" value="Durango"/>
-             <column name="Descripcion" value="Descripción de la tarea."/>
-             <column name="municipio" value="Durango"/>
-             <column name="status" value="Activo"/>
-             <column name="solucion" value="Revisión general realizada."/>
-             <column name="fAlta" value="26/11/2020"/>
-             <column name="fAlert" value="27/11/2020"/>
+             <column name="nombre" value="nom_producto"/>
+             <column name="categoria" value="categoria"/>
+             <column name="codProducto" value="codProducto"/>
+             <column name="descuento" value="10"/>
+           
+             <column name="marca" value="marca"/>
+             <column name="modelo" value="modelo"/>
+             <column name="precio" value="23"/>
+             <column name="publicado" value="1"/>
+             <column name="pvp" value="20"/>
+             <column name="stock" value="4"/>
+             <column name="subCategoria" value="subCategoria"/>
          </insert>
      </changeSet>
-     
-
-	
-	
-     
-
-     
-     
+  
  </databaseChangeLog>

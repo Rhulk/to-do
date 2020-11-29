@@ -36,14 +36,14 @@ import com.ecarvajal.service.CrearFicherosExcel;
 import com.ecarvajal.service.HomeService;
 import com.ecarvajal.service.Intensidad;
 import com.ecarvajal.service.Listas;
-
-
-
+import com.ecarvajal.service.TareaService;
 
 @Controller
 public class HomeController {
 	SimpleDateFormat formatear = new SimpleDateFormat("dd-mm-yyyy");
-
+	
+	@Autowired
+	private TareaService tareaService = new TareaService();
 		
 	List<Tarea> listaActiva = new LinkedList<Tarea>();
 	List<Tarea> listaActivaB = new LinkedList<Tarea>();
@@ -278,8 +278,23 @@ public class HomeController {
 	@RequestMapping(value="/alta")
 	public String alta(@ModelAttribute("alta") Tarea tarea //, @ModelAttribute("registro") Registro registro  // no hace falta.
 			, @RequestParam String action ) {
+		System.out.println(" Tarea a Guardar ... "+tarea.toString());
+		tarea.setCliente("kike");
+		tarea.setSolucion("Sin solucion");
+		tarea.setStatus("Activa");
+		tarea.setMunicipio("Guisando");
+		try {
+			tarea.setfAlta(formatear.parse("31-07-2020"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-		
+		if (tareaService.guardar(tarea)) {
+			System.out.println(" -- Tarea Guardada en BBDD --");
+		}else {
+			System.out.println(" -- Tarea no Guardada en BBDD");
+		}
 		tarea.setId(proximoId());
 		tarea.setfAlta(new Date());
 		if (action.equals("en espera"))	{  
@@ -342,8 +357,8 @@ public class HomeController {
 					listaEspera.remove(i); // borro la tarea despues de crear el nuevo registro para no perder la referencia.
 
 					System.out.println(" - | lista de registros | - "+registros.toString());				
-					System.out.println(" - | lista en espera | - "+listaEspera.toString());
-					System.out.println(" - | lista activo | - "+listaActiva.toString());
+					System.out.println(" - | lista en espera 	| - "+listaEspera.toString());
+					System.out.println(" - | lista activo 		| - "+listaActiva.toString());
 					return "redirect:/"+vistaIndex;
 				}
 			}

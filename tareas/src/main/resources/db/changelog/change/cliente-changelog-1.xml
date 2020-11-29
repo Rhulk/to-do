@@ -6,7 +6,7 @@
          xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
      http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-     <changeSet author="eCarvajal" id="1">
+     <changeSet author="rhulk" id="1">
          <createTable tableName="cliente">
              <column autoIncrement="true" name="id" type="INT">
                  <constraints primaryKey="true"/>
@@ -41,7 +41,7 @@
              <dropTable tableName="cliente"/>
          </rollback>
      </changeSet>
-          <changeSet author="eCarvajal" id="2">
+          <changeSet author="rhulk" id="2">
          <insert tableName="cliente">
              
              <column name="nombre" value="Tom"/>
@@ -55,7 +55,7 @@
          </insert>
      </changeSet>
      
-          <changeSet author="eCarvajal" id="3">
+          <changeSet author="rhulk" id="3">
          <preConditions>
              <dbms  type="mssql"/>
          </preConditions>
