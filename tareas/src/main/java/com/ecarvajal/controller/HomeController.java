@@ -284,7 +284,7 @@ public class HomeController {
 		tarea.setStatus("Activa");
 		tarea.setMunicipio("Guisando");
 		try {
-			tarea.setfAlta(formatear.parse("31-07-2020"));
+			tarea.setf_alta(formatear.parse("31-07-2020"));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -296,7 +296,7 @@ public class HomeController {
 			System.out.println(" -- Tarea no Guardada en BBDD");
 		}
 		tarea.setId(proximoId());
-		tarea.setfAlta(new Date());
+		tarea.setf_alta(new Date());
 		if (action.equals("en espera"))	{  
 		
 			System.out.println("-- Alta de tarea en espera: "+tarea.toString());
@@ -437,8 +437,8 @@ public class HomeController {
 				listaEspera.get(i).setStatus("Editado");
 				listaEspera.get(i).setCliente(tarea.getCliente());
 				listaEspera.get(i).setDescripcion(tarea.getDescripcion());
-				listaEspera.get(i).setfAlert(tarea.getfAlert());
-				listaEspera.get(i).setfAlta(tarea.getfAlta());
+				listaEspera.get(i).setf_alert(tarea.getf_alert());
+				listaEspera.get(i).setf_alta(tarea.getf_alta());
 				listaEspera.get(i).setPrioridad(tarea.getPrioridad());
 				listaEspera.get(i).setSolucion(tarea.getSolucion());
 				listaEspera.get(i).setTarea(tarea.getTarea());
@@ -454,8 +454,8 @@ public class HomeController {
 				listaActiva.get(i).setStatus("Editado");
 				listaActiva.get(i).setCliente(tarea.getCliente());
 				listaActiva.get(i).setDescripcion(tarea.getDescripcion());
-				listaActiva.get(i).setfAlert(tarea.getfAlert());
-				listaActiva.get(i).setfAlta(tarea.getfAlta());
+				listaActiva.get(i).setf_alert(tarea.getf_alert());
+				listaActiva.get(i).setf_alta(tarea.getf_alta());
 				listaActiva.get(i).setPrioridad(tarea.getPrioridad());
 				listaActiva.get(i).setSolucion(tarea.getSolucion());
 				listaActiva.get(i).setTarea(tarea.getTarea());
@@ -518,8 +518,8 @@ public class HomeController {
 			tarea1.setTarea("Soporte");
 			tarea1.setPrioridad("Alta");
 			tarea1.setCliente("Lorca");
-			tarea1.setfAlta(formatear.parse("31-07-2020"));
-			tarea1.setfAlert(formatear.parse("23-08-2020"));
+			tarea1.setf_alta(formatear.parse("31-07-2020"));
+			tarea1.setf_alert(formatear.parse("23-08-2020"));
 			tarea1.setStatus("en espera");
 			tarea1.setDescripcion("Cambio de servidor");
 			
@@ -528,8 +528,8 @@ public class HomeController {
 			tarea2.setTarea("Desarrollo");
 			tarea2.setPrioridad("Alta");
 			tarea2.setCliente("kike");
-			tarea2.setfAlta(formatear.parse("31-07-2020"));
-			tarea2.setfAlert(formatear.parse("23-08-2020"));
+			tarea2.setf_alta(formatear.parse("31-07-2020"));
+			tarea2.setf_alert(formatear.parse("23-08-2020"));
 			tarea2.setStatus("Activo");
 			tarea2.setDescripcion("Crear app web to-do");
 			
@@ -539,8 +539,8 @@ public class HomeController {
 			tarea3.setTarea("Desarrollo");
 			tarea3.setPrioridad("Alta");
 			tarea3.setCliente("kike");
-			tarea3.setfAlta(formatear.parse("31-07-2020"));
-			tarea3.setfAlert(formatear.parse("23-08-2020"));
+			tarea3.setf_alta(formatear.parse("31-07-2020"));
+			tarea3.setf_alert(formatear.parse("23-08-2020"));
 			tarea3.setStatus("en espera");
 			tarea3.setDescripcion("Crear app web to-do");
 			
@@ -591,8 +591,8 @@ public class HomeController {
 			tarea1.setTarea("Soporte");
 			tarea1.setPrioridad("Alta");
 			tarea1.setCliente("Lorca");
-			tarea1.setfAlta(formatear.parse("31-07-2020"));
-			tarea1.setfAlert(formatear.parse("23-08-2020"));
+			tarea1.setf_alta(formatear.parse("31-07-2020"));
+			tarea1.setf_alert(formatear.parse("23-08-2020"));
 			tarea1.setStatus("en espera");
 			tarea1.setDescripcion("Cambio de servidor");
 			
@@ -601,8 +601,8 @@ public class HomeController {
 			tarea2.setTarea("Desarrollo");
 			tarea2.setPrioridad("Alta");
 			tarea2.setCliente("kike");
-			tarea2.setfAlta(formatear.parse("31-07-2020"));
-			tarea2.setfAlert(formatear.parse("23-08-2020"));
+			tarea2.setf_alta(formatear.parse("31-07-2020"));
+			tarea2.setf_alert(formatear.parse("23-08-2020"));
 			tarea2.setStatus("Activo");
 			tarea2.setDescripcion("Crear app web to-do");
 			
@@ -612,8 +612,8 @@ public class HomeController {
 			tarea3.setTarea("Desarrollo");
 			tarea3.setPrioridad("Alta");
 			tarea3.setCliente("kike");
-			tarea3.setfAlta(formatear.parse("31-07-2020"));
-			tarea3.setfAlert(formatear.parse("23-08-2020"));
+			tarea3.setf_alta(formatear.parse("31-07-2020"));
+			tarea3.setf_alert(formatear.parse("23-08-2020"));
 			tarea3.setStatus("en espera");
 			tarea3.setDescripcion("Crear app web to-do");
 			
@@ -657,8 +657,8 @@ public class HomeController {
 			tarea1.setTarea("Soporte");
 			tarea1.setPrioridad("Alta");
 			tarea1.setCliente("Lorca");
-			tarea1.setfAlta(formatear.parse("31-07-2020"));
-			tarea1.setfAlert(formatear.parse("23-08-2020"));
+			tarea1.setf_alta(formatear.parse("31-07-2020"));
+			tarea1.setf_alert(formatear.parse("23-08-2020"));
 			tarea1.setStatus("en espera");
 			tarea1.setDescripcion("Cambio de servidor");
 			
@@ -667,8 +667,8 @@ public class HomeController {
 			tarea2.setTarea("Desarrollo");
 			tarea2.setPrioridad("Alta");
 			tarea2.setCliente("kike");
-			tarea2.setfAlta(formatear.parse("31-07-2020"));
-			tarea2.setfAlert(formatear.parse("23-08-2020"));
+			tarea2.setf_alta(formatear.parse("31-07-2020"));
+			tarea2.setf_alert(formatear.parse("23-08-2020"));
 			tarea2.setStatus("Activo");
 			tarea2.setDescripcion("Crear app web to-do");
 			
@@ -678,8 +678,8 @@ public class HomeController {
 			tarea3.setTarea("Desarrollo");
 			tarea3.setPrioridad("Alta");
 			tarea3.setCliente("kike");
-			tarea3.setfAlta(formatear.parse("31-07-2020"));
-			tarea3.setfAlert(formatear.parse("23-08-2020"));
+			tarea3.setf_alta(formatear.parse("31-07-2020"));
+			tarea3.setf_alert(formatear.parse("23-08-2020"));
 			tarea3.setStatus("en espera");
 			tarea3.setDescripcion("Crear app web to-do");
 			

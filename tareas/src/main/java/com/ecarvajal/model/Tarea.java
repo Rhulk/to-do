@@ -20,9 +20,9 @@ public class Tarea {
 		private String prioridad;
 		private String cliente;
 		
-		private Date fAlta;
-		private Date fAlert;
-		private String Descripcion;
+		private Date f_alta;
+		private Date f_alert;
+		private String descripcion;
 		private String status;
 		private String solucion;
 		
@@ -60,28 +60,28 @@ public class Tarea {
 			this.cliente = cliente;
 		}
 
-		public Date getfAlta() {
-			return fAlta;
+		public Date getf_alta() {
+			return f_alta;
 		}
 
-		public void setfAlta(Date fAlta) {
-			this.fAlta = fAlta;
+		public void setf_alta(Date f_alta) {
+			this.f_alta = f_alta;
 		}
 
-		public Date getfAlert() {
-			return fAlert;
+		public Date getf_alert() {
+			return f_alert;
 		}
 
-		public void setfAlert(Date fAlert) {
-			this.fAlert = fAlert;
+		public void setf_alert(Date f_alert) {
+			this.f_alert = f_alert;
 		}
 
 		public String getDescripcion() {
-			return Descripcion;
+			return descripcion;
 		}
 
 		public void setDescripcion(String descripcion) {
-			Descripcion = descripcion;
+			this.descripcion = descripcion;
 		}
 
 		public String getStatus() {
@@ -111,7 +111,7 @@ public class Tarea {
 		@Override
 		public String toString() {
 			return "Tarea [id=" + id + ", tarea=" + tarea + ", prioridad=" + prioridad + ", cliente=" + cliente
-					+ ", fAlta=" + fAlta + ", fAlert=" + fAlert + ", Descripcion=" + Descripcion + ", status=" + status
+					+ ", f_alta=" + f_alta + ", f_alert=" + f_alert + ", Descripcion=" + descripcion + ", status=" + status
 					+ ", solucion=" + solucion + ", municipio=" + municipio + "]";
 		}
 
