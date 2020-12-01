@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ecarvajal.model.Registro;
 import com.ecarvajal.model.Tarea;
+import com.ecarvajal.service.ClienteService;
 //import com.ecarvajal.model.Task;
 import com.ecarvajal.service.CrearFicherosExcel;
 import com.ecarvajal.service.HomeService;
@@ -44,13 +45,16 @@ public class HomeController {
 	
 	@Autowired
 	private TareaService tareaService = new TareaService();
+	
+	@Autowired
+	private ClienteService clienteService;
 		
 	List<Tarea> listaActiva = new LinkedList<Tarea>();
 	List<Tarea> listaActivaB = new LinkedList<Tarea>();
 	List<Tarea> listaEspera = new LinkedList<Tarea>();
 	List<Tarea> listaEsperaB = new LinkedList<Tarea>();
 	
-	List<Listas> clientes = new LinkedList<Listas>();
+	
 	
 	List<Registro> registros = new LinkedList<Registro>();
 //	List<Registro> rHistorico = new LinkedList<Registro>();
@@ -94,7 +98,7 @@ public class HomeController {
 		model.addAttribute("edit", new Tarea());
 		model.addAttribute("view", new Tarea());
 		model.addAttribute("registro", new Registro());
-		model.addAttribute("clientes", list.getClientes());
+		model.addAttribute("clientes", clienteService.buscarTodos());
 	//	model.addAttribute("reqTask", new Task());
 	//	System.out.println(" -- setGenericos -- Se declaran variables para la vista");
 	}

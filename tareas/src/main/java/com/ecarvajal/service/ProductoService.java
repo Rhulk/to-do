@@ -11,7 +11,7 @@ import com.ecarvajal.service.impl.IProductoService;
 public class ProductoService implements IProductoService {
 
 	@Autowired
-	public ProductoRepository repo;
+	private ProductoRepository repo;
 	
 	@Override
 	public boolean guardar(Producto producto) {
