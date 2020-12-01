@@ -2,8 +2,17 @@ package com.ecarvajal.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="registro")
 public class Registro {
-	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)		
 	private int id;
 	private int id_todo;
 	private Date f_inicio;
