@@ -11,7 +11,7 @@ import com.ecarvajal.service.impl.IRegistroService;
 public class RegistroService implements IRegistroService {
 	
 	@Autowired
-	public RegistroRepository repo;
+	private RegistroRepository repo;
 
 	@Override
 	public boolean guardar(Registro registro) {
