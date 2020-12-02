@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <databaseChangeLog
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+     <changeSet author="rhulk" id="1">
+         <createTable tableName="producto">
+             <column autoIncrement="true" name="id" type="INT">
+                 <constraints primaryKey="true"/>
+             </column>
+             <column name="nombre" type="VARCHAR(255)">
+                 <constraints nullable="false"/>
+             </column>
+             <column name="categoria" type="VARCHAR(255)">
+                 <constraints nullable="false"/>
+             </column>
+             <column name="subCategoria" type="VARCHAR(255)">
+                 <constraints nullable="false"/>
+             </column>
+             <column name="codProducto" type="VARCHAR(255)">
+                 <constraints nullable="false"/>
+             </column>
+             <column name="descuento" type="INT">
+                 <constraints nullable="false"/>
+             </column>
+             <column name="marca" type="VARCHAR(255)">
+                 <constraints nullable="false"/>
+             </column>             
+             <column name="modelo" type="VARCHAR(255)">
+                 <constraints nullable="false"/>
+             </column>             
+              <column name="publicado" type="INT">
+                 <constraints nullable="false"/>
+             </column>            
+             <column name="pvp" type="INT">
+                 <constraints nullable="false"/>
+             </column>
+             <column name="stock" type="INT">
+                 <constraints nullable="false"/>
+             </column>   
+             
+             <column name="precio" type="INT">
+                 <constraints nullable="false"/>
+             </column>                
+             
+         </createTable>
+         <rollback>
+             <dropTable tableName="producto"/>
+         </rollback>
+     </changeSet>
+      <changeSet author="rhulk" id="2">
+         <insert tableName="producto">
+             
+             <column name="nombre" value="nom_producto"/>
+             <column name="categoria" value="categoria"/>
+             <column name="codProducto" value="codProducto"/>
+             <column name="descuento" value="10"/>
+           
+             <column name="marca" value="marca"/>
+             <column name="modelo" value="modelo"/>
+             <column name="precio" value="23"/>
+             <column name="publicado" value="1"/>
+             <column name="pvp" value="20"/>
+             <column name="stock" value="4"/>
+             <column name="subCategoria" value="subCategoria"/>
+         </insert>
+     </changeSet>
+  
+ </databaseChangeLog>
