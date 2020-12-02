@@ -11,19 +11,17 @@ import javax.persistence.Table;
 public class Marca {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)	
+	@GeneratedValue(strategy=GenerationType.IDENTITY)		
 	public int id;
 	public int id_modelo;
 	public String marca;
 	public boolean activo;
-	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-
 	public int getId_modelo() {
 		return id_modelo;
 	}
@@ -47,6 +45,7 @@ public class Marca {
 		return "Marca [id=" + id + ", id_modelo=" + id_modelo + ", marca=" + marca + ", activo=" + activo + "]";
 	}
 	
+
 
 
 	
