@@ -55,7 +55,7 @@
          </insert>
      </changeSet>
      
-          <changeSet author="rhulk" id="3">
+     <changeSet author="rhulk" id="3">
          <preConditions>
              <dbms  type="mssql"/>
          </preConditions>
@@ -65,5 +65,25 @@
          </update>
      </changeSet>
      
+      <changeSet author="rhulk" id="4">
+      	<addColumn tableName="cliente" >
+			<column name="id_bike" 	type="INT"/>  
+			<column name="id_venta" type="INT"/>  
+		</addColumn>
+      </changeSet>
+ 	  <changeSet author="rhulk" id="5">
+ 	     <update tableName="cliente">
+             <column name="id_bike" value="0"/>
+             <where>nombre = 'Tom'</where>
+         </update>
+ 	  
+ 	  </changeSet>
+ 	  <changeSet author="rhulk" id="6">
+ 	     <update tableName="cliente">
+             <column name="id_venta" value="0"/>
+             <where>nombre = 'Tom'</where>
+         </update>
+ 	  
+ 	  </changeSet>
      
  </databaseChangeLog>
