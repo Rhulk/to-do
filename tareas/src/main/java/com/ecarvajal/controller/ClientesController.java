@@ -75,6 +75,22 @@ public class ClientesController {
 		model.addAttribute("search_mtn", new Mantenimiento());
 	}
 	
+	@GetMapping("/listclientes")
+	public String list(Model vista) {
+		System.out.println("Vista listado clientes");
+		
+		
+		if (busqueda) {
+			busqueda=false;
+			vista.addAttribute("clientes", clientesB);
+			
+		}else {
+			vista.addAttribute("clientes", clienteService.buscarTodos());// recuperamos los clientes seteados.
+		}		
+		
+		return "clientes/list";
+	}
+	
 	@RequestMapping(value="/alta_cliente")
 	public String alta(@ModelAttribute("alta_cliente") Cliente cliente) {
 		System.out.println(" -- Alta cliente -- Controller --");
@@ -176,10 +192,11 @@ public class ClientesController {
 	@GetMapping("/deleteCliente/{id}")
 	String deleteCliente(@PathVariable("id") int id) {
 		System.out.println(" -- Eliminado cliente -- "+id);
-		for (int i=0; i< clientes.size(); i++) {
-			if (clientes.get(i).getId() == id) {
-				clientes.remove(i);
-			}
+		try {
+			clienteService.borrarPorID(id);
+		}catch (Exception e) {
+			System.out.println(" No se elimino: "+e.getMessage());
+			// TODO: handle exception
 		}
 		return "redirect:/"+"listclientes";
 	}
@@ -195,30 +212,7 @@ public class ClientesController {
 		return "redirect:/"+"detallecliente";
 	}
 	
-	@GetMapping("/listclientes")
-	public String list(Model vista) {
-		System.out.println("Vista listado clientes");
-		
-		if (clientes.isEmpty()  && carga_inicial) {
-			System.out.println("Lista vacia de clientes se inicializa ...");
-			//Carga inicial de datos.
-			clientes = list.getClientes();
-			vista.addAttribute("clientes", clientes);// recuperamos los clientes seteados.
-		}
-		
-		if (busqueda) {
-			busqueda=false;
-			vista.addAttribute("clientes", clientesB);
-			
-		}else {
-			vista.addAttribute("clientes", clientes);// recuperamos los clientes seteados.
-		}		
-		
 
-		
-		
-		return "clientes/list";
-	}
 	
 	@GetMapping("/detallecliente/{id}")
 	public String detalle(@PathVariable("id") int id) {
