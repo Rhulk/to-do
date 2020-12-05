@@ -1,5 +1,5 @@
 package com.ecarvajal.model;
-
+// Model bike
 public class Bike {
 	
 	public int id;
