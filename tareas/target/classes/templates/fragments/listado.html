@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
+<div th:fragment=espera>
+	          <table id="fresh-table_espera" class="table table-varios">
+	            <thead>            
+	              <th data-sortable="true">Ticket</th>
+				  <th data-sortable="true">Tarea</th>
+
+				  <th data-sortable="true">prioridad</th>
+				  <th data-sortable="true">Cliente</th>
+				  <th data-sortable="true">Fecha Alta</th>
+				  <th data-sortable="true">Alert Fecha</th>
+				  <th data-sortable="true">Descripcion</th>
+				  <th >Change</th>
+				  <th >Opciones</th>
+				  <th >Borrar</th>
+	            </thead>
+	            <tbody>
+	              <tr  th:each="tarea : ${tareasEnEpera}">
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.id}"> </a>
+					</td>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.tarea}"> </a>
+					</td>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.prioridad}"> </a>
+					</td>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.cliente}"> </a>
+					</td>
+					  
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${#calendars.format(tarea.fAlta,' dd-MM-yyyy')}"> </a>
+					</th>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${#calendars.format(tarea.fAlert,' dd-MM-yyyy')}"> </a>
+					</th>
+					
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${tarea.id}) }" th:text="${tarea.descripcion}"> </a>
+					</td>
+					<td>
+						   <a class="change" th:href="@{/changeStatus/{id} (id=${tarea.id}) }">
+						 	<i class="fas fa-stopwatch fa-2x" aria-hidden="false"></i>
+						 </a> 
+						<!--   <a class="change" th:attr="data-target='#ventanaModalChange'+${tarea.id}" href="#" data-toggle="modal" data-target="#ventanaModalChange" data-whatever="@mdo">
+						 	<i class="fas fa-stopwatch fa-2x" aria-hidden="true"></i> 
+						 </a>
+						 -->
+					 </td>
+
+					<td>
+	 			 <!-- 		<nav class="navbar navbar-expand-lg navbar-dark ">
+						  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
+						    <span class="navbar-toggler-icon"></span>
+						  </button>
+						  <div class="collapse navbar-collapse" id="main_nav">
+						
+							<ul class="navbar-nav ml-auto">
+								<li class="nav-item dropdown">
+									<a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown"> Opciones </a>
+								    <ul class="dropdown-menu dropdown-menu">
+									  <div ><li><a class="change" th:attr="data-target='#ventanaModalChange'+${tarea.id}" href="#" data-toggle="modal" data-target="#ventanaModalChange" data-whatever="@mdo"><i class="fas fa-keyboard" aria-hidden="true"></i> Registro</a></li></div>
+									  
+							    	  <div ><li><a class="change" th:attr="data-target='#ventaModaledite'+${tarea.id}" href="#" data-toggle="modal" data-target="#ventaModaledite" data-whatever="@mdo"><i class="far fa-edit" aria-hidden="true"></i> Editar</a></li></div>
+							          <div ><li><a class="change" th:href="@{/resolverTarea/{id} (id=${tarea.id}) }" ><i class="far fa-check-circle" aria-hidden="true"></i> Resolver</a></li></div>
+								    </ul>
+								</li>
+							</ul>
+						  </div> <!-- navbar-collapse.// -->
+						</nav>  -->
+					</td>	
+					<td> 
+						<a class="change" th:href="@{/deleteTarea/{id} (id=${tarea.id}) }">
+							<i class="far fa-trash-alt delete fa-2x" aria-hidden="true"></i>
+						</a>
+					</td>				
+
+								<!--  ventana modal edit -->
+								<div class="modal fade" th:id="ventaModaledite+${tarea.id}"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+								  <div class="modal-dialog">
+								    <div class="modal-content-change">
+								      <div class="modal-header-change">
+								        <h5 class="modal-title " id="exampleModalLabel" >Modificar la tarea tarea</h5>
+								        <button type="button" class="close-change" data-dismiss="modal" aria-label="Close">
+								          <span aria-hidden="true">&times;</span>
+								        </button>
+								      </div>
+								      <div class="modal-body">
+										<form  th:action="@{/editarTarea/{id} (id=${tarea.id}) }" method="get" th:object="${edit}">	
+											<div class="form-group form-inline">
+												<select class="styled-select space" placeholder="tarea" th:field="*{tarea}">
+												<option th:value="${tarea.tarea}" th:text="${tarea.tarea}" selected> Seleccione una opción </option>
+												  <option th:value="Tarea" th:text="Tarea"></option>
+												  <option th:value="'en espera'" th:text="'en espera'"></option>
+												  <option th:value="Integracion" th:text="Integracion"></option>
+												  <option th:value="Soporte" th:text="Soporte"></option>
+												  <option th:value="Testing" th:text="Testing"></option>
+												  <option th:value="Desarrollo" th:text="Desarrollo"></option>
+												</select>	
+												<select class="styled-select space" placeholder="prioridad" th:field="*{prioridad}">
+												  <option th:value="${tarea.prioridad}" th:text="${tarea.prioridad}" selected></option>
+												  <option th:value="Alta" th:text="Alta"></option>
+												  <option th:value="Media" th:text="Media"></option>
+												  <option th:value="Baja" th:text="Baja"></option>
+												</select>
+												<input class="form-control space" list="clientes" name="cliente" type="text" th:placeholder="${tarea.cliente}" th:field="*{cliente}" th:text="${tarea.cliente}">
+												<datalist id="clientes">
+													<option th:value="${tarea.cliente}" th:text="${tarea.cliente}" selected></option>
+													<option th:value="Lorca"></option>
+													<option th:value="Bullas"></option>
+													<option th:value="'Santa Cruz'"></option>
+													<option th:value="Cieza"></option>
+													<option th:value="'A Coruña'"></option>
+													<option th:value="Durango"></option>
+													<option th:value="Torrelavega"></option>
+												</datalist>
+												 
+							 					<div class="input-group date">
+													<input type="text" class="form-control" id="fecha" th:placeholder="${tarea.fAlert}" th:field="*{fAlert}" th:text="${tarea.fAlert}">
+												</div>
+												 	 
+											</div>
+											<input type="text" class="form-control space" name="descripcion" th:placeholder="${tarea.descripcion}" th:value="${tarea.descripcion}" th:text="${tarea.descripcion}" th:field="*{descripcion}">
+											<br>
+											<br>
+											<h6> Elija el destino </h6>
+								            <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3">En espera</button>
+							    	        <button type="submit" name="action" value="activo" class="btn btn-primary mb-3">Activos</button>
+										</form>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+								<!-- fin ventana modal -->		
+					
+					
+														  <!--  venta modal change status -->
+								  
+								<div class="modal fade" th:id="ventanaModalChange+${tarea.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								  <div class="modal-dialog">
+								    <div class="modal-content-change">
+								      <div class="modal-header-change">
+								        <h5 class="modal-title-change" id="exampleModalLabel">Iniciar registro de la tarea</h5>
+								        <button type="button" class="close-change" data-dismiss="modal" aria-label="Close">
+								          <span aria-hidden="true">&times;</span>
+								        </button>
+								      </div>
+								      <div class="modal-body-change">
+										<form  th:action="@{/changeStatus/{id} (id=${tarea.id}) }" method="get" th:object="${registro}">	
+
+											<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" th:value="${registro.descripcion}"  th:field="*{descripcion}">
+											<br>
+								            <button type="submit" name="action" value="en espera" class="btn btn-primary btn-modal-change"> Acceptar</button>
+										</form>
+								      </div>
+								    </div>
+								  </div>
+								</div>							  
+								  
+								  <!-- FIN  venta modal change status -->										
+					
+					
+	              </tr>
+              	</tbody>
+              </table>
+</div>
+
+<div th:fragment="activos">
+          <table id="fresh-table" class="table table-varios">
+            <thead>
+			  <th data-sortable="true">Ticket</th>
+			  <th data-sortable="true">Tarea</th>
+
+              <th data-sortable="true">prioridad</th>
+		      <th data-sortable="true">Cliente</th>
+			  <th data-sortable="true">Fecha Alta</th>
+			  <th data-sortable="true">Alert Fecha</th>
+			  <th data-sortable="true">Descripcion</th>
+			  <th >Change</th>
+			  <th >Opciones</th>
+			  <th >Borrar</th>
+			  
+            </thead>
+            <tbody>
+				<tr  th:each="activa : ${tareasActivas}">
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.id}"> </a>
+					</td>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.tarea}"> </a>
+					</td>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.prioridad}"> </a>
+					</td>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.cliente}"> </a>
+					</td>
+	 				<td >
+						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${#calendars.format(activa.f_alta,' dd-MM-yyyy')}"> </a>
+					</th>
+					<td >
+						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${#calendars.format(activa.f_alert,' dd-MM-yyyy')}"> </a>
+					</th>
+					
+	
+					<td>
+						<a  th:href="@{/detalle/{id} (id=${activa.id}) }" th:text="${activa.descripcion}"> </a>
+					</td>
+					<td>
+					<!--   <a class="change" th:href="@{/changeStatus/{id} (id=${activa.id}) }">
+					 	<i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+					 </a> -->
+						 <a class="change" th:attr="data-target='#ventanaModalChange'+${activa.id}" href="#" data-toggle="modal" data-target="#ventanaModalChange" data-whatever="@mdo">
+						 	<i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i> 
+						 </a>
+					</td>
+					<td>
+	<!--  					<nav class="navbar navbar-expand-lg navbar-dark ">
+						  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
+						    <span class="navbar-toggler-icon"></span>
+						  </button>
+						  <div class="collapse navbar-collapse" id="main_nav">
+						
+							<ul class="navbar-nav ml-auto">
+								<li class="nav-item dropdown">
+									<a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown"> Opciones </a>
+								    <ul class="dropdown-menu dropdown-menu">
+									  <div class="p-1 "><li><a class="opciones" th:attr="data-target='#ventanaModalChange'+${activa.id}" href="#" data-toggle="modal" data-target="#ventanaModalChange" data-whatever="@mdo"><i class="fas fa-keyboard" aria-hidden="true"></i> Registro</a></li></div>
+									  
+							    	  <div class="p-1 "><li><a class="opciones" th:attr="data-target='#ventaModaledite'+${activa.id}" href="#" data-toggle="modal" data-target="#ventaModaledite" data-whatever="@mdo"><i class="far fa-edit" aria-hidden="true"></i> Editar</a></li></div>
+							          <div class="p-1 "><li><a class="opciones" th:href="@{/resolverTarea/{id} (id=${activa.id}) }" ><i class="far fa-check-circle" aria-hidden="true"></i> Resolver</a></li></div>
+								    </ul>
+								</li>
+							</ul>
+						  </div> <!-- navbar-collapse.// -->
+						</nav>  -->
+					</td>
+					<td>
+						<a class="change" th:href="@{/deleteTarea/{id} (id=${activa.id}) }">
+							<i class="far fa-trash-alt delete fa-2x" aria-hidden="true"></i>
+						</a>
+					</td>	
+								<!--  ventana modal edit -->
+								<div class="modal fade" th:id="ventaModaledite+${activa.id}"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+								  <div class="modal-dialog">
+								    <div class="modal-content-change">
+								      <div class="modal-header-change">
+								        <h5 class="modal-title-change" id="exampleModalLabel" >Modificar la tarea tarea</h5>
+								        <button type="button" class="close-change" data-dismiss="modal" aria-label="Close">
+								          <span aria-hidden="true">&times;</span>
+								        </button>
+								      </div>
+								      <div class="modal-body-change">
+										<form  th:action="@{/editarTarea/{id} (id=${activa.id}) }" method="get" th:object="${edit}">	
+											<div class="form-group form-inline">
+												<select class="styled-select space" placeholder="tarea" th:field="*{tarea}">
+												<option th:value="${activa.tarea}" th:text="${activa.tarea}" selected> Seleccione una opción </option>
+												  <option th:value="Tarea" th:text="Tarea"></option>
+												  <option th:value="'en espera'" th:text="'en espera'"></option>
+												  <option th:value="Integracion" th:text="Integracion"></option>
+												  <option th:value="Soporte" th:text="Soporte"></option>
+												  <option th:value="Testing" th:text="Testing"></option>
+												  <option th:value="Desarrollo" th:text="Desarrollo"></option>
+												</select>	
+												<select class="styled-select space" placeholder="prioridad" th:field="*{prioridad}">
+												  <option th:value="${activa.prioridad}" th:text="${activa.prioridad}" selected></option>
+												  <option th:value="Alta" th:text="Alta"></option>
+												  <option th:value="Media" th:text="Media"></option>
+												  <option th:value="Baja" th:text="Baja"></option>
+												</select>
+												<input class="form-control space" list="clientes" name="cliente" type="text" th:placeholder="${activa.cliente}" th:field="*{cliente}" th:text="${activa.cliente}">
+												<datalist id="clientes">
+													<option th:value="${activa.cliente}" th:text="${activa.cliente}" selected></option>
+													<option th:value="Lorca"></option>
+													<option th:value="Bullas"></option>
+													<option th:value="'Santa Cruz'"></option>
+													<option th:value="Cieza"></option>
+													<option th:value="'A Coruña'"></option>
+													<option th:value="Durango"></option>
+													<option th:value="Torrelavega"></option>
+												</datalist>
+											
+							 					<div class="input-group date">
+													<input type="text" class="form-control" id="fecha" th:placeholder="${activa.fAlert}" th:field="*{fAlert}" th:text="${activa.fAlert}">
+												</div>	 
+											  
+											</div>
+											<input type="text" class="form-control space" name="descripcion" th:placeholder="${activa.descripcion}" th:value="${activa.descripcion}" th:text="${activa.descripcion}" th:field="*{descripcion}">
+											<br>
+											<br>
+											<h6> Elija el destino </h6>
+								            <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3">En espera</button>
+							    	        <button type="submit" name="action" value="activo" class="btn btn-primary mb-3">Activos</button>
+										</form>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+								<!-- fin ventana modal -->		
+					
+					
+														  <!--  venta modal change status -->
+								  
+								<div class="modal fade" th:id="ventanaModalChange+${activa.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								  <div class="modal-dialog">
+								    <div class="modal-content-change">
+								      <div class="modal-header-change">
+								        <h5 class="modal-title-change" id="exampleModalLabel">Iniciar registro de la tarea</h5>
+								        <button type="button" class="close-change" data-dismiss="modal" aria-label="Close">
+								          <span aria-hidden="true">&times;</span>
+								        </button>
+								      </div>
+								      <div class="modal-body-change">
+										<form  th:action="@{/changeStatus/{id} (id=${activa.id}) }" method="get" th:object="${registro}">	
+
+											<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" th:value="${registro.descripcion}"  th:field="*{descripcion}">
+											<br>
+								            <button type="submit" name="action" value="en espera" class="btn btn-primary btn-modal-change"> Acceptar</button>
+										</form>
+								      </div>
+								    </div>
+								  </div>
+								</div>							  
+								  
+								  <!-- FIN  venta modal change status -->    									
+              </tr>
+
+            </tbody>
+          </table>
+</div> <!--  Fin fracmento listado activo -->
+
+
+<div th:fragment="clientes">
+          <table id="fresh-table" class="table table-varios">
+            <thead>
+			  <th data-sortable="true">ID</th>
+			  <th data-sortable="true">Nombre</th>
+              <th data-sortable="true">Apellido 1</th>
+		      <th data-sortable="true">Apellido 2</th>
+			  <th data-sortable="true">Teléfono</th>
+			  <th data-sortable="true">Correo</th>
+			  <th data-sortable="true">Municipio</th>
+			  <th data-sortable="true">Dirección</th>
+			  <th data-sortable="true">Observaciones</th>
+			  <th >Editar</th>
+			  <th >Borrar</th>
+			  
+            </thead>
+            <tbody>
+				<tr th:each="cliente : ${clientes}" >
+					<td >
+						<a th:href="@{/detallecliente/{id} (id=${cliente.id}) }"   th:text="${cliente.id}"> </a>
+					</td> 
+					<td >
+						<a th:href="@{/detallecliente/{id} (id=${cliente.id}) }"  th:text="${cliente.nombre}"> </a>
+					</td> 	
+					<td >
+						<a th:href="@{/detallecliente/{id} (id=${cliente.id}) }"  th:text="${cliente.apellido1}"> </a>
+					</td> 	
+					<td >
+						<a th:href="@{/detallecliente/{id} (id=${cliente.id}) }"  th:text="${cliente.apellido2}"> </a>
+					</td> 	
+					<td >
+						<a th:href="@{/detallecliente/{id} (id=${cliente.id}) }"  th:text="${cliente.telefono}"> </a>
+					</td> 	
+					<td >
+						<a th:href="@{/detallecliente/{id} (id=${cliente.id}) }"  th:text="${cliente.email}"> </a>
+					</td> 
+					<td >
+						<a th:href="@{/detallecliente/{id} (id=${cliente.id}) }"  th:text="${cliente.municipio}"> </a>
+					</td> 						
+					<td >
+						<a th:href="@{/detallecliente/{id} (id=${cliente.id}) }"  th:text="${cliente.direccion}"> </a>
+					</td> 	
+					<td >
+						<a th:href="@{/detallecliente/{id} (id=${cliente.id}) }"  th:text="${cliente.observaciones}"> </a>
+					</td> 	
+					<td >
+						<a th:href="@{/detallecliente/{id} (id=${cliente.id}) }"  th:text="${cliente.id}"> </a>
+					</td> 		
+					<td >
+						<a class="change" th:href="@{/deleteCliente/{id} (id=${cliente.id}) }">
+							<i class="far fa-trash-alt delete fa-2x" aria-hidden="true"></i>
+						</a>
+					</td> 									
+              </tr>
+
+            </tbody>
+          </table>
+</div> <!--  Fin fracmento listado clientes -->
+
+
+<div th:fragment="productos">
+          <table id="fresh-table" class="table table-varios">
+            <thead>
+			  <th data-sortable="true">Cod Producto</th>
+			  <th data-sortable="true">Nombre</th>
+              <th data-sortable="true">Categoria</th>
+		      <th data-sortable="true">Sub Categoria</th>
+			  <th data-sortable="true">Precio</th>
+			  <th >Stock</th>
+			  <th data-sortable="true">publicado</th>
+
+			  <th >Editar</th>
+			  <th >Borrar</th>
+			  
+            </thead>
+            <tbody>
+				<tr th:each="producto : ${productos}" >
+					<td >
+						<a   th:text="${producto.codProducto}"> </a>
+					</td> 
+					<td >
+						<a   th:text="${producto.nombre}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${producto.categoria}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${producto.subCategoria}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${producto.precio}"> </a>
+					</td> 	
+					<td >
+						<a class="change" th:href="@{/stockIncremento/{id} (id=${producto.id}) }" >
+						<i class="fas fa-chevron-up"> </i>  </a>
+						<a th:text="${producto.stock}"> </a>
+						<a class="change" th:href="@{/stockDecremento/{id} (id=${producto.id}) }" >
+						<i class="fas fa-chevron-down"></i>		</a>					
+					</td>
+					<td >	
+						<div th:if="${producto.publicado}">
+							<a class="change" th:href="@{/web/{id} (id=${producto.id}) }" >
+   								<i class="fas fa-cloud-upload-alt fa-2x"></i>
+   							</a>
+						</div>	
+						<!-- ELSE -->
+						<div th:unless="${producto.publicado}">
+							<a class="change" th:href="@{/web/{id} (id=${producto.id}) }" >
+								<i class="fas fa-toggle-off fa-2x"></i>
+							</a>
+						</div>						
+					</td> 						
+	
+					<td >
+						<a   th:text="${producto.id}"> </a>
+					</td> 		
+					<td >
+						<a class="change" th:href="@{/deleteProducto/{id} (id=${producto.id}) }">
+							<i class="far fa-trash-alt delete fa-2x" aria-hidden="true"></i>
+						</a>
+					</td> 									
+              </tr>
+
+            </tbody>
+          </table>
+</div> 
+<!--  Fin fracmento listado productos -->
+
+
+<div th:fragment="venta">
+          <table id="fresh-table" class="table table-varios">
+            <thead>
+			  <th data-sortable="true">Cod Producto</th>
+			  <th data-sortable="true">Nombre</th>
+              <th data-sortable="true">Cantidad</th>
+		      <th data-sortable="true">Descuento</th>
+			  <th data-sortable="true">Precio</th>
+			  <th data-sortable="true">Total</th>
+			  <th >Change</th>
+			  <th >Stock</th>
+			  <th >Borrar</th>
+			  
+            </thead>
+            <tbody>
+				<tr th:each="producto : ${carrito}" >
+					<td >
+						<a   th:text="${producto.codProducto}"> </a>
+					</td> 
+					<td >
+						<a   th:text="${producto.nombre}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${producto.cantidad}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${producto.descuento}"> </a>
+					</td> 	
+					<td >
+						<a   th:text="${producto.pvp}"> </a>
+					</td>
+					<td >
+						<a  th:text="${producto.total}">  </a>
+					</td> 
+					<td >
+						<a class="change" th:href="@{/aumentar/{id} (id=${producto.id}) }" >
+						<i class="fas fa-chevron-up"> </i>  </a>
+
+						<a class="change" th:href="@{/disminuir/{id} (id=${producto.id}) }" >
+						<i class="fas fa-chevron-down"></i>		</a>					
+					</td> 	
+					<td>					
+						<a th:text="${producto.stock}"> </a> <!--  Calcular stock y poder hacer pedido -->
+					</td>
+					<td >
+						<a class="change" th:href="@{/quitarPoducto/{id} (id=${producto.id}) }">
+							<i class="far fa-trash-alt delete fa-2x" aria-hidden="true"></i>
+						</a>
+
+					</td> 									
+              </tr>
+
+            </tbody>
+          </table>
+</div> 
+<!--  Fin fracmento listado venta -->
+<div th:fragment="taller">
+          <table id="fresh-table" class="table">  
+            <thead>
+              <th >ID</th>
+              <th  data-sortable="true">Descripción</th>
+              <th  data-sortable="true">F. Alta</th>
+              <th  data-sortable="true">F. Alerta</th>
+              <th  > Eliminar</th>
+            </thead>
+            <tbody>
+              <tr th:each="man : ${mante}">  
+                <td th:text="${man.id}"> - </td>
+                <td th:text="${man.descripcion}"> - </td>
+                <td th:text="${#calendars.format(man.falta,' dd-MM-yyyy')}"> </td>
+                <td th:text="${#calendars.format(man.falerta,' dd-MM-yyyy')}"> </td>
+				<td>
+						<a class="change" th:href="@{/deleteMtn/{id} (id=${man.id}) }">
+							<i class="far fa-trash-alt delete fa-2x" aria-hidden="true"></i>
+						</a>
+				</td>
+              </tr>
+
+            </tbody>
+          </table>
+</div>
+
+<div th:fragment="activosDemos">
+          <table id="fresh-table" class="table table-varios">
+            <thead>
+
+			  <th >Change</th>
+			  <th >Opciones</th>
+			  <th >Borrar</th>
+			  
+            </thead>
+            <tbody>
+				<tr  th:each="activa : ${tareasActivas}">
+
+					<td>
+					 <a class="change" th:href="@{/changeStatus/{id} (id=${activa.id}) }">
+					 	<i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+					 </a>
+					</td>
+					<td>
+						<nav class="navbar   ">
+						  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
+						    <span class="navbar-toggler-icon"></span>
+						  </button>
+						  <div class=" navbar-collapse" id="main_nav">
+						
+							<ul class="navbar-nav ">
+								<li class="nav-item ">
+									<a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown"> Opciones </a>
+								    <ul class="dropdown-menu dropdown-menu">
+									  <div class="p-1 "><li><a class="opciones" th:attr="data-target='#ventanaModalChange'+${activa.id}" href="#" data-toggle="modal" data-target="#ventanaModalChange" data-whatever="@mdo"><i class="fas fa-keyboard" aria-hidden="true"></i> Registro</a></li></div>
+									  
+							    	  <div class="p-1 ">
+							    	  	<li>
+							    	  		<a class="opciones list-group-item" th:attr="data-target='#ventaModaledite'+${activa.id}" href="#" data-toggle="modal" data-target="#ventaModaledite" data-whatever="@mdo">
+							    	  			<i class="far fa-edit" aria-hidden="true"></i> Editar
+							    	  		</a>
+							    	  	</li>
+							    	  </div>
+							          <div class="p-1 "><li><a class="opciones" th:href="@{/resolverTarea/{id} (id=${activa.id}) }" ><i class="far fa-check-circle" aria-hidden="true"></i> Resolver</a></li></div>
+								    </ul>
+								</li>
+							</ul>
+						  </div> <!-- navbar-collapse.// -->
+						</nav>
+					</td>
+					<td>
+						<a class="change" th:href="@{/deleteTarea/{id} (id=${activa.id}) }">
+							<i class="far fa-trash-alt delete fa-2x" aria-hidden="true"></i>
+						</a>
+					</td>	
+								<!--  ventana modal edit -->
+								<div class="modal fade" th:id="ventaModaledite+${activa.id}"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+								  <div class="modal-dialog">
+								    <div class="modal-content-change">
+								      <div class="modal-header-change ">
+								        <h5 class="modal-title colorNegro" id="exampleModalLabel" >Modificar la tarea tarea</h5>
+								        <button type="button" class="close-change" data-dismiss="modal" aria-label="Close">
+								          <span aria-hidden="true">&times;</span>
+								        </button>
+								      </div>
+								      <div class="modal-body">
+										<form  th:action="@{/editarTarea/{id} (id=${activa.id}) }" method="get" th:object="${edit}">	
+											<div class="form-group form-inline">
+												<select class="styled-select space" placeholder="tarea" th:field="*{tarea}">
+												<option th:value="${activa.tarea}" th:text="${activa.tarea}" selected> Seleccione una opción </option>
+												  <option th:value="Tarea" th:text="Tarea"></option>
+												  <option th:value="'en espera'" th:text="'en espera'"></option>
+												  <option th:value="Integracion" th:text="Integracion"></option>
+												  <option th:value="Soporte" th:text="Soporte"></option>
+												  <option th:value="Testing" th:text="Testing"></option>
+												  <option th:value="Desarrollo" th:text="Desarrollo"></option>
+												</select>	
+												<select class="styled-select space" placeholder="prioridad" th:field="*{prioridad}">
+												  <option th:value="${activa.prioridad}" th:text="${activa.prioridad}" selected></option>
+												  <option th:value="Alta" th:text="Alta"></option>
+												  <option th:value="Media" th:text="Media"></option>
+												  <option th:value="Baja" th:text="Baja"></option>
+												</select>
+												<input class="form-control space" list="clientes" name="cliente" type="text" th:placeholder="${activa.cliente}" th:field="*{cliente}" th:text="${activa.cliente}">
+												<datalist id="clientes">
+													<option th:value="${activa.cliente}" th:text="${activa.cliente}" selected></option>
+													<option th:value="Lorca"></option>
+													<option th:value="Bullas"></option>
+													<option th:value="'Santa Cruz'"></option>
+													<option th:value="Cieza"></option>
+													<option th:value="'A Coruña'"></option>
+													<option th:value="Durango"></option>
+													<option th:value="Torrelavega"></option>
+												</datalist>
+												
+							 					<div class="input-group date">
+													<input type="text" class="form-control" id="fecha" th:placeholder="${activa.fAlert}" th:field="*{fAlert}" th:text="${activa.fAlert}">
+												</div>	
+												 
+											</div>
+											<input type="text" class="form-control space" name="descripcion" th:placeholder="${activa.descripcion}" th:value="${activa.descripcion}" th:text="${activa.descripcion}" th:field="*{descripcion}">
+											<br>
+											<br>
+											<h6> Elija el destino </h6>
+								            <button type="submit" name="action" value="en espera" class="btn btn-primary mb-3">En espera</button>
+							    	        <button type="submit" name="action" value="activo" class="btn btn-primary mb-3">Activos</button>
+										</form>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+								<!-- fin ventana modal -->		
+					
+					
+								<!--  venta modal change status -->
+								  
+								<div class="modal fade" th:id="ventanaModalChange+${activa.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								  <div class="modal-dialog">
+								    <div class="modal-content-change">
+								      <div class="modal-header-change">
+								        <h5 class="modal-title-change" id="exampleModalLabel">Iniciar registro de la tarea</h5>
+								        <button type="button" class="close-change" data-dismiss="modal" aria-label="Close">
+								          <span aria-hidden="true">&times;</span>
+								        </button>
+								      </div>
+								      <div class="modal-body-change">
+										<form  th:action="@{/changeStatus/{id} (id=${activa.id}) }" method="get" th:object="${registro}">	
+
+											<input type="text" class="form-control space" name="descripcion" placeholder="descripcion" th:value="${registro.descripcion}"  th:field="*{descripcion}">
+											<br>
+								            <button type="submit" name="action" value="en espera" class="btn btn-primary btn-modal-change"> Acceptar</button>
+										</form>
+								      </div>
+								    </div>
+								  </div>
+								</div>							  
+								  
+								<!-- FIN  venta modal change status -->    									
+              </tr>
+
+            </tbody>
+          </table>
+</div> <!--  Fin fracmento listado demo -->
+</body>
+</html>
