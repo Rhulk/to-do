@@ -1,5 +1,5 @@
 package com.ecarvajal.model;
-
+// add class al repo master
 public class AnalizadorWord {
 
 	   private	   int numeroCaracteres;
