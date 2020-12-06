@@ -13,6 +13,7 @@ import org.apache.poi.extractor.POIOLE2TextExtractor;
 
 import com.ecarvajal.model.AnalizadorWord;
 
+// add class master
 
 
 public class GenerarWord implements POIFSReaderListener {
